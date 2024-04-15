@@ -26,30 +26,36 @@
                             <a href="#" data-sort="rating">별점순</a>
                         </div>
                     </div>
-
                 </div>
-                <span>상품 관리 > 전체 상품 보기</span>
+                <span class="manage-products">상품 관리 > 전체 상품 보기</span>
                 <div class="bed">
                     <h3>침대</h3>
+
                     <div class="product">
-                        <img src="bed.jpg" alt="상품1">
+                        <img src="../../assets/images/managerY/bed.jpg" alt="상품1">
                         <div class="product-info">
                             <span class="product-name">어쩌구 침대</span>
                             <div class="review">
-                                <img src="star.png"><img src="star.png"><img src="star.png"><img src="star.png"><img
-                                    src="star2.png">
+                                <img src="../../assets/images/homedeco/star.png"><img
+                                    src="../../assets/images/homedeco/star.png"><img
+                                    src="../../assets/images/homedeco/star.png"><img
+                                    src="../../assets/images/homedeco/star.png"><img
+                                    src="../../assets/images/homedeco/star2.png">
                             </div>
                             <span class="product-rating">4.5</span>
                             <button class="delete-button">삭제</button>
                         </div>
                     </div>
                     <div class="product">
-                        <img src="bed.jpg" alt="상품2">
+                        <img src="../../assets/images/managerY/bed.jpg" alt="상품2">
                         <div class="product-info">
                             <span>어쩌구 작은 침대</span>
                             <div class="review">
-                                <img src="star.png"><img src="star.png"><img src="star.png"><img src="star.png"><img
-                                    src="star2.png">
+                                <img src="../../assets/images/homedeco/star.png"><img
+                                    src="../../assets/images/homedeco/star.png"><img
+                                    src="../../assets/images/homedeco/star.png"><img
+                                    src="../../assets/images/homedeco/star.png"><img
+                                    src="../../assets/images/homedeco/star2.png">
                             </div>
                             <span class="product-rating">4.5</span>
                             <button class="delete-button">삭제</button>
@@ -62,24 +68,30 @@
                 <div class="sofa">
                     <h3>소파</h3>
                     <div class="product">
-                        <img src="sofa.jpg" alt="상품1">
+                        <img src="../../assets/images/managerY/sofa.jpg" alt="상품1">
                         <div class="product-info">
                             <span>어쩌구 쇼파</span>
                             <div class="review">
-                                <img src="star.png"><img src="star.png"><img src="star.png"><img src="star.png"><img
-                                    src="star2.png">
+                                <img src="../../assets/images/homedeco/star.png"><img
+                                    src="../../assets/images/homedeco/star.png"><img
+                                    src="../../assets/images/homedeco/star.png"><img
+                                    src="../../assets/images/homedeco/star.png"><img
+                                    src="../../assets/images/homedeco/star2.png">
                             </div>
                             <span class="product-rating">4.5</span>
                             <button class="delete-button">삭제</button>
                         </div>
                     </div>
                     <div class="product">
-                        <img src="sofa.jpg" alt="상품2">
+                        <img src="../../assets/images/managerY/sofa.jpg" alt="상품2">
                         <div class="product-info">
                             <span>어쩌구 쇼파 야호</span>
                             <div class="review">
-                                <img src="star.png"><img src="star.png"><img src="star.png"><img src="star.png"><img
-                                    src="star2.png">
+                                <img src="../../assets/images/homedeco/star.png"><img
+                                    src="../../assets/images/homedeco/star.png"><img
+                                    src="../../assets/images/homedeco/star.png"><img
+                                    src="../../assets/images/homedeco/star.png"><img
+                                    src="../../assets/images/homedeco/star2.png">
                             </div>
                             <span class="product-rating">4.5</span>
                             <button class="delete-button">삭제</button>
@@ -112,6 +124,7 @@ dropdownItems.forEach(function (item) {
         }
     });
 });
+
 export default {
     name: "ProductListView",
     components: {},
@@ -120,4 +133,4 @@ export default {
     },
     methods: {},
 };
-</script>./ProductListView.vue
+</script>

@@ -22,7 +22,8 @@
                         <div class="input">
                             <label for="add">추가 첨부 파일:</label>
                             <input type="file" id="add" name="add[]" class="file-input" multiple>
-                            <button type="button" class="add-file-button" onclick="addFileInput()">파일 추가</button>
+                            <button type="button" class="add-file-button" @click="addFileInput">파일 추가</button>
+
                         </div>
                     </div>
                 </form>
