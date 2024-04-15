@@ -1,11 +1,11 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import MainView from '../views/main_ss/View.vue'
+import ProductInfoView from '../views/product_sr/ProductInfoView.vue'
 
 const routes = [
   {
-    path: '/main',
-    name: 'main',
-    component: MainView
+    path: '/product',
+    name: 'product',
+    component: ProductInfoView
   }
 ]
 
