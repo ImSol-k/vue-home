@@ -1,7 +1,7 @@
 <template>
 
 <footer>
-    <div class="footer">
+    <div class="ss-footer">
         <ul>
             <li>집꾸며조</li>
             <li>CopyRight</li>

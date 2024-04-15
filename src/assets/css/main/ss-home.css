@@ -33,46 +33,46 @@ a:hover { text-decoration : none; color: #000000; }
 header { width: 100%; border-bottom: 1px solid #000; }
 
 /* header0 */
-header .header0 { width : 1300px;height : 50px; margin : 5px auto; padding : 10px 0px 15px 0px ; }
+header .ss-header0 { width : 1300px;height : 50px; margin : 5px auto; padding : 10px 0px 15px 0px ; }
 
 /* header1 */
 /* 로고 이미지 쪽 */
-header .header1 { width : 350px; float : left; margin : 0px 0px 0px 10px; }
+header .ss-header1 { width : 350px; float : left; margin : 0px 0px 0px 10px; }
 
 /* 로고 이미지 */
-header .header1 img { width : 50px; float : left; margin-right: 10px; cursor: pointer; }
+header .ss-header1 img { width : 50px; float : left; margin-right: 10px; cursor: pointer; }
 
 /* 로고 옆 글자*/
-header .header1 span a { text-align : left; line-height : 50px; float: left; font-size : 30px; cursor: pointer; }
+header .ss-header1 span a { text-align : left; line-height : 50px; float: left; font-size : 30px; cursor: pointer; }
 
 /* header2 */
 /* 검색 쪽 */
-header .header2 { width : 500px; float : left; border : 1px solid #000; border-color : #2c95eb; margin-right: 70px; }
+header .ss-header2 { width : 500px; float : left; border : 1px solid #000; border-color : #2c95eb; margin-right: 70px; }
 
 /* 검색 돋보기 이미지 */
-header .header2 img { width : 48px; float : left; position : relative; background-color : #fff; }
+header .ss-header2 img { width : 48px; float : left; position : relative; background-color : #fff; }
 
 /* 검색창 */
-header .header2 input { width : 350px; height : 48px; text-align : left; font-size : 20px; outline : none; border-width : 0; }
+header .ss-header2 input { width : 350px; height : 48px; text-align : left; font-size : 20px; outline : none; border-width : 0; }
 
 /* header3 */
 /* 카트, 로그인 쪽 */
-header .header3 { width : 350px; height : 50px; float : left; }
+header .ss-header3 { width : 350px; height : 50px; float : left; }
 
 /* 장바구니 이미지 */
-header .header3 img { width : 40px; height : 40px; margin-right : 20px; padding : 5px 0px; float : left; cursor: pointer; }
+header .ss-header3 img { width : 40px; height : 40px; margin-right : 20px; padding : 5px 0px; float : left; cursor: pointer; }
 
 /* 로그인쪽 a태그  */
-header .header3 ul { height: 30px; line-height: 30px; font-size: 15px; margin : 10px 0px; float : left; }
+header .ss-header3 ul { height: 30px; line-height: 30px; font-size: 15px; margin : 10px 0px; float : left; }
 
 /* 리스트 float */
-header .header3 ul>li { float : left; }
+header .ss-header3 ul>li { float : left; }
 
 /* a태그 옆에 라인 */
-header .header3 ul>li>a { border-right : 1px solid #000; padding : 0px 15px 0px 15px; text-align: center; cursor: pointer; }
+header .ss-header3 ul>li>a { border-right : 1px solid #000; padding : 0px 15px 0px 15px; text-align: center; cursor: pointer; }
 
 /* 마지막 라인 x */
-header .header3 ul>li:last-child a { border: none; }
+header .ss-header3 ul>li:last-child a { border: none; }
 
 /****************************************************************************/
 
@@ -193,13 +193,13 @@ nav .nav1 .nav1-main>li { display: block; float: left; box-sizing: border-box; }
 footer { width : 100%; font-size : 15px; text-align : center; }
 
 /* footer 안에서 보여질 부분*/
-footer .footer { width : 1300px; height : 50px; background-color : #d6d6d6; margin : 0px auto; }
+footer .ss-footer { width : 1300px; height : 50px; background-color : #d6d6d6; margin : 0px auto; }
 
 /* footer 리스트 */
-footer .footer ul { width : 1300px; line-height : 50px; margin-left : 350px; }
+footer .ss-footer ul { width : 1300px; line-height : 50px; margin-left : 350px; }
 
 /* 리스트별 간격*/
-footer .footer ul>li { margin-right : 50px; float : left; }
+footer .ss-footer ul>li { margin-right : 50px; float : left; }
 /****************************************************************************/
 
 

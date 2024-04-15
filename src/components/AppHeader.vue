@@ -1,8 +1,8 @@
 <template>
 
 <header>
-    <div class="header0">
-        <div class="header1">
+    <div class="ss-header0">
+        <div class="ss-header1">
             <!-- 누르면 둘다 홈으로 -->
             <img src="../assets/images/homedeco/homelogo.png">
             <span>
@@ -11,7 +11,7 @@
         </div>
         <!-- //header1 -->
 
-        <div class="header2">
+        <div class="ss-header2">
             <!-- 검색 키워드 사용 -->
             <!-- v-on:keyup.enter="submit" -->
             <img src="../assets/images/homedeco/search.png">
@@ -19,7 +19,7 @@
         </div>
         <!-- //header2 -->
 
-        <div class="header3">
+        <div class="ss-header3">
             <!-- 누르면 장바구니 페이지로 -->
             <img src="../assets/images/homedeco/cart.png">
 

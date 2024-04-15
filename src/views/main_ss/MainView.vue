@@ -99,7 +99,33 @@
                 <span>이름</span><br>
                 <span>10000</span><br>
                 <span>별점</span><span>리뷰</span>
-
+            </div>
+            <div class="ss-goods">
+                <img src="../../assets/images/main/mainlist/img1.jpg"><br>
+                <span>카테고리</span><br>
+                <span>이름</span><br>
+                <span>10000</span><br>
+                <span>별점</span><span>리뷰</span>
+            </div>
+            <div class="ss-goods">
+                <img src="../../assets/images/main/mainlist/img1.jpg"><br>
+                <span>카테고리</span><br>
+                <span>이름</span><br>
+                <span>10000</span><br>
+                <span>별점</span><span>리뷰</span>
+            </div>
+            <div class="ss-goods">
+                <img src="../../assets/images/main/mainlist/img1.jpg"><br>
+                <span>카테고리</span><br>
+                <span>이름</span><br>
+                <span>10000</span><br>
+                <span>별점</span><span>리뷰</span>
+            </div><div class="ss-goods">
+                <img src="../../assets/images/main/mainlist/img1.jpg"><br>
+                <span>카테고리</span><br>
+                <span>이름</span><br>
+                <span>10000</span><br>
+                <span>별점</span><span>리뷰</span>
             </div>
         </div>    
 
