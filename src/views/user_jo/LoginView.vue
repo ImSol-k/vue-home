@@ -6,7 +6,7 @@
 <script>
 
 export default {
-    name: "Name",
+    name: "LoginView",
     components: {},
     data() {
         return {};
