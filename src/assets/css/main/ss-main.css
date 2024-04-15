@@ -12,19 +12,19 @@
 }
 
 /* 리스트 위 텍스트 + 버튼 */
-.ss-content .goods-text {
+.ss-content .ss-goods-text {
     width: 1300px;
     height: 50px;
     margin : 0px auto 10px auto;
     /* border: 1px solid #000; */
 }
-.goods-text span {
+.ss-goods-text span {
     background-color: #d6d6d6;
     display: block;
     float: left;
     font-size: 30px;
 }
-.goods-text button {
+.ss-goods-text button {
     display: block;
     float: right;
     margin-top: 10px;
