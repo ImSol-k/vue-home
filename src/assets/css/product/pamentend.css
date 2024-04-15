@@ -22,7 +22,8 @@
     color: #fff;
     font-size: 20px;
     font-weight: bold;
-    margin-bottom: 20px;
+    margin: 20px auto;
+    display: block;
 }
 .paymentEndInfo>table{
     width: 700px;
