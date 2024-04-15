@@ -196,6 +196,8 @@
 
 
 <script>
+import '@/assets/css/product/cart.css'
+import '@/assets/css/product/infomain.css'
 
 export default {
     name: "ProductInfoView",
