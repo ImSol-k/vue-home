@@ -107,10 +107,12 @@ import '@/assets/css/managerJ/main.css'
 
 import { Chart, registerables } from 'chart.js'
 Chart.register(...registerables)
-import ChartJSPluginDatalabels from "chartjs-plugin-datalabels";
-export default {
+import ChartDataLabels from 'chartjs-plugin-datalabels';
 
-    plugins: [ChartJSPluginDatalabels],
+Chart.register(ChartDataLabels);
+export default {
+    plugins: [ChartDataLabels],
+    
     methods: {
         createChart() {
             new Chart(this.$refs.MyChart, {
@@ -122,6 +124,9 @@ export default {
                         dataIndex: true,
                         display: true,
                         data: [12, 19, 3],
+                        datalabels: {
+                            color: '#000000'
+                        },
                         backgroundColor: [
                             'rgba(255, 99, 132, 0.2)',
                             'rgba(54, 162, 235, 0.2)',
@@ -138,29 +143,31 @@ export default {
                         ],
                         borderWidth: 1
                     }],
-                    
+
 
 
                 },
+                
                 options: {
                     responsive: false,
                     plugins: {
+                        datalabels: {
+                            color: '#000000'
+                        },
                         title: {
                             display: true,
                             text: '총 판매비율'
                         },
-                        datalabels:{
-                            display: true
-                        }
+
+
                     }
                 }
-                
             })
-
-
-
         }
+
     },
+
+
     mounted() {
         this.createChart(
 
