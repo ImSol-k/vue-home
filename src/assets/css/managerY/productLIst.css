@@ -19,11 +19,26 @@
 .side {
     width: 300px;
     padding: 20px;
+    border: 1px solid #ddd;
+    /* 테두리 추가 */
+    box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.1);
+    /* 그림자 추가 */
+    margin-top: 20px;
+    /* 헤더와의 간격 조절 */
+    border-radius: 10px;
+    height: auto;
 }
 
-.side>ul {
-    list-style-type: none;
-    padding-left: 10px;
+.side ul {
+    padding-left: 0;
+    /* 기본 패딩 제거 */
+    list-style: none;
+    /* 목록 기호 제거 */
+}
+
+.side li {
+    margin-bottom: 15px;
+    position: relative;
 }
 
 .side a {
@@ -35,8 +50,23 @@
     color: black;
 }
 
-.side>ul>li {
-    margin-bottom: 7px;
+.side strong {
+    margin-right: 5px;
+}
+
+.side span {
+    font-size: 12px;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.cate-li{
+    margin-left: 20px;
+}
+
+ul {
+    margin-bottom: 20px; /* 간격 조절 */
 }
 
 .main {
@@ -45,28 +75,18 @@
     padding: 20px;
 }
 
-.manage-products {
-    display: block;
-    margin-bottom: 10px;
-}
-
-.insert {
-    text-align: right;
-}
-
 .insert-button {
     background-color: #6bcbff;
     color: white;
     border: none;
-    padding: 10px 20px; /* 버튼 내부 패딩 조절 */
+    padding: 10px 15px 10px 15px;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 16px; /* 버튼 폰트 크기 조절 */
-    width: 200px; /* 버튼 가로 크기 설정 */
-    height: 50px; /* 버튼 세로 크기 설정 */
-    margin-left: 10px; /* 왼쪽 여백 설정 */
+    text-align: right;
+    margin-top: 10px;
+    margin-left: 820px;
+    margin-bottom: 30px;
 }
-
 
 .product {
     border: 1px solid #dddddd;
@@ -78,6 +98,7 @@
     background-color: #f9f9f9;
     border-radius: 10px;
     box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.1);
+    margin-top: 10px;
 }
 
 .product img {
@@ -128,6 +149,10 @@
     margin-bottom: 15px;
 }
 
+.manage-products {
+    text-align: left;
+}
+
 /* 드롭다운 스타일 */
 .dropdown {
     position: relative;
@@ -157,10 +182,6 @@
 
 .dropdown:hover .dropdown-content {
     display: block;
-}
-
-.dropdown:hover .dropbtn {
-    background-color: #6bcbff;
 }
 
 .dropbtn {

@@ -19,7 +19,7 @@
     justify-content: center;
 }
 
-.main {
+.main-insert {
     flex-grow: 1;
     padding: 20px;
     text-align: center;
@@ -32,8 +32,7 @@ form {
     align-items: center;
 }
 
-
-.insert {
+.insert01 {
     padding: 8px 16px;
     background-color: #6bcbff;
     color: white;

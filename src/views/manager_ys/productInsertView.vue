@@ -4,7 +4,7 @@
             <h1>header</h1>
         </div><!-- header -->
         <div class="content">
-            <div class="main">
+            <div class="main-insert">
                 <form action="submit.php" method="post" enctype="multipart/form-data">
                     <div id="additional-files-wrapper">
                         <div class="input">
@@ -28,7 +28,7 @@
                     </div>
                 </form>
                 <form action="submit.php" method="post" enctype="multipart/form-data">
-                    <button type="submit" class="insert">등록</button>
+                    <button type="submit" class="insert01">등록</button>
                 </form>
             </div>
         </div>
