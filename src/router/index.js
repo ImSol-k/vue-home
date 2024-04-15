@@ -6,6 +6,7 @@ import CategoryView from '../views/main_ss/CategoryView.vue'
 //소리
 import ProductInfoView from '../views/product_sr/ProductInfoView.vue'
 import ProductCartView from '../views/product_sr/ProductCartView.vue'
+import PaymentEnd from '../views/product_sr/PaymentEnd.vue'
 //지원
 import MyPageView from '../views/user_jo/MyPageView.vue'
 import LoginView from '../views/user_jo/LoginView.vue'
@@ -54,6 +55,11 @@ const routes = [
     path: '/pay',
     name: 'pay',
     component: PayView
+  },
+  {
+    path: '/payend',
+    name: 'payend',
+    component: PaymentEnd
   },
   {
     path: '/manager/productinsert',

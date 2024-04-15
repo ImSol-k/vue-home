@@ -1,0 +1,18 @@
+.paymentEndMsg{
+    display: flex;
+    justify-content: center;/* 가로 가운데 정렬 */
+}
+.paymentEndMsg>h1{
+    margin: 50px 0px 30px 0px;
+}
+.paymentEndInfo{
+    display: flex;
+    justify-content: center;/* 가로 가운데 정렬 */
+}
+.paymentEndInfo>table{
+    width: 600px;
+}
+.paymentEndInfo>table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+  }

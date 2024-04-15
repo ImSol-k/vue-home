@@ -204,7 +204,7 @@ export default {
     components: {},
     data() {
         return {
-            showModal : false
+            showModal : false //리뷰 작성창
         };
     },
     methods: {

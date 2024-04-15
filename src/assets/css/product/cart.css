@@ -1,5 +1,5 @@
 .cartWrap{
-    background-color: #f1f1f1;
+    background-color: #f9f9f9;
 }
 
 .cartContent{
@@ -14,11 +14,11 @@
     
 }
 .cartHearder{
-    margin-bottom: 5px;
+    margin-bottom: -10px;
 }
 .cartHearder>button{
     border: none;
-    background-color: none;
+    background-color: transparent;
     float: right;
 }
 .cartHearder>label>span{
@@ -35,6 +35,11 @@
     /* display: flex;
     align-items:baseline; */
     margin: 5px 0px;
+    box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.1);
+    /* 그림자 추가 */
+    margin-top: 20px;
+    /* 헤더와의 간격 조절 */
+    border-radius: 10px;
 }
 .cartObj>input{
     float: left;
@@ -111,7 +116,11 @@
     background-color: #fff;
     border-radius: 7px;
     padding: 10px 0px;
-    margin-bottom: 7px;
+    box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.1);
+    /* 그림자 추가 */
+    margin-top: 20px;
+    /* 헤더와의 간격 조절 */
+    border-radius: 10px;
 }
 .userCartPrice>p{
     width: 360px;
@@ -141,5 +150,10 @@
     color: #fff;
     font-size: 17px;
     font-weight: bold;
+    box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.1);
+    /* 그림자 추가 */
+    margin-top: 20px;
+    /* 헤더와의 간격 조절 */
+    border-radius: 10px;
 }
 
