@@ -1,0 +1,163 @@
+.wrap {
+    width: 1300px;
+    margin: 0 auto;
+}
+
+.header {
+    background-color: #6bcbff;
+    padding: 20px;
+}
+
+.header h1 {
+    color: white;
+}
+
+.content {
+    display: flex;
+}
+
+.side {
+    width: 300px;
+    padding: 20px;
+}
+
+.side>ul {
+    list-style-type: none;
+    padding-left: 10px;
+}
+
+.side a {
+    color: black;
+    text-decoration: none;
+}
+
+.side a:hover {
+    color: black;
+}
+
+.side>ul>li {
+    margin-bottom: 7px;
+}
+
+.main {
+    flex-grow: 1;
+    width: 1000px;
+    padding: 20px;
+}
+
+.insert-button {
+    background-color: #6bcbff;
+    color: white;
+    border: none;
+    padding: 10px 15px 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: right;
+    margin-top: 10px;
+    margin-left: 820px;
+    margin-bottom: 30px;
+}
+
+.product {
+    border: 1px solid #dddddd;
+    padding: 10px;
+    margin-bottom: 10px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.1);
+}
+
+.product img {
+    width: 100px;
+    height: auto;
+    margin-right: 5px;
+}
+
+.product-info {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+}
+
+.product-info span {
+    margin-left: 15px;
+    font-size: 16px;
+    width: 400px;
+}
+
+.product .product-rating {
+    width: 30px;
+}
+
+.review {
+    display: flex;
+    align-items: center;
+    margin-left: 40px;
+}
+
+.review img {
+    width: 1em;
+    height: auto;
+    margin-right: 2px;
+}
+
+.delete-button {
+    background-color: #6bcbff;
+    color: white;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 130px;
+}
+
+.main .product {
+    margin-bottom: 15px;
+}
+
+/* 드롭다운 스타일 */
+.dropdown {
+    position: relative;
+    display: inline-block;
+    float: right;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #6bcbff;
+}
+
+.dropbtn {
+    background-color: #f9f9f9;
+    color: black;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
