@@ -76,6 +76,8 @@ ul {
     flex-grow: 1;
     width: 1000px;
     padding: 20px;
+    font-size: 14px;
+    font-family: "맑은 고딕";
 }
 
 .insert-button {
@@ -190,7 +192,7 @@ ul {
     background-color: #f9f9f9;
     color: black;
     padding: 10px;
-    font-size: 16px;
+    font-size: 14px;
     border: none;
     cursor: pointer;
 }
