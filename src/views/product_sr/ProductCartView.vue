@@ -1,8 +1,6 @@
 <template>
     <div class="wrap cartWrap">
-        <div class="header">
-            <h1>header</h1>
-        </div><!-- header -->
+        <AppHeader/>
 
 
         <div class="cartContent">
@@ -59,20 +57,21 @@
             </div><!-- cartPay -->
         </div>
 
-        <div class="footer">
-            <h1>footer</h1>
-        </div><!-- footer -->
+        <AppFooter/>
     </div>
 </template>
 
 
 <script>
+import '@/assets/css/product/product.css'
 import '@/assets/css/product/cart.css'
 import '@/assets/css/product/infomain.css'
+import AppHeader from '@/components/AppHeader.vue'
+import AppFooter from '@/components/AppFooter.vue'
 
 export default {
     name: "ProductCartView",
-    components: {},
+    components: { AppHeader, AppFooter },
     data() {
         return {};
     },
