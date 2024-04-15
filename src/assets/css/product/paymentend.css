@@ -1,0 +1,38 @@
+
+.paymentEndMsg{
+    margin: 50px 0px;
+    display: flex;
+    justify-content: center;/* 가로 가운데 정렬 */
+    align-items: center; /* 세로 가운데 정렬 */
+}
+.paymentEndMsg>h1{
+    /* margin: 50px 0px 30px 0px; */
+    font-size: 30px;
+}
+.paymentEndMsg>img{
+    width: 150px;
+    margin-left: 10px;
+}
+.payEndHomeBtn{
+    width: 150px;
+    height: 50px;
+    border: none;
+    border-radius: 10px;
+    background-color: #6bcbff;
+    color: #fff;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 20px auto;
+    display: block;
+}
+.paymentEndInfo>table{
+    width: 700px;
+    margin: 10px auto;
+    font-size: 15px;
+}
+.paymentEndInfo>table, th, td {
+    height: 30px;
+    border: 1px solid black;
+    border-collapse: collapse;
+    /* padding-left: 10px; */
+  }

@@ -26,7 +26,7 @@
     margin-top: 20px;
 }
 
-form {
+.insertForm {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -51,6 +51,16 @@ form {
 
 .input label {
     margin-right: 10px;
+}
+
+.input select {
+    text-align: center;
+    width: 268px;
+    border: 1px solid #000000;
+    border-radius: 5px;
+    color: #333;
+    font-size: 12px;
+    height: 30px;
 }
 
 .file-input {

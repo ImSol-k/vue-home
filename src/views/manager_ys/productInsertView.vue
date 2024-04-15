@@ -5,7 +5,7 @@
         </div><!-- header -->
         <div class="content">
             <div class="main-insert">
-                <form action="submit.php" method="post" enctype="multipart/form-data">
+                <form class="insertForm" action="submit.php" method="post" enctype="multipart/form-data">
                     <div id="additional-files-wrapper">
                         <div class="input">
                             <label for="profile">상품 대표 이미지:</label>
@@ -16,9 +16,19 @@
                             <input type="text" id="title" name="title">
                         </div>
                         <div class="input">
-                            <label for="price">가격:</label>
+                            <label for="price">가&nbsp;&nbsp;&nbsp;격:</label>
                             <input type="text" id="price" name="price"> 원
                         </div>
+                        <div class="input">
+                            <select id="colorSelect">
+                                <option value="color" selected style="display: none;">색상</option>
+                                <option value="black" >검정</option>
+                                <option value="white">흰색</option>
+                                <option value="wood">우드</option>
+                            </select>
+
+                        </div>
+
                         <div class="input">
                             <label for="add">추가 첨부 파일:</label>
                             <input type="file" id="add" name="add[]" class="file-input" multiple>

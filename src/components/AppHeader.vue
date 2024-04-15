@@ -5,16 +5,14 @@
         <div class="ss-header1">
             <!-- 누르면 둘다 홈으로 -->
             <img src="../assets/images/homedeco/homelogo.png">
-            <span>
-                <a>집꾸며조</a>
-            </span>
+            <span>집꾸며조</span>
         </div>
         <!-- //header1 -->
 
         <div class="ss-header2">
             <!-- 검색 키워드 사용 -->
             <!-- v-on:keyup.enter="submit" -->
-            <img src="../assets/images/homedeco/search.png">
+            <img src="../assets/images/homedeco/find.png">
             <input type="text" name="keyword" value="" placeholder="제목으로 검색하세요.">
         </div>
         <!-- //header2 -->
