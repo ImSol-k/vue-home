@@ -3,8 +3,8 @@ import { createRouter, createWebHistory } from 'vue-router'
 import MainView from '@/views/main_ss/MainView.vue'
 import ProductInfoView from '@/views/product_sr/ProductInfoView.vue'
 //매니저
-import productInsertView from '../views/product_sr/productInsertView.vue'
-import productListView from '../views/product_sr/productListView.vue'
+import productInsertView from '../views/manager_ys/productInsertView.vue'
+import productListView from '../views/manager_ys/productListView.vue'
 
 const routes = [
   {
