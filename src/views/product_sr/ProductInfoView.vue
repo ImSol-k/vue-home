@@ -5,17 +5,17 @@
         </div><!-- header -->
 
         <div class="infoContentA">
-            <img src="../assets/images/test.png" alt="">
+            <img src="@/assets/images/product/test.png" alt="">
 
             <div class="productInfo">
                 <h1 class="productName">상품명 (상품코드 블라블라)</h1>
                 <div class="productStar">
                     <a href="">
-                        <img src="../assets/images/star.png" alt="">
-                        <img src="../assets/images/star.png" alt="">
-                        <img src="../assets/images/star.png" alt="">
-                        <img src="../assets/images/star.png" alt="">
-                        <img src="../assets/images/star.png" alt="">
+                        <img src="@/assets/images/homedeco/star.png" alt="">
+                        <img src="@/assets/images/homedeco/star.png" alt="">
+                        <img src="@/assets/images/homedeco/star.png" alt="">
+                        <img src="@/assets/images/homedeco/star.png" alt="">
+                        <img src="@/assets/images/homedeco/star.png" alt="">
                         <span>2개 리뷰</span>
                     </a>
                 </div>
@@ -64,7 +64,7 @@
             <div class="contentLeft">
 
                 <div class="infoImgs">
-                    <img src="../assets/images/infoTest1.jpg" alt="">
+                    <img src="@/assets/images/product/test.png" alt="">
                 </div>
                 <div class="reviewContent">
                     <div class="review">
@@ -73,11 +73,11 @@
                     </div>
                     <div class="starAverage">
                         <div class="starTotal">
-                            <img src="../assets/images/star.png" alt="">
-                            <img src="../assets/images/star.png" alt="">
-                            <img src="../assets/images/star.png" alt="">
-                            <img src="../assets/images/star.png" alt="">
-                            <img src="../assets/images/star.png" alt="">
+                            <img src="@/assets/images/homedeco/star.png" alt="">
+                            <img src="@/assets/images/homedeco/star.png" alt="">
+                            <img src="@/assets/images/homedeco/star.png" alt="">
+                            <img src="@/assets/images/homedeco/star.png" alt="">
+                            <img src="@/assets/images/homedeco/star.png" alt="">
                             <span>5.0</span>
                         </div>
                         <div class="star">
@@ -92,28 +92,28 @@
                         <div class="userReview">
                             <p>userId</p>
                             <div class="userStar">
-                                <img src="../assets/images/star.png" alt="">
-                                <img src="../assets/images/star.png" alt="">
-                                <img src="../assets/images/star.png" alt="">
-                                <img src="../assets/images/star.png" alt="">
-                                <img src="../assets/images/star.png" alt="">
+                                <img src="@/assets/images/homedeco/star.png" alt="">
+                                <img src="@/assets/images/homedeco/star.png" alt="">
+                                <img src="@/assets/images/homedeco/star.png" alt="">
+                                <img src="@/assets/images/homedeco/star.png" alt="">
+                                <img src="@/assets/images/homedeco/star.png" alt="">
                                 <span>2024.04.13</span>
                                 <button>삭제</button>
                                 <button>수정</button>
                             </div>
                             <div class="content">
-                                <img src="../assets/images/reete.png" alt="">
+                                <img src="@/assets/images/product/test.png" alt="">
                                 <p>리뷰내용 이랬다저랬다~~~</p>
                             </div>
                         </div><!-- userReview -->
                         <div class="userReview">
                             <p>userId</p>
                             <div class="userStar">
-                                <img src="../assets/images/star.png" alt="">
-                                <img src="../assets/images/star.png" alt="">
-                                <img src="../assets/images/star.png" alt="">
-                                <img src="../assets/images/star.png" alt="">
-                                <img src="../assets/images/star.png" alt="">
+                                <img src="@/assets/images/homedeco/star.png" alt="">
+                                <img src="@/assets/images/homedeco/star.png" alt="">
+                                <img src="@/assets/images/homedeco/star.png" alt="">
+                                <img src="@/assets/images/homedeco/star.png" alt="">
+                                <img src="@/assets/images/homedeco/star.png" alt="">
                                 <span>2024.04.13</span>
                             </div>
                             <div class="content">
@@ -171,17 +171,17 @@
             <h1>리뷰작성</h1>
             <p>상품</p>
             <div class="reviewProduct">
-                <img src="../assets/images/reete.png" alt="">
+                <img src="@/assets/images/product/test.png" alt="">
                 <p>상품명(상세제품명~~)</p>
             </div>
             <p>별점평가</p>
             <div class="starInsert">
                 <div class="starClick">
-                    <button><img src="../assets/images/star2.png" alt=""></button>
-                    <button><img src="../assets/images/star2.png" alt=""></button>
-                    <button><img src="../assets/images/star2.png" alt=""></button>
-                    <button><img src="../assets/images/star2.png" alt=""></button>
-                    <button><img src="../assets/images/star2.png" alt=""></button>
+                    <button><img src="@/assets/images/homedeco/star2.png" alt=""></button>
+                    <button><img src="@/assets/images/homedeco/star2.png" alt=""></button>
+                    <button><img src="@/assets/images/homedeco/star2.png" alt=""></button>
+                    <button><img src="@/assets/images/homedeco/star2.png" alt=""></button>
+                    <button><img src="@/assets/images/homedeco/star2.png" alt=""></button>
                 </div>
             </div>
             <p>상품평</p>

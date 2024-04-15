@@ -1,17 +1,11 @@
 import { createRouter, createWebHistory } from 'vue-router'
 //메인
-import MainView from '@/views/main_ss/MainView.vue'
-import ProductInfoView from '@/views/product_sr/ProductInfoView.vue'
+import ProductInfoView from '../views/product_sr/ProductInfoView.vue'
 //매니저
 import productInsertView from '../views/manager_ys/productInsertView.vue'
 import productListView from '../views/manager_ys/productListView.vue'
 
 const routes = [
-  {
-    path : '/',
-    name : '/',
-    component : MainView
-  },
   {
     path: '/main/product',
     name: 'product',
