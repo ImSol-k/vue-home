@@ -38,7 +38,7 @@
 <script>
 import "../../assets/css/managerY/productInsert.css"
 export default {
-    name: "productInsert",
+    name: "productInsertView",
     components: {},
     data() {
         return {};
