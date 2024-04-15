@@ -82,20 +82,83 @@
 	</nav>
 	<!-- //nav 부분 -->
 
-	<div class=".ss-content clearfix">
-		<div class="content-side">
+	<div class="ss-category clearfix">
+		<div class="ss-side">
 			<ul>
-				<li>침대</li>
-				<li>쇼파</li>	
-				<li>책상</li>
-				<li>옷장</li>
-				<li>기타</li>
+				<li @click="toggleCategories">
+					<strong>침대</strong>
+					<span v-if="showCategories"> △ </span>
+					<span v-else> ▽</span> <!-- 화살표 아이콘 -->
+				</li>
+				<ul v-show="showCategories"> <!-- 카테고리 리스트 -->
+					<li class="cate-li"><a href="">전체 상품 보기</a></li>
+					<li class="cate-li"><a href="">침대/매트리스</a></li>
+					<li class="cate-li"><a href="">일반소파/좌식소파</a></li>
+					<li class="cate-li"><a href="">식탁/사이드테이블</a></li>
+					<li class="cate-li"><a href="">벽선반/스탠드선반</a></li>
+				</ul>
+			</ul>
+			<ul>
+				<li @click="toggleCategories02">
+					<strong>쇼파</strong>
+					<span v-if="showCategories02"> △ </span>
+					<span v-else> ▽</span> <!-- 화살표 아이콘 -->
+				</li>
+				<ul v-show="showCategories02"> <!-- 카테고리 리스트 -->
+					<li class="cate-li"><a href="">전체 상품 보기</a></li>
+					<li class="cate-li"><a href="">침대/매트리스</a></li>
+					<li class="cate-li"><a href="">일반소파/좌식소파</a></li>
+					<li class="cate-li"><a href="">식탁/사이드테이블</a></li>
+					<li class="cate-li"><a href="">벽선반/스탠드선반</a></li>
+				</ul>
+			</ul>
+			<ul>
+				<li @click="toggleCategories03">
+					<strong>책상</strong>
+					<span v-if="showCategories03"> △ </span>
+					<span v-else> ▽</span> <!-- 화살표 아이콘 -->
+				</li>
+				<ul v-show="showCategories03"> <!-- 카테고리 리스트 -->
+					<li class="cate-li"><a href="">전체 상품 보기</a></li>
+					<li class="cate-li"><a href="">침대/매트리스</a></li>
+					<li class="cate-li"><a href="">일반소파/좌식소파</a></li>
+					<li class="cate-li"><a href="">식탁/사이드테이블</a></li>
+					<li class="cate-li"><a href="">벽선반/스탠드선반</a></li>
+				</ul>
+			</ul>
+			<ul>
+				<li @click="toggleCategories04">
+					<strong>옷장</strong>
+					<span v-if="showCategories04"> △ </span>
+					<span v-else> ▽</span> <!-- 화살표 아이콘 -->
+				</li>
+				<ul v-show="showCategories04"> <!-- 카테고리 리스트 -->
+					<li class="cate-li"><a href="">전체 상품 보기</a></li>
+					<li class="cate-li"><a href="">침대/매트리스</a></li>
+					<li class="cate-li"><a href="">일반소파/좌식소파</a></li>
+					<li class="cate-li"><a href="">식탁/사이드테이블</a></li>
+					<li class="cate-li"><a href="">벽선반/스탠드선반</a></li>
+				</ul>
+			</ul>
+			<ul>
+				<li @click="toggleCategories05">
+					<strong>기타</strong>
+					<span v-if="showCategories05"> △ </span>
+					<span v-else> ▽</span> <!-- 화살표 아이콘 -->
+				</li>
+				<ul v-show="showCategories05"> <!-- 카테고리 리스트 -->
+					<li class="cate-li"><a href="">전체 상품 보기</a></li>
+					<li class="cate-li"><a href="">침대/매트리스</a></li>
+					<li class="cate-li"><a href="">일반소파/좌식소파</a></li>
+					<li class="cate-li"><a href="">식탁/사이드테이블</a></li>
+					<li class="cate-li"><a href="">벽선반/스탠드선반</a></li>
+				</ul>
 			</ul>
 		</div>
 		<!-- content-side -->
 
-		<div class="content-main">
-			본 컨텐츠부분
+		<div class="ss-main">
+			aaaaa
 		</div>
 		<!-- content-main -->
 	</div>
@@ -112,7 +175,6 @@
 <script>
 import '@/assets/css/main/ss-home.css';
 import '@/assets/css/main/ss-category.css';
-import '@/assets/css/main/ss-main.css';
 import AppHeader from '@/components/AppHeader.vue';
 import AppFooter from '@/components/AppFooter.vue';
 
@@ -136,7 +198,13 @@ export default {
                 '침대' ,
                 '쇼파' ,
                 '침대' 
-            ]
+            ],
+			showCategories: false,
+            showCategories02: false,
+			showCategories03: false,
+            showCategories04: false,
+            showCategories05: false
+
 		};
 	},
 	methods: {
@@ -146,7 +214,23 @@ export default {
         mouseleave(){ // 마우스 떼면 서브메뉴 사라짐
             this.show = false;
         },
+		toggleCategories() {
+            this.showCategories = !this.showCategories; // 클릭 시 카테고리 리스트를 보이거나 숨김
+        },
+        toggleCategories02() {
+            this.showCategories02 = !this.showCategories02; // 클릭 시 카테고리 리스트를 보이거나 숨김
+        },
+        toggleCategories03() {
+            this.showCategories03 = !this.showCategories03; // 클릭 시 카테고리 리스트를 보이거나 숨김
+        },
+        toggleCategories04() {
+            this.showCategories04 = !this.showCategories04; // 클릭 시 카테고리 리스트를 보이거나 숨김
+        },
+        toggleCategories05() {
+            this.showCategories05 = !this.showCategories05; // 클릭 시 카테고리 리스트를 보이거나 숨김
+        }
 	},
+	
 	created(){
 
 	}
