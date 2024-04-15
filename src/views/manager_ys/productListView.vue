@@ -93,7 +93,7 @@
 
 
 <script>
-import "../../assets/css/managerY/productLIst.css"
+import "@/assets/css/managerY/productLIst.css"
 window.addEventListener('DOMContentLoaded', function () {
     document.getElementById('sortButton').innerText = '최신순';
 });
