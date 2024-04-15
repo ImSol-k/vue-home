@@ -1,0 +1,100 @@
+@charset "UTF-8";
+
+.header {
+    background-color: skyblue;
+    padding: 10px 0;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.mypage-container {
+    max-width: 1300px;
+    margin: 0 auto;
+    display: flex;
+}
+
+.mypage-content-side {
+    width: 300px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-right: 20px;
+}
+
+.mypage-content-main {
+    flex: 1;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.mypage-profile {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.mypage-profile img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+}
+
+.mypage-user-info {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.mypage-user-info h2 {
+    margin-bottom: 10px;
+    color: skyblue;
+}
+
+.mypage-user-info p {
+    margin: 5px 0;
+}
+
+.mypage-order-history,
+.mypage-favorite-items {
+    margin-bottom: 30px;
+}
+
+.mypage-order-history h3,
+.mypage-favorite-items h3 {
+    color: skyblue;
+    margin-bottom: 10px;
+}
+
+.mypage-order-history ul,
+.mypage-favorite-items ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.mypage-order-history li,
+.mypage-favorite-items li {
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+}
+
+.mypage-order-history li:last-child,
+.mypage-favorite-items li:last-child {
+    border-bottom: none;
+}
+
+.mypage-btn {
+    display: inline-block;
+    background-color: #40b4df;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-top: 10px;
+    transition: background-color 0.3s;
+}
+
+.mypage-btn:hover {
+    background-color: #55b8dc;
+}

@@ -1,0 +1,155 @@
+@charset "UTF-8";
+
+.header {
+    background-color: skyblue;
+    padding: 10px 0;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.pay-header h1 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: bold;
+    color: #fff;
+}
+
+.pay-container {
+    width: 1300px;
+    margin: 50px auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.pay-content {
+    width: calc(100% - 320px); /* 변경된 사이즈 반영 */
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 1;
+    overflow-y: auto;
+}
+
+.pay-sidebar {
+    width: 300px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    position: sticky; /* 변경된 속성 */
+    top: 50px; /* 변경된 속성 */
+    z-index: 0;
+    margin-left: 20px;
+    overflow-y: auto; /* 스크롤을 위해 추가 */
+    max-height: calc(100vh - 100px); /* 변경된 사이즈 반영 */
+}
+
+.pay-sidebar-content {
+    position: relative; /* 변경된 속성 */
+    top: 0; /* 변경된 속성 */
+}
+
+.pay-product-list ul li {
+    border-bottom: 1px solid skyblue;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    list-style-type: none;
+}
+
+.pay-payment-methods {
+    margin-bottom: 30px;
+}
+
+.pay-payment-methods label {
+    font-size: 16px;
+    font-weight: bold;
+    display: inline-block;
+    width: calc(100% / 6 - 10px);
+    margin-right: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+    cursor: pointer;
+    border: 1px solid skyblue;
+    border-radius: 5px;
+    padding: 10px;
+    font-weight: bold;
+}
+
+.pay-payment-methods label:hover {
+    background-color: #f0f0f0;
+}
+
+.pay-btn {
+    padding: 12px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #40b4df;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: block;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
+.pay-btn:hover {
+    background-color: #55b8dc;
+}
+
+.pay-section {
+    margin-bottom: 30px;
+}
+
+.pay-section label {
+    font-size: 16px;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.pay-section input[type="text"],
+.pay-section select {
+    width: 100%;
+    height: 40px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.pay-agreement {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.pay-agreement p {
+    margin: 5px 0;
+}
+
+.pay-agreement a {
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.pay-agreement input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+.pay-change-info {
+    font-size: 14px;
+    color: blue;
+    cursor: pointer;
+    float: right;
+    margin-top: -5px;
+}
+
+.pay-change-info:hover {
+    text-decoration: underline;
+}
+#pay-orderForm{
+    text-align: left;
+
+}
