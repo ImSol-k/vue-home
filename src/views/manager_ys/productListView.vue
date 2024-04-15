@@ -120,4 +120,4 @@ export default {
     },
     methods: {},
 };
-</script>
+</script>./ProductListView.vue

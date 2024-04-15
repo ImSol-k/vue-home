@@ -13,8 +13,8 @@ import PayView from '../views/user_jo/PayView.vue'
 
 //매니저
 //예슬
-import productInsertView from '../views/manager_ys/productInsertView.vue'
-import productListView from '../views/manager_ys/productListView.vue'
+import ProductInsertView from '../views/manager_ys/ProductInsertView.vue'
+import ProductListView from '../views/manager_ys/ProductListView.vue'
 import BedListView from '../views/manager_ys/BedListView.vue'
 //재현
 import ManagerChart from '../views/manager_jh/ManagerChart.vue'
@@ -58,12 +58,12 @@ const routes = [
   {
     path: '/manager/productinsert',
     name: '/manager/productinsert',
-    component: productInsertView
+    component: ProductInsertView
   },
   {
     path: '/manager/productlist',
     name: '/manager/productlist',
-    component: productListView
+    component: ProductListView
   },
   {
     path: '/manager/bedlist',
