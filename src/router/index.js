@@ -69,6 +69,11 @@ const routes = [
     path: '/manager/bedlist',
     name: '/manager/bedlist',
     component: BedListView
+  },
+  {
+    path: '/manager/chart',
+    name: '/manager/chart',
+    component: ManagerChart
   }
 ]
 
