@@ -1,8 +1,6 @@
 <template>
     <div class="wrap">
-        <div class="header">
-            <h1>header</h1>
-        </div><!-- header -->
+        <AppHeader/>
 
         <div class="paymentEnd">
             <div class="paymentEndMsg">
@@ -40,16 +38,22 @@
                 </table>
             </div>
         </div><!-- paymentEnd -->
-        <div class="footer">
-            <h1>footer</h1>
-        </div><!-- footer -->
+        <AppFooter/>
     </div>
 </template>
 <script>
-import '@/assets/css/product/pamentend.css'
+import '@/assets/css/product/product.css'
+import '@/assets/css/product/paymentend.css'
+import '@/assets/css/product/infomain.css'
+import AppHeader from '@/components/AppHeader.vue'
+import AppFooter from '@/components/AppFooter.vue'
+
 export default {
     name: "PaymentEnd",
-    components: {},
+    components: {
+        AppHeader,
+        AppFooter
+    },
     data() {
         return {};
     },
