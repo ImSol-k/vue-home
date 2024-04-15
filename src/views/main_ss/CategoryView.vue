@@ -83,22 +83,21 @@
 	<!-- //nav 부분 -->
 
 	<div class="content clearfix">
-			<div class="content-side">
-				<ul>
-					<li>침대</li>
-					<li>쇼파</li>
-					<li>책상</li>
-					<li>옷장</li>
-					<li>기타</li>
-				</ul>
-			</div>
-			<!-- content-side -->
+		<div class="content-side">
+			<ul>
+				<li>침대</li>
+				<li>쇼파</li>
+				<li>책상</li>
+				<li>옷장</li>
+				<li>기타</li>
+			</ul>
+		</div>
+		<!-- content-side -->
 
-			<div class="content-main">
-				본 컨텐츠부분
-			</div>
-			<!-- content-main -->
-
+		<div class="content-main">
+			본 컨텐츠부분
+		</div>
+		<!-- content-main -->
 	</div>
 	<!-- //content 부분 -->
 
@@ -107,6 +106,7 @@
 
 </div>
 <!-- //wrap -->
+
 </template>
 
 <script>
@@ -123,7 +123,19 @@ export default {
 	},
 	data() {
 		return {
-
+			show : false, //
+            hitList : [
+                '쇼파' ,
+                '침대',
+                '쇼파' ,
+                '침대' ,
+                 '쇼파' ,
+                '침대' ,
+                '쇼파',
+                '침대' ,
+                '쇼파' ,
+                '침대' 
+            ]
 		};
 	},
 	methods: {

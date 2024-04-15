@@ -27,6 +27,7 @@
     /* 헤더와의 간격 조절 */
     border-radius: 10px;
     height: auto;
+    text-align: left;
 }
 
 .side ul {
