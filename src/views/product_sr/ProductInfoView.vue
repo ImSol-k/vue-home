@@ -64,12 +64,12 @@
             <div class="contentLeft">
 
                 <div class="infoImgs">
-                    <img src="@/assets/images/product/test.png" alt="">
+                    <img src="@/assets/images/product/infoTest1.jpg" alt="">
                 </div>
                 <div class="reviewContent">
-                    <div class="review">
+                    <div class="InfoReview">
                         <p>리뷰 <span>2</span></p>
-                        <button>리뷰작성</button>
+                        <button v-on:click.prevent="openModal">리뷰작성</button>
                     </div>
                     <div class="starAverage">
                         <div class="starTotal">
@@ -101,7 +101,7 @@
                                 <button>삭제</button>
                                 <button>수정</button>
                             </div>
-                            <div class="content">
+                            <div class="reviewIncontent">
                                 <img src="@/assets/images/product/test.png" alt="">
                                 <p>리뷰내용 이랬다저랬다~~~</p>
                             </div>
@@ -116,7 +116,7 @@
                                 <img src="@/assets/images/homedeco/star.png" alt="">
                                 <span>2024.04.13</span>
                             </div>
-                            <div class="content">
+                            <div class="reviewIncontent">
                                 <!-- <img src="../assets/images/reete.png" alt=""> -->
                                 <p>리뷰내용 이랬다저랬다~~~</p>
                             </div>
@@ -165,9 +165,9 @@
     </div><!-- wrap -->
 
     
-    <div class="reviewWriteModal">
+    <div class="reviewWriteModal" v-show="showModal">
         <div class="reviewWriteContent">
-            <span>×</span>
+            <span v-on:click.prevent="closeModal">×</span>
             <h1>리뷰작성</h1>
             <p>상품</p>
             <div class="reviewProduct">
@@ -203,9 +203,21 @@ export default {
     name: "ProductInfoView",
     components: {},
     data() {
-        return {};
+        return {
+            showModal : false
+        };
     },
-    methods: {},
+    methods: {
+
+        openModal(){
+            console.log("리뷰작성");
+            this.showModal = true;
+        },
+        closeModal(){
+            console.log("리뷰작성창 닫기");
+            this.showModal = false;
+        }
+    },
 };
 </script>
 
