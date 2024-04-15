@@ -6,7 +6,7 @@
 <script>
 
 export default {
-    name: "Name",
+    name: "ProductInfoView",
     components: {},
     data() {
         return {};
