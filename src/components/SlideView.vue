@@ -30,6 +30,7 @@ export default defineComponent({
 		Carousel,
 		Slide,
 		Pagination,
+		
 	},
 	data() {
 		return {

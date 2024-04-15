@@ -1,6 +1,6 @@
 <template>
 
-<div id="wrap">
+<div id="ss-wrap">
 
     <AppHeader/>
     <!-- //header 부분 -->
@@ -86,7 +86,7 @@
         
         <SlideView />
         <!-- 슬라이드 나오는부분 -->
-        <div class="goods-text clearfix">
+        <div class="ss-goods-text clearfix">
             <span>전체 상품</span>
             <button type="button" v-on:click="hits">별점순</button>
             <button type="button" v-on:click="review">리뷰순</button>
