@@ -6,7 +6,7 @@
 <script>
 
 export default {
-    name: "Name",
+    name: "MainView",
     components: {},
     data() {
         return {};
