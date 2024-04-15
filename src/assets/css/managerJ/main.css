@@ -1,0 +1,95 @@
+body, div, ul, li, dl, dt, ol, h1, h2, h3, h4, h5, h6, 
+input, fieldset, legend, p, select, table, th, td, tr,
+textarea, button, form {margin: 0; padding: 0;}
+
+#full{
+    width: 1300px;
+    margin: 0 auto;
+}
+
+#contentNav{
+    width: 300px;
+    height: 1000px;
+    float: left;
+    text-align: center;
+}
+
+#contentNav>h2{
+    margin-bottom: 30px;
+}
+
+a{
+    text-decoration: none;
+    color: inherit;
+}
+
+#contentMain{
+    margin-top: 30px;
+}
+
+#graph{
+    margin-bottom: 20px;
+}
+
+.clearfix:before, .clearfix:after {
+    display: block;
+    content: '';
+    line-height: 0;
+}
+
+.clearfix:after {
+    clear:both;
+}
+
+#pp{
+    float: left;
+    
+}
+
+#ppp{
+    margin-right: 10px;
+    width: 490px;
+    background-color: #f9f9f9;
+    border-bottom: 1px solid #bebebe;
+    margin-bottom: 10px;
+}
+
+
+
+#bx{
+    padding-left: 820px;
+}
+#bbb{
+    width: 490px;
+    padding-left: 20px;
+    background-color: #f9f9f9;
+    border-bottom: 1px solid #bebebe;
+    margin-bottom: 10px;
+}
+
+#img{
+    width: 100px;
+    height: 100px;
+}
+
+#nick{
+    vertical-align: bottom;
+    text-align: center;
+    width: 120px;
+}
+
+#word{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 263px;
+}
+
+#chartContent{
+    width: 470px;
+    float: left;
+}
+
+#chart{
+    width: 300px;
+}

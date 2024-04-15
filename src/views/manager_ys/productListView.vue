@@ -113,7 +113,7 @@ dropdownItems.forEach(function (item) {
     });
 });
 export default {
-    name: "productListView",
+    name: "ProductListView",
     components: {},
     data() {
         return {};
