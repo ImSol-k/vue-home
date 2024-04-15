@@ -5,7 +5,7 @@
         </div><!-- header -->
         <div class="content">
             <div class="main-insert">
-                <form action="submit.php" method="post" enctype="multipart/form-data">
+                <form class="insertForm" action="submit.php" method="post" enctype="multipart/form-data">
                     <div id="additional-files-wrapper">
                         <div class="input">
                             <label for="profile">상품 대표 이미지:</label>
