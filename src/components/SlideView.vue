@@ -6,7 +6,6 @@
 					<img class="slideImg" :src="slide" />
 				</div>
 			</Slide>
-
 			<template #addons>
 				<Pagination />
 			</template>
@@ -59,12 +58,18 @@ export default defineComponent({
 .carousel__prev,
 .carousel__next {
 	box-sizing: content-box;
-	/* border: 5px solid white; */
 }
 .slideImg {
-	max-width: 100%;
+	width: 100%;
 }
 .wrapper {
 	margin-top: 3vh;
+}
+.carousel__pagination{
+	display: flex;
+	position: relative;
+	margin-top : -40px;
+	margin-bottom: 50px;
+	z-index: 9999;
 }
 </style>

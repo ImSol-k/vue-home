@@ -92,9 +92,14 @@
             <button type="button" v-on:click="review">리뷰순</button>
         </div>
 
-        <div class="goodsList">
-            <div>
-                <img src="">
+        <div class="ss-goodsList">
+            <div class="ss-goods">
+                <img src="../../assets/images/main/mainlist/img1.jpg"><br>
+                <span>카테고리</span><br>
+                <span>이름</span><br>
+                <span>10000</span><br>
+                <span>별점</span><span>리뷰</span>
+
             </div>
         </div>    
 
@@ -102,16 +107,7 @@
     </div>
     <!-- //content-slide 부분 -->
 
-    <footer>
-        <div class="footer">
-            <ul>
-                <li>집꾸며조</li>
-                <li>CopyRight</li>
-                <li>고객센터</li>
-                <li>02-1111-1111</li>
-            </ul>
-        </div>
-    </footer>
+    <AppFooter />
     <!-- //footer 부분 -->
 
 </div>
@@ -123,12 +119,14 @@
 import '@/assets/css/main/ss-home.css';
 import '@/assets/css/main/ss-main.css';
 import AppHeader from '@/components/AppHeader.vue';
+import AppFooter from '@/components/AppFooter.vue';
 import SlideView from '@/components/SlideView.vue';
 
 export default {
     name: "MainView",
     components: {
         AppHeader,
+        AppFooter,
         SlideView
     },
     data() {

@@ -80,7 +80,7 @@ header .header3 ul>li:last-child a { border: none; }
 
 /* nav */
 /* nav 전체 - 줄 그으려고 필요함 */
-nav { height: 50px; border-bottom : 1px solid #000; position: absolute; width: 100%; margin: 0 auto; }
+nav { height: 60px; border-bottom : 1px solid #000; position: absolute; width: 100%; margin: 0 auto; }
 
 /* nav0 */
 /* nav 담길부분 - 영역지정만 */
