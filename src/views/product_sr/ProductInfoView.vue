@@ -47,7 +47,7 @@
                         </div>
                         <div class="infoCartPayBtn btnColor">
                             <button type="submit">장바구니</button>
-                            <button type="submit">바로구매</button>
+                            <button type="button" v-on:click.prevent="nowPayment">바로구매</button>
                         </div>
                     </div>
                 </div><!-- productInfo -->
@@ -152,7 +152,7 @@
                     </div>
                     <div class="sideCartBtn btnColor">
                         <button type="submit">장바구니</button>
-                        <button type="submit">바로구매</button>
+                        <button type="button" v-on:click.prevent="nowPayment">바로구매</button>
                     </div>
                 </div>
             </form>
@@ -240,12 +240,10 @@ export default {
             console.log("색상선택: " + event.target.value);
 
             let cart = {
-                name: this.productVo.name,
-                price: this.productVo.price,
+                product: this.productVo.name,
                 count: 1,
-                category: this.productVo.category,
-                color: event.target.value
-
+                color: event.target.value,
+                user: 'aa'
             }
             let colorChack = this.productCarts.some(cart => cart.color === event.target.value);
             if (!colorChack || this.productCarts.length == 0) {
@@ -276,19 +274,29 @@ export default {
         //장바구니 ******************************************
         cartUpdate() {
             console.log("장바구니 추가");
-            
+
             axios({
-                method: '',
-                url: `'${this.state.apiBaseUrl}/home/cart/add'`, //SpringBoot주소
+                method: 'post',
+                url: `${this.$store.state.apiBaseUrl}/home/cart/add`, //SpringBoot주소
                 headers: { "Content-Type": "application/json; charset=utf-8" },
                 data: this.productCarts,
                 responseType: 'json'
             }).then(response => {
                 console.log(response); //수신데이터
-
+                if (response.data.result == "success") {
+                    alert(response.data.apiData + "개 상품이 추가되었습니다.");
+                } else {
+                    alert("선택하신 상품이 없습니다");
+                }
             }).catch(error => {
                 console.log(error);
             });
+        },
+        // 바로구매 **************************************************
+        nowPayment() {
+            console.log("바로구매");
+            this.$store.commit("setNowPayment", this.productCarts);
+            console.log(this.$store.state.nowOrderList);
         },
         //리뷰관련 메소드 ********************************************
         reviewStar(star) {
@@ -305,7 +313,8 @@ export default {
         },
         reviewAdd() {
             console.log("리뷰추가");
-
+            //if(유저가 구매한 )
+            
         }
     },
     created() {

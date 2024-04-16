@@ -4,7 +4,7 @@
 
         <div class="content">
             <div class="main-insert">
-                <form class="insertForm" action="submit.php" method="post" enctype="multipart/form-data">
+                <form v-on:submit.prevent="insertProduct" enctype="multipart/form-data">
                     <div id="additional-files-wrapper" class="flex-container">
 
                         <div class="left">
@@ -13,19 +13,20 @@
                             </div>
 
                             <div class="input">
-                                <input type="file" id="profile" name="profile" class="file-input" style="width: auto;" @change="handleImagePreview">
+                                <input type="file" id="profile" name="profile" class="file-input" style="width: auto;"
+                                    @change="handleImagePreview">
                             </div>
                         </div>
 
                         <div class="right">
                             <div class="input">
                                 <label for="title">상품명:</label>
-                                <input type="text" id="title" name="title">
+                                <input type="text" id="title" name="title" v-model="title">
                             </div>
 
                             <div class="input">
                                 <label for="price">가&nbsp;&nbsp;&nbsp;격:</label>
-                                <input type="text" id="price" name="price"> 원
+                                <input type="text" id="price" name="price" v-model="price"> 원
                             </div>
 
                             <div class="input">
@@ -75,14 +76,14 @@
 
                             <div class="input-attach">
                                 <label for="add">추가 첨부 파일:&nbsp;</label>
-                                <input type="file" id="add" name="add[]" class="file-input" multiple>
+                                <input type="file" id="add" name="add" class="file-input" multiple>
                                 <button type="button" class="add-file-button" @click="addFileInput">파일 추가</button>
                             </div>
                         </div>
                     </div>
 
                 </form>
-                <form action="submit.php" method="post" enctype="multipart/form-data">
+                <form v-on:submit.prevent="insertProduct" method="post" enctype="multipart/form-data">
                     <button type="submit" class="insert01">등록</button>
                 </form>
             </div>
@@ -96,6 +97,7 @@
 import "@/assets/css/managerY/productInsert.css"
 import AppHeader from '@/components/AppHeader.vue';
 import AppFooter from '@/components/AppFooter.vue';
+import axios from 'axios';
 
 export default {
     name: "ProductInsertView",
@@ -106,7 +108,12 @@ export default {
     data() {
         return {
             selectedCategory: '',
-            previewImage: '' // 이미지 미리보기를 위한 데이터
+            previewImage: '',
+            profile: '',
+            title: '',
+            price: '',
+            category: '',
+            add: []
         };
     },
     methods: {
@@ -120,9 +127,12 @@ export default {
 
             var fileInput = document.createElement('input');
             fileInput.type = 'file';
-            fileInput.name = 'add[]';
+            fileInput.name = 'add';
             fileInput.className = 'file-input';
             fileInput.multiple = true;
+            fileInput.addEventListener('change', (event) => {
+                this.add.push(event.target.files[0]); // 파일을 Vue 컴포넌트의 add 배열에 추가
+            });
 
             var removeButton = document.createElement('button');
             removeButton.type = 'button';
@@ -135,6 +145,7 @@ export default {
             fileInputContainer.appendChild(fileInput);
             fileInputContainer.appendChild(removeButton);
             rightDiv.appendChild(fileInputContainer); // right div 안에 fileInputContainer를 추가합니다.
+
         },
 
         // 이미지 선택 시 미리보기 기능
@@ -155,7 +166,41 @@ export default {
             if (file) {
                 reader.readAsDataURL(file);
             }
+
+            this.profile = event.target.value;
+        },
+        insertProduct() {
+            let formData = new FormData();
+
+            const files = document.querySelector('#add').files;
+            // for (let i = 0; i < files.length; i++) {
+            //     formData.append('add', files[i]);
+            //     this.add.push(files[i]);
+            // }
+            // this.add = files;
+            formData.append('imageList', files);
+            formData.append('profile', this.profile);
+            formData.append('title', this.title);
+            formData.append('price', this.price);
+            formData.append('category', this.selectedCategory);
+
+            console.log(formData.profile);
+
+            axios({
+                method: 'post',
+                url: `${this.$store.state.apiBaseUrl}/home/manager/insert`,
+                headers: { "Content-Type": "multipart/form-data" },
+                data: formData,
+                responseType: 'json'
+            }).then(response => {
+                console.log(response);
+                //console.log(response.data.apiData);
+            }).catch(error => {
+                console.log(error);
+            });
         }
-    },
+
+
+    }
 };
 </script>
