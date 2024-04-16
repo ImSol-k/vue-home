@@ -9,11 +9,11 @@
 
                         <div class="left">
                             <div class="preview-image">
-                                <img :src="previewImage" alt="이미지 미리보기" style="max-width: 200px; max-height: 200px;">
+                                <img :src="previewImage" alt="이미지 미리보기" style="max-width: 300px; max-height: 300px;">
                             </div>
 
                             <div class="input">
-                                <input type="file" id="profile" name="profile" class="file-input" style="width: auto;">
+                                <input type="file" id="profile" name="profile" class="file-input" style="width: auto;" @change="handleImagePreview">
                             </div>
                         </div>
 
