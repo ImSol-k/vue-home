@@ -2,7 +2,7 @@
 /* content 전체 */
 .ss-content {
     width: 100%;
-    margin: 60px auto;
+    margin: 60px auto 30px auto;
 }
 
 /* slide 나올 부분 - component 슬라이드*/
@@ -73,8 +73,8 @@
 /* goodsList 상품리스트나올부분 */
 .ss-goodsList {
     width: 1300px;
-    height: 2000px;
-    margin: 0 auto 60px auto;
+    height: 650px;
+    margin: 0 auto 0 auto;
     border: 1px solid #000;
 }
 

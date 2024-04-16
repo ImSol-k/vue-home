@@ -136,7 +136,7 @@
 		<!-- content-side -->
 
 		<div class="ss-main">
-			aaaaa
+            aaa
 		</div>
 		<!-- content-main -->
 	</div>
@@ -181,6 +181,7 @@ export default {
             showCategories02: false,
 			showCategories03: false,
             showCategories04: false,
+			
 
 		};
 	},
