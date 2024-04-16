@@ -105,6 +105,7 @@
 
 <script>
 import '@/assets/css/managerJ/main.css'
+import axios from 'axios';
 
 
 
@@ -113,17 +114,35 @@ import AppFooter from '../../components/AppFooter.vue'
 
 
 export default {
-
-
+	name: 'ManagerState',
 	components: {
 		AppHeader,
 		AppFooter
 	},
+	data() {
+		return {
 
+		}
+	},
 	methods: {
-
-	}
-
+		list() {
+			axios({
+				method: 'get', // put, post, delete 
+				url: '/mysite3/api/guestbooks/',
+				headers: { "Content-Type": "application/json; charset=utf-8" }, //전송타입
+				//params: guestbookVo, //get방식 파라미터로 값이 전달
+				//data: guestbookVo, //put, post, delete 방식 자동으로 JSON으로 변환 전달
+				responseType: 'json' //수신타입
+			}).then(response => {
+				console.log(response); //수신데이타
+			}).catch(error => {
+				console.log(error);
+			});
+		}
+	},
+	created() {
+		this.list();
+		}
 }
 
 
