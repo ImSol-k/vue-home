@@ -318,7 +318,7 @@
 /* 사이드 장바구니 */
 .infoSideCart {
     width: 400px;
-    height: 100%;
+    /* height: 100%; */
     background-color: #fff;
     position: sticky;
     top: 67px;

@@ -279,7 +279,7 @@ export default {
             
             axios({
                 method: '',
-                url: '', //SpringBoot주소
+                url: `'${this.state.apiBaseUrl}/home/cart/add'`, //SpringBoot주소
                 headers: { "Content-Type": "application/json; charset=utf-8" },
                 data: this.productCarts,
                 responseType: 'json'
