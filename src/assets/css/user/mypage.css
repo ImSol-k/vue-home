@@ -56,31 +56,26 @@
     margin: 5px 0;
 }
 
-.mypage-order-history,
-.mypage-favorite-items {
+.mypage-order-history {
     margin-bottom: 30px;
 }
 
-.mypage-order-history h3,
-.mypage-favorite-items h3 {
+.mypage-order-history h3 {
     color: skyblue;
     margin-bottom: 10px;
 }
 
-.mypage-order-history ul,
-.mypage-favorite-items ul {
+.mypage-order-history ul {
     list-style-type: none;
     padding: 0;
 }
 
-.mypage-order-history li,
-.mypage-favorite-items li {
+.mypage-order-history li {
     border-bottom: 1px solid #ddd;
     padding: 10px 0;
 }
 
-.mypage-order-history li:last-child,
-.mypage-favorite-items li:last-child {
+.mypage-order-history li:last-child {
     border-bottom: none;
 }
 

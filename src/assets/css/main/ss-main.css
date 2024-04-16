@@ -1,29 +1,34 @@
 /* content */
 /* content 전체 */
-.ss-content { width : 100%; margin : 60px auto; }
+.ss-content {
+    width: 100%;
+    margin: 60px auto;
+}
 
 /* slide 나올 부분 - component 슬라이드*/
 .ss-content .wrapper {
     width: 100%;
     /* height: 800px; */
-    margin : 0 auto;
+    margin: 0 auto;
     /* border: 1px solid #000; */
-    
+
 }
 
 /* 리스트 위 텍스트 + 버튼 */
 .ss-content .ss-goods-text {
     width: 1300px;
     height: 50px;
-    margin : 0px auto 10px auto;
+    margin: 0px auto 10px auto;
     /* border: 1px solid #000; */
 }
+
 .ss-goods-text span {
     background-color: #d6d6d6;
     display: block;
     float: left;
     font-size: 30px;
 }
+
 .ss-goods-text button {
     display: block;
     float: right;
@@ -39,9 +44,10 @@
 .ss-goodsList {
     width: 1300px;
     height: 2000px;
-    margin : 0 auto 60px auto;
-    border:1px solid #000;
+    margin: 0 auto 60px auto;
+    border: 1px solid #000;
 }
+
 .ss-goodsList .ss-goods {
     display: block;
     width: 300px;
@@ -56,4 +62,3 @@
     height: 200px;
     padding: 10px;
 }
-

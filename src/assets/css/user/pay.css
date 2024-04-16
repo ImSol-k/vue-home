@@ -1,18 +1,6 @@
 @charset "UTF-8";
 
-.header {
-    background-color: skyblue;
-    padding: 10px 0;
-    text-align: center;
-    margin-bottom: 20px;
-}
 
-.pay-header h1 {
-    margin: 0;
-    font-size: 24px;
-    font-weight: bold;
-    color: #fff;
-}
 
 .pay-container {
     width: 1300px;
@@ -22,7 +10,8 @@
 }
 
 .pay-content {
-    width: calc(100% - 320px); /* 변경된 사이즈 반영 */
+    width: calc(100% - 320px);
+    /* 변경된 사이즈 반영 */
     background-color: #fff;
     padding: 30px;
     border-radius: 8px;
@@ -38,17 +27,23 @@
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    position: sticky; /* 변경된 속성 */
-    top: 50px; /* 변경된 속성 */
+    position: sticky;
+    /* 변경된 속성 */
+    top: 50px;
+    /* 변경된 속성 */
     z-index: 0;
     margin-left: 20px;
-    overflow-y: auto; /* 스크롤을 위해 추가 */
-    max-height: calc(100vh - 100px); /* 변경된 사이즈 반영 */
+    overflow-y: auto;
+    /* 스크롤을 위해 추가 */
+    max-height: calc(100vh - 100px);
+    /* 변경된 사이즈 반영 */
 }
 
 .pay-sidebar-content {
-    position: relative; /* 변경된 속성 */
-    top: 0; /* 변경된 속성 */
+    position: relative;
+    /* 변경된 속성 */
+    top: 0;
+    /* 변경된 속성 */
 }
 
 .pay-product-list ul li {
@@ -149,7 +144,8 @@
 .pay-change-info:hover {
     text-decoration: underline;
 }
-#pay-orderForm{
+
+#pay-orderForm {
     text-align: left;
 
 }
