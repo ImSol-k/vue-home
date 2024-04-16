@@ -182,6 +182,15 @@ header .ss-header3 img {
     cursor: pointer;
 }
 
+header .ss-header3 #ss-red {
+    /* background-color: white; */
+    padding: 0;
+    margin-left : -38px;
+    display: inline;
+    position: relative;
+    z-index: 9999;
+}
+
 /* 로그인쪽 a태그  */
 header .ss-header3 ul {
     height: 30px;
@@ -273,7 +282,7 @@ nav .nav1 .nav1-main>li {
     z-index: 9999;
     position: relative;
     box-sizing: border-box;
-    background-color: #90dfd2b4;
+    background-color: #ffffff79;
 }
 
 /* 서브메뉴 간격 */
@@ -353,7 +362,7 @@ nav .nav1 .nav1-main>li {
 /* footer 전체*/
 footer {
     width: 100%;
-    margin-top: 100px;
+    margin-top: 60px;
 }
 
 /* footer 안에서 보여질 부분*/
