@@ -5,7 +5,7 @@
         <div class="ss-header1">
             <!-- 누르면 둘다 홈으로 -->
             <img src="../assets/images/homedeco/homelogo.png">
-            <span>집꾸며조</span>
+            <span><router-link to="/">집꾸며조</router-link></span>
         </div>
         <!-- //header1 -->
 
@@ -13,14 +13,16 @@
             <!-- 검색 키워드 사용 -->
             <!-- v-on:keyup.enter="submit" -->
             <img src="../assets/images/homedeco/find.png">
-            <input type="text" name="keyword" value="" placeholder="제목으로 검색하세요.">
+            <input type="text" name="keyword" value="" placeholder="상품명으로 검색하세요.">
         </div>
         <!-- //header2 -->
 
         <div class="ss-header3">
             <!-- 누르면 장바구니 페이지로 -->
+            <!-- vuex에 카트가 생기면 빨간불 -->
+            
             <img src="../assets/images/homedeco/cart.png">
-
+            <img id="ss-red" src="../assets/images/homedeco/red.jpg">
             <!-- 로그인하기전 -->
             <ul>
                 <li><a>로그인</a></li>

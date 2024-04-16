@@ -84,40 +84,13 @@
             </div>
         </div>
         <!-- https://cntechsystems.tistory.com/58 -->
-        <div class="ss-goodsList">
-            <div class="ss-goods">
-                <img src="../../assets/images/main/mainlist/img1.jpg"><br>
-                <span>카테고리</span><br>
-                <span>이름</span><br>
-                <span>10000</span><br>
-                <span>별점</span><span>리뷰</span>
-            </div>
-            <div class="ss-goods">
-                <img src="../../assets/images/main/mainlist/img1.jpg"><br>
-                <span>카테고리</span><br>
-                <span>이름</span><br>
-                <span>10000</span><br>
-                <span>별점</span><span>리뷰</span>
-            </div>
-            <div class="ss-goods">
-                <img src="../../assets/images/main/mainlist/img1.jpg"><br>
-                <span>카테고리</span><br>
-                <span>이름</span><br>
-                <span>10000</span><br>
-                <span>별점</span><span>리뷰</span>
-            </div>
-            <div class="ss-goods">
-                <img src="../../assets/images/main/mainlist/img1.jpg"><br>
-                <span>카테고리</span><br>
-                <span>이름</span><br>
-                <span>10000</span><br>
-                <span>별점</span><span>리뷰</span>
-            </div><div class="ss-goods">
-                <img src="../../assets/images/main/mainlist/img1.jpg"><br>
-                <span>카테고리</span><br>
-                <span>이름</span><br>
-                <span>10000</span><br>
-                <span>별점</span><span>리뷰</span>
+        <div class="ss-goodsList" >
+            <div class="ss-goods" v-for="(list, i) in goodsList" v-bind:key="i">
+                <img v-bind:src="`${ list.main_img }`"><br>
+                <span>{{ list.category }}</span><br>
+                <span>{{ list.name }}</span><br>
+                <span>별점 : {{ list.star }}</span>&nbsp;
+                <span>가격 : {{ list.price }}</span>                
             </div>
         </div>    
 
@@ -149,20 +122,80 @@ export default {
     },
     data() {
         return {
+            
             show : false, // 서브메뉴용 체크
             hitList : [
                 '쇼파' ,
                 '침대',
                 '쇼파' ,
                 '침대' ,
-                 '쇼파' ,
+                '쇼파' ,
                 '침대' ,
                 '쇼파',
                 '침대' ,
                 '쇼파' ,
                 '침대' 
+            ],
+            goodsList :[ 
+                    {
+                        main_img : require('../../assets/images/main/mainlist/img1.jpg'), 
+                        category :'쇼파',
+                        name : 'ㅁㄴㅇ쇼파',
+                        star : '4',
+                        price :'20000'
+                    },
+                    {
+                        main_img : require('../../assets/images/main/mainlist/img1.jpg'), 
+                        category :'침대',
+                        name : 'ㅁㄴㅇ침대',
+                        star : '4',
+                        price :'20000'
+                    },
+                    {
+                        main_img : require('../../assets/images/main/mainlist/img1.jpg'), 
+                        category :'카테고리',
+                        name : '이름',
+                        star : '4',
+                        price :'20000'
+                    },
+                    {
+                        main_img : require('../../assets/images/main/mainlist/img1.jpg'),
+                        category :'카테고리',
+                        name : '이름',
+                        star : '4',
+                        price :'20000'
+                    },
+                    {
+                        main_img : require('../../assets/images/main/mainlist/img1.jpg'),
+                        category :'카테고리',
+                        name : '이름',
+                        star : '4',
+                        price :'20000'
+                    },
+                    {
+                        main_img : require('../../assets/images/main/mainlist/img1.jpg'),
+                        category :'카테고리',
+                        name : '이름',
+                        star : '4',
+                        price :'20000'
+                    },
+                    {
+                        main_img : require('../../assets/images/main/mainlist/img1.jpg'),
+                        category :'카테고리',
+                        name : '이름',
+                        star : '4',
+                        price :'20000'
+                    },
+                    {
+                        main_img : require('../../assets/images/main/mainlist/img1.jpg'),
+                        category :'카테고리',
+                        name : '이름',
+                        star : '4',
+                        price :'20000'
+                    }
+
             ]
-        };
+        }
     },
     methods: {
         mouseover(){ // 마우스 올리면 서브메뉴 보여줌
@@ -177,7 +210,14 @@ export default {
         review(){ // 리뷰순 눌렀을때 
             console.log('review');
         },
+        getList(){
+            console.log('getlist');
+        },
+         
     },
+    mounted (){
+    },
+    
     created (){
 
     }
