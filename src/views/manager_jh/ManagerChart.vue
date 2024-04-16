@@ -27,75 +27,10 @@
             <div class="clearfix">
 
                 <div id="pp">
-                    <h3>구매진행중</h3>
+                    <h3>판매량</h3>
+                    
 
-                    <table id="ppp">
-                        <tbody>
-                            <tr>
-                                <td id="img" rowspan="3"><img id="img" src="../../assets/images/managerJ/test.png"
-                                        alt=""></td>
-                                <td id="word">상품명 :</td>
-                                <td id="nick" rowspan="3">닉네임</td>
-                            </tr>
-                            <tr>
-                                <td>색상 :</td>
-                            </tr>
-                            <tr>
-                                <td>수량 :</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <table id="ppp">
-                        <tbody>
-                            <tr>
-                                <td id="img" rowspan="3"><img id="img" src="../../assets/images/managerJ/test.png"
-                                        alt=""></td>
-                                <td id="word">상품명 :</td>
-                                <td id="nick" rowspan="3">닉네임</td>
-                            </tr>
-                            <tr>
-                                <td>색상 :</td>
-                            </tr>
-                            <tr>
-                                <td>수량 :</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div id="bb">
-                    <h3 id="bx">구매진행완료</h3>
-                    <table id="bbb">
-                        <tbody>
-                            <tr>
-                                <td id="img" rowspan="3"><img id="img" src="../../assets/images/managerJ/test.png"
-                                        alt=""></td>
-                                <td>상품명 :</td>
-                                <td id="nick" rowspan="3">닉네임</td>
-                            </tr>
-                            <tr>
-                                <td>색상 :</td>
-                            </tr>
-                            <tr>
-                                <td>수량 :</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <table id="bbb">
-                        <tbody>
-                            <tr>
-                                <td id="img" rowspan="3"><img id="img" src="../../assets/images/managerJ/test.png"
-                                        alt=""></td>
-                                <td>상품명 :</td>
-                                <td id="nick" rowspan="3">닉네임</td>
-                            </tr>
-                            <tr>
-                                <td>색상 :</td>
-                            </tr>
-                            <tr>
-                                <td>수량 :</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    
                 </div>
 
             </div>
@@ -106,8 +41,7 @@
 
 <script>
 import '@/assets/css/managerJ/main.css'
-import '../../components/AppHeader.vue'
-import '../../components/AppFooter.vue'
+
 
 import { Chart, registerables } from 'chart.js'
 Chart.register(...registerables)
