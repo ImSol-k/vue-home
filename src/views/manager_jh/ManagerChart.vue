@@ -1,4 +1,6 @@
 <template>
+
+    <AppHeader/>
     <div class="clearfix" id="full">
         <div id="contentNav">
             <h2 id="aside">관리자 항목</h2>
@@ -98,19 +100,29 @@
 
             </div>
         </div>
+    <AppFooter/>
     </div>
 </template>
 
 <script>
 import '@/assets/css/managerJ/main.css'
-
+import '../../components/AppHeader.vue'
+import '../../components/AppFooter.vue'
 
 import { Chart, registerables } from 'chart.js'
 Chart.register(...registerables)
 import ChartDataLabels from 'chartjs-plugin-datalabels';
+import AppHeader from '../../components/AppHeader.vue'
+import AppFooter from '../../components/AppFooter.vue'
 
 Chart.register(ChartDataLabels);
 export default {
+    
+    
+    components:{
+        AppHeader,
+        AppFooter
+    },
     plugins: [ChartDataLabels],
     
     methods: {

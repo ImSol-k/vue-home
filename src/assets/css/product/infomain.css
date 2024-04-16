@@ -395,6 +395,7 @@
 .reviewWriteContent>span{
     float: right;
     font-size: 30px;
+    cursor: pointer;
 }
 .reviewWriteContent>h1{
     text-align: center;
