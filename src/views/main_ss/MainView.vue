@@ -84,16 +84,17 @@
             </div>
         </div>
         <!-- https://cntechsystems.tistory.com/58 -->
-        <div class="ss-goodsList" >
-            <div class="ss-goods" v-for="(list, i) in goodsList" v-bind:key="i">
+        <div class="ss-goodsList clearfix" >
+            <div  class="goods" v-for="(list, i) in goodsList" v-bind:key="i">
                 <img v-bind:src="`${ list.main_img }`"><br>
                 <span>{{ list.category }}</span><br>
                 <span>{{ list.name }}</span><br>
                 <span>별점 : {{ list.star }}</span>&nbsp;
-                <span>가격 : {{ list.price }}</span>                
+                <span>가격 : {{ list.price }}</span>
             </div>
+             
         </div>    
-
+        <Observer @show="loadItems"></Observer>
 
     </div>
     <!-- //content-slide 부분 -->
@@ -104,7 +105,9 @@
 </div>
 <!-- //wrap -->
 </template>
-
+<script setup>
+import Observer from '@/components/ObserverView.vue'
+</script>
 
 <script>
 import '@/assets/css/main/ss-home.css';
@@ -118,7 +121,7 @@ export default {
     components: {
         AppHeader,
         AppFooter,
-        SlideView
+        SlideView,
     },
     data() {
         return {
@@ -136,7 +139,28 @@ export default {
                 '쇼파' ,
                 '침대' 
             ],
-            goodsList :[ 
+            goodsList :[]
+        }
+    },
+    methods: {
+        mouseover(){ // 마우스 올리면 서브메뉴 보여줌
+            this.show = true;
+        },
+        mouseleave(){ // 마우스 떼면 서브메뉴 사라짐
+            this.show = false;
+        },
+        hits(){ // 별점순 눌렀을때
+            console.log('hits');
+        },
+        review(){ // 리뷰순 눌렀을때 
+            console.log('review');
+        },
+        getList(){
+            console.log('getlist');
+        },
+        loadItems() {
+            console.log('ob')
+            let list = [
                     {
                         main_img : require('../../assets/images/main/mainlist/img1.jpg'), 
                         category :'쇼파',
@@ -193,31 +217,17 @@ export default {
                         star : '4',
                         price :'20000'
                     }
-
             ]
-        }
-    },
-    methods: {
-        mouseover(){ // 마우스 올리면 서브메뉴 보여줌
-            this.show = true;
+            console.log(this.goodsList);
+            this.goodsList.push(...list);
+            console.log(this.goodsList)
         },
-        mouseleave(){ // 마우스 떼면 서브메뉴 사라짐
-            this.show = false;
-        },
-        hits(){ // 별점순 눌렀을때
-            console.log('hits');
-        },
-        review(){ // 리뷰순 눌렀을때 
-            console.log('review');
-        },
-        getList(){
-            console.log('getlist');
-        },
+        
          
     },
-    mounted (){
+    mounted() {
+        this.loadItems()
     },
-    
     created (){
 
     }

@@ -68,17 +68,15 @@
 
 
 
-
-
 /* goodsList 상품리스트나올부분 */
 .ss-goodsList {
     width: 1300px;
-    height: 650px;
+    /* height: 650px; */
     margin: 0 auto 0 auto;
-    border: 1px solid #000;
+    /* border: 1px solid #000; */
 }
 
-.ss-goodsList .ss-goods {
+.ss-goodsList .goods {
     display: block;
     width: 300px;
     height: 300px;
@@ -87,7 +85,7 @@
     margin: 10px 11px;
 }
 
-.ss-goods img {
+.goods img {
     width: 250px;
     height: 200px;
     padding: 10px;
