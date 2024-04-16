@@ -256,9 +256,10 @@
 .starTotal{
     width: 300px;
     height: 100px;
-    border-right: 1px solid #000000;
+    /* border-right: 1px solid #000000; */
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 .starTotal>.starFor>img{
     width: 30px;
@@ -292,7 +293,7 @@
     padding: 20px 0px;
     border-bottom: 1px solid #acacac;
 }
-.userStar>button{
+.userReviewManager>button{
     float: right;
     border: none;
     background-color: transparent;
@@ -349,7 +350,7 @@
     margin-right: 10px;
 }
 .sideCartBtn{
-    margin: 13px;
+    margin: 5px;
 }
 .sideCartBtn>button{
     width: 176px;
@@ -369,14 +370,6 @@
 .sideCart>.deleteCart{
     margin-left: 0px;
     font-size: 15px;
-}
-
-.footer{
-    width: 1300px;
-    height: 100px;
-    background-color: #6bcbff;
-    color: #fff;
-    margin-top: 50px;
 }
 
 
@@ -456,3 +449,4 @@
     font-size: 17px;
     font-weight: bold;
 }
+

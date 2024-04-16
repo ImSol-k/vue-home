@@ -120,7 +120,7 @@ header .ss-header1 {
 header .ss-header1 img {
     width: 50px;
     float: left;
-    margin-right: 10px;
+    margin-right: 7px;
     cursor: pointer;
 }
 
@@ -176,7 +176,7 @@ header .ss-header3 {
 
 /* 장바구니 이미지 */
 header .ss-header3 img {
-    width: 27px;
+    width: 32px;
     margin-right: 20px;
     padding: 8px 0px 0px 0px;
     float: left;
@@ -185,8 +185,9 @@ header .ss-header3 img {
 
 header .ss-header3 #ss-red {
     /* background-color: white; */
+    width: 18px;
     padding: 0;
-    margin-left : -38px;
+    margin-left : -32px;
     display: inline;
     position: relative;
     z-index: 9999;

@@ -4,7 +4,7 @@
     <div class="ss-header0">
         <div class="ss-header1">
             <!-- 누르면 둘다 홈으로 -->
-            <img src="../assets/images/homedeco/homelogo.png">
+            <img src="../assets/images/homedeco/logo.png">
             <span><router-link to="/">집꾸며조</router-link></span>
         </div>
         <!-- //header1 -->
@@ -21,7 +21,7 @@
             <!-- vuex에 카트가 생기면 빨간불 -->
             
             <img src="../assets/images/homedeco/cart.png">
-            <img id="ss-red" src="../assets/images/homedeco/red.jpg">
+            <img id="ss-red" src="../assets/images/homedeco/red.png">
             <!-- 로그인하기전 -->
             <ul>
                 <li><a>로그인</a></li>
