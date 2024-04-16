@@ -11,6 +11,7 @@
                         <span v-else> ▽</span> <!-- 화살표 아이콘 -->
                     </li>
                     <ul v-show="showCategories"> <!-- 카테고리 리스트 -->
+                        <li class="cate-li"><strong>전체 상품 보기</strong></li>
                         <li class="cate-li">
                             <ul>
                                 <li @click="toggleCategories00">
