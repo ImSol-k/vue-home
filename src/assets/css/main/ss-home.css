@@ -153,6 +153,7 @@ header .ss-header2 img {
     position: relative;
     margin-right: 7px;
     /* background-color: #fff; */
+    cursor: pointer;
 }
 
 /* 검색창 */

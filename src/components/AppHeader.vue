@@ -11,9 +11,8 @@
 
         <div class="ss-header2">
             <!-- 검색 키워드 사용 -->
-            <!-- v-on:keyup.enter="submit" -->
-            <img src="../assets/images/homedeco/find.png">
-            <input type="text" name="keyword" value="" placeholder="상품명으로 검색하세요.">
+            <img src="../assets/images/homedeco/find.png" v-on:click="search">
+            <input type="text" name="keyword" v-model="keyword" placeholder="상품명으로 검색하세요.">
         </div>
         <!-- //header2 -->
 
@@ -53,6 +52,7 @@
 
 <script>
 import '@/assets/css/main/ss-home.css';
+import axios from 'axios';
 
 export default {
     name : 'AppHeader',
@@ -61,14 +61,39 @@ export default {
     },
     data (){
         return {
-
+            keyword : "",
+            page : 1
         }
     },
     methods : {
+        search(){
+            console.log('search');
+            this.getList();
+        },
+        getList(){
+            console.log('getList');
+            let data = {
+                page : this.page,
+                keyword : this.keyword
+            }
+            console.log(data)
+            axios({
+                method: 'get', // put, post, delete 
+                url: `${this.$store.state.apiBaseUrl}/home/main`,
+                headers: { "Content-Type": "application/json; charset=utf-8" }, //전송타입
+                params: { page : this.page, keyword : this.keyword}, //get방식 파라미터로 값이 전달
+                // data: , //put, post, delete 방식 자동으로 JSON으로 변환 전달
+                responseType: 'json' //수신타입
+            }).then(response => {
+                console.log(response); //수신데이타
+            }).catch(error => {
+                console.log(error);
+            });
+        }
 
     },
     created (){
-
+        this.getList();
     }
 }
 

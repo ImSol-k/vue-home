@@ -125,7 +125,6 @@ export default {
     },
     data() {
         return {
-            
             show : false, // 서브메뉴용 체크
             hitList : [
                 '쇼파' ,
@@ -155,11 +154,8 @@ export default {
         review(){ // 리뷰순 눌렀을때 
             console.log('review');
         },
-        getList(){
-            console.log('getlist');
-        },
+        
         loadItems() {
-            console.log('ob')
             let list = [
                     {
                         main_img : require('../../assets/images/main/mainlist/img1.jpg'), 
@@ -189,44 +185,13 @@ export default {
                         star : '4',
                         price :'20000'
                     },
-                    {
-                        main_img : require('../../assets/images/main/mainlist/img1.jpg'),
-                        category :'카테고리',
-                        name : '이름',
-                        star : '4',
-                        price :'20000'
-                    },
-                    {
-                        main_img : require('../../assets/images/main/mainlist/img1.jpg'),
-                        category :'카테고리',
-                        name : '이름',
-                        star : '4',
-                        price :'20000'
-                    },
-                    {
-                        main_img : require('../../assets/images/main/mainlist/img1.jpg'),
-                        category :'카테고리',
-                        name : '이름',
-                        star : '4',
-                        price :'20000'
-                    },
-                    {
-                        main_img : require('../../assets/images/main/mainlist/img1.jpg'),
-                        category :'카테고리',
-                        name : '이름',
-                        star : '4',
-                        price :'20000'
-                    }
+                    
             ]
-            console.log(this.goodsList);
             this.goodsList.push(...list);
-            console.log(this.goodsList)
-        },
-        
-         
+        }, 
     },
     mounted() {
-        this.loadItems()
+        this.loadItems();
     },
     created (){
 
@@ -235,4 +200,6 @@ export default {
 </script>
 
 
-<style></style>
+<style>
+
+</style>
