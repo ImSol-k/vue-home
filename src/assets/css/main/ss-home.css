@@ -63,10 +63,6 @@ a:hover {
 }
 
 
-/* clearfix */
-.clearfix {
-    *zoom: 1;
-}
 
 .clearfix:before,
 .clearfix:after {
@@ -357,7 +353,7 @@ nav .nav1 .nav1-main>li {
 /* footer 전체*/
 footer {
     width: 100%;
-    
+    margin-top: 100px;
 }
 
 /* footer 안에서 보여질 부분*/
@@ -367,6 +363,7 @@ footer .ss-footer {
     background-color: #d6d6d6;
     margin-top: 50px;
     font-size: 15px;
+    margin: 0px auto;
     
 }
 
