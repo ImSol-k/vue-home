@@ -81,6 +81,16 @@ table tr>td{
     text-align: center;
     width: 120px;
 }
+#nick2{
+    vertical-align: bottom;
+    text-align: center;
+}
+
+#state{
+    width: 60px;
+    margin-top: 18px;
+    border: none;
+}
 
 #word{
     overflow: hidden;
