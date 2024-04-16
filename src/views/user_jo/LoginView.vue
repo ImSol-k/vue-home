@@ -1,6 +1,6 @@
 <template>
 
-    
+
     <div class="login-header">
 
     </div>
@@ -34,7 +34,7 @@ import "@/assets/css/user/login.css";
 export default {
     name: "LoginView",
     components: {
-        
+
     },
     data() {
         return {};
@@ -42,6 +42,3 @@ export default {
     methods: {},
 };
 </script>
-
-
-

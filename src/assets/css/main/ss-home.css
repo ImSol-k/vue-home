@@ -62,8 +62,11 @@ a:hover {
     color: #000000;
 }
 
+<<<<<<< HEAD
+=======
 
 
+>>>>>>> 91ebd2abc908fcf529ff31ba74edfc16aaed74e1
 .clearfix:before,
 .clearfix:after {
     display: block;
@@ -273,7 +276,7 @@ nav .nav1 .nav1-main>li {
     z-index: 9999;
     position: relative;
     box-sizing: border-box;
-    background-color: #90dfd2b4;
+    background-color: #ffffff79;
 }
 
 /* 서브메뉴 간격 */

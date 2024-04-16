@@ -1,8 +1,8 @@
 <template>
     <div class="wrap">
-        <div class="header">
-            <h1>header</h1>
-        </div>
+
+        <AppHeader />
+
         <div class="content">
             <div class="side">
                 <ul>
@@ -84,19 +84,28 @@
 
             </div>
         </div>
+
+        <AppFooter />
+
     </div>
 </template>
 
 
 <script>
 import "@/assets/css/managerY/bedList.css"
+import AppHeader from '@/components/AppHeader.vue';
+import AppFooter from '@/components/AppFooter.vue';
+
 export default {
     name: "BedListView",
-    components: {},
+    components: {
+        AppHeader,
+        AppFooter
+    },
     data() {
         return {
             showCategories: false,
-            showCategories02: false
+            showCategories02: false,
         };
     },
     mounted() {
@@ -128,7 +137,7 @@ export default {
         toggleCategories02() {
             this.showCategories02 = !this.showCategories02; // 클릭 시 카테고리 리스트를 보이거나 숨김
         }
-        
+
     },
 };
 </script>
