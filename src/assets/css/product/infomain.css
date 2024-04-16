@@ -12,6 +12,7 @@
     /* margin: 0px 50px 30px 10px; */
     margin: 20px auto;
     width: 620px;
+    height: fit-content;
     border-radius: 30px;
 }
 
@@ -19,12 +20,18 @@
     /* float: left; */
     width: 555px;
     margin: 0px auto; 
+    margin-top: 30px;
+}
+.productInfo>p{
+    font-size: 15px;
+    color: #acacac;
+    /* padding-left: 5px; */
 }
 
 .productName {
     font-size: 25px;
     font-weight: 400;
-    margin-top: 40px;
+    /* margin-top: 40px; */
 }
 
 .productStar {
@@ -32,7 +39,7 @@
 }
 
 
-.productStar>a>img {
+.productStar>a>span>img {
     width: 18px;
 }
 
@@ -134,12 +141,13 @@
 .CartPrice>span:first-child{
     font-size: 17px;
     font-weight: lighter;
-    margin-right: 5px;
+    margin-right: 10px;
 }
 
 
 .infoCartPayBtn {
     width: 612px;
+    margin-bottom: 20px;
 }
 
 .infoCartPayBtn>button {
@@ -252,14 +260,14 @@
     display: flex;
     align-items: center;
 }
-.starTotal>img{
+.starTotal>.starFor>img{
     width: 30px;
     margin: 0px 3px;
 }
-.starTotal>span{
+.starTotal>span:last-child{
     font-size: 35px;
     font-weight: bold;
-    margin-left: 10px;
+    margin-left: 5px;
 }
 .star{
     width: 150px;
@@ -292,10 +300,10 @@
     padding: 0px 5px;
     
 }
-.userStar>img{
+.userStar>span>img{
     width: 18px;
 }
-.userStar>span{
+.userStar>.reviewDate{
     font-size: 14px;
     color: #9f9f9f;
     margin-left: 5px;
@@ -310,7 +318,7 @@
 /* 사이드 장바구니 */
 .infoSideCart {
     width: 400px;
-    height: 100%;
+    /* height: 100%; */
     background-color: #fff;
     position: sticky;
     top: 67px;
@@ -338,6 +346,7 @@
 .sideCartPrice>span:first-child{
     font-size: 16px;
     font-weight: lighter;
+    margin-right: 10px;
 }
 .sideCartBtn{
     margin: 13px;
@@ -351,7 +360,7 @@
 
 .sideCart{
     width: 330px;
-    margin: 0px auto;
+    margin: 3px auto;
 }
 .sideCart>.cartproductName>span:first-child{
     width: 273px;

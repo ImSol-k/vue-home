@@ -11,25 +11,73 @@
                         <span v-else> ▽</span> <!-- 화살표 아이콘 -->
                     </li>
                     <ul v-show="showCategories"> <!-- 카테고리 리스트 -->
-                        <li class="cate-li"><a href="productLIst.html">전체 상품 보기</a></li>
-                        <li class="cate-li"><a href="bedList.html">침대/매트리스</a></li>
-                        <li class="cate-li"><a href="일반소파좌식소파의URL">일반소파/좌식소파</a></li>
-                        <li class="cate-li"><a href="식탁사이드테이블의URL">식탁/사이드테이블</a></li>
-                        <li class="cate-li"><a href="벽선반스탠드선반의URL">벽선반/스탠드선반</a></li>
+                        <li class="cate-li"><strong>전체 상품 보기</strong></li>
+                        <li class="cate-li">
+                            <ul>
+                                <li @click="toggleCategories00">
+                                    <strong>침대</strong>
+                                    <span v-if="showCategories00"> △ </span>
+                                    <span v-else> ▽</span> <!-- 화살표 아이콘 -->
+                                </li>
+                                <ul v-show="showCategories00"> <!-- 카테고리 리스트 -->
+                                    <li class="cate-li"><a href="">침대</a></li>
+                                    <li class="cate-li"><a href="">매트리스</a></li>
+                                    <li class="cate-li"><a href="">침대 프레임</a></li>
+                                </ul>
+                            </ul>
+                        </li>
+                        <li class="cate-li">
+                            <ul>
+                                <li @click="toggleCategories02">
+                                    <strong>쇼파</strong>
+                                    <span v-if="showCategories02"> △ </span>
+                                    <span v-else> ▽</span> <!-- 화살표 아이콘 -->
+                                </li>
+                                <ul v-show="showCategories02"> <!-- 카테고리 리스트 -->
+                                    <li class="cate-li"><a href="">일반 쇼파</a></li>
+                                    <li class="cate-li"><a href="">좌식 쇼파</a></li>
+                                    <li class="cate-li"><a href="">1인용 쇼파</a></li>
+                                </ul>
+                            </ul>
+                        </li>
+                        <li class="cate-li">
+                            <ul>
+                                <li @click="toggleCategories03">
+                                    <strong>테이블</strong>
+                                    <span v-if="showCategories03"> △ </span>
+                                    <span v-else> ▽</span> <!-- 화살표 아이콘 -->
+                                </li>
+                                <ul v-show="showCategories03"> <!-- 카테고리 리스트 -->
+                                    <li class="cate-li"><a href="">식탁</a></li>
+                                    <li class="cate-li"><a href="">사이드 테이블</a></li>
+                                </ul>
+                            </ul>
+                        </li>
+                        <li class="cate-li">
+                            <ul>
+                                <li @click="toggleCategories04">
+                                    <strong>옷장</strong>
+                                    <span v-if="showCategories04"> △ </span>
+                                    <span v-else> ▽</span> <!-- 화살표 아이콘 -->
+                                </li>
+                                <ul v-show="showCategories04"> <!-- 카테고리 리스트 -->
+                                    <li class="cate-li"><a href="">옷장</a></li>
+                                    <li class="cate-li"><a href="">행거</a></li>
+                                    <li class="cate-li"><a href="">붙박이장</a></li>
+                                </ul>
+                            </ul>
+                        </li>
                     </ul>
-                </ul>
-                <ul>
-                    <li @click="toggleCategories02">
+                    <li @click="toggleCategories05">
                         <strong>주문 관리</strong>
-                        <span v-if="showCategories02"> △ </span>
+                        <span v-if="showCategories05"> △ </span>
                         <span v-else> ▽</span>
                     </li>
-                    <ul v-show="showCategories02">
-                        <li class="cate-li"><a href="productLIst.html">주문 현황</a></li>
-                        <li class="cate-li"><a href="bedList.html">카테고리 뭐 있냐</a></li>
+                    <ul v-show="showCategories05">
+                        <li class="cate-li"><a href="">주문 통계</a></li>
+                        <li class="cate-li"><a href="">주문 현황</a></li>
                     </ul>
                 </ul>
-
             </div>
             <div class="main">
                 <div class="insert">
@@ -137,7 +185,11 @@ export default {
     data() {
         return {
             showCategories: false,
+            showCategories00: false,
             showCategories02: false,
+            showCategories03: false,
+            showCategories04: false,
+            showCategories05: false,
         };
     },
     mounted() {
@@ -166,8 +218,20 @@ export default {
         toggleCategories() {
             this.showCategories = !this.showCategories; // 클릭 시 카테고리 리스트를 보이거나 숨김
         },
+        toggleCategories00() {
+            this.showCategories00 = !this.showCategories00; // 클릭 시 카테고리 리스트를 보이거나 숨김
+        },
         toggleCategories02() {
             this.showCategories02 = !this.showCategories02; // 클릭 시 카테고리 리스트를 보이거나 숨김
+        },
+        toggleCategories03() {
+            this.showCategories03 = !this.showCategories03; // 클릭 시 카테고리 리스트를 보이거나 숨김
+        },
+        toggleCategories04() {
+            this.showCategories04 = !this.showCategories04; // 클릭 시 카테고리 리스트를 보이거나 숨김
+        },
+        toggleCategories05() {
+            this.showCategories05 = !this.showCategories05; // 클릭 시 카테고리 리스트를 보이거나 숨김
         }
 
     },
