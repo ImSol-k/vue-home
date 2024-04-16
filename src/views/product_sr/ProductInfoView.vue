@@ -313,7 +313,8 @@ export default {
         },
         reviewAdd() {
             console.log("리뷰추가");
-
+            //if(유저가 구매한 )
+            
         }
     },
     created() {
