@@ -3,13 +3,81 @@
     <AppHeader/>
     <div class="clearfix" id="full">
         <div id="contentNav">
-            <h2 id="aside">관리자 항목</h2>
-            <h2>
-                <RouterLink to="/">주문관리</RouterLink>
-            </h2>
-            <h2>
-                <RouterLink to="/">상품관리</RouterLink>
-            </h2>
+            <div class="side">
+				<ul>
+					<li @click="toggleCategories">
+						<strong>상품 관리</strong>
+						<span v-if="showCategories"> △ </span>
+						<span v-else> ▽</span> <!-- 화살표 아이콘 -->
+					</li>
+					<ul v-show="showCategories"> <!-- 카테고리 리스트 -->
+						<li class="cate-li">
+							<ul>
+								<li @click="toggleCategories00">
+									<strong>침대</strong>
+									<span v-if="showCategories00"> △ </span>
+									<span v-else> ▽</span> <!-- 화살표 아이콘 -->
+								</li>
+								<ul v-show="showCategories00"> <!-- 카테고리 리스트 -->
+									<li class="cate-li"><a href="">침대</a></li>
+									<li class="cate-li"><a href="">매트리스</a></li>
+									<li class="cate-li"><a href="">침대 프레임</a></li>
+								</ul>
+							</ul>
+						</li>
+						<li class="cate-li">
+							<ul>
+								<li @click="toggleCategories02">
+									<strong>쇼파</strong>
+									<span v-if="showCategories02"> △ </span>
+									<span v-else> ▽</span> <!-- 화살표 아이콘 -->
+								</li>
+								<ul v-show="showCategories02"> <!-- 카테고리 리스트 -->
+									<li class="cate-li"><a href="">일반 쇼파</a></li>
+									<li class="cate-li"><a href="">좌식 쇼파</a></li>
+									<li class="cate-li"><a href="">1인용 쇼파</a></li>
+								</ul>
+							</ul>
+						</li>
+						<li class="cate-li">
+							<ul>
+								<li @click="toggleCategories03">
+									<strong>테이블</strong>
+									<span v-if="showCategories03"> △ </span>
+									<span v-else> ▽</span> <!-- 화살표 아이콘 -->
+								</li>
+								<ul v-show="showCategories03"> <!-- 카테고리 리스트 -->
+									<li class="cate-li"><a href="">식탁</a></li>
+									<li class="cate-li"><a href="">사이드 테이블</a></li>
+								</ul>
+							</ul>
+						</li>
+						<li class="cate-li">
+							<ul>
+								<li @click="toggleCategories04">
+									<strong>옷장</strong>
+									<span v-if="showCategories04"> △ </span>
+									<span v-else> ▽</span> <!-- 화살표 아이콘 -->
+								</li>
+								<ul v-show="showCategories04"> <!-- 카테고리 리스트 -->
+									<li class="cate-li"><a href="">옷장</a></li>
+									<li class="cate-li"><a href="">행거</a></li>
+									<li class="cate-li"><a href="">붙박이장</a></li>
+								</ul>
+							</ul>
+						</li>
+					</ul>
+					<li @click="toggleCategories05">
+						<strong>주문 관리</strong>
+						<span v-if="showCategories05"> △ </span>
+						<span v-else> ▽</span>
+					</li>
+					<ul v-show="showCategories05">
+						<li class="cate-li"><a href="">주문 통계</a></li>
+						<li class="cate-li"><a href="">주문 현황</a></li>
+					</ul>
+				</ul>
+			</div>
         </div>
 
         <div id="contentMain">
@@ -28,7 +96,7 @@
 
                 <div id="pp">
                     <h3>판매량</h3>
-                    
+
 
                     
                 </div>
@@ -41,7 +109,7 @@
 
 <script>
 import '@/assets/css/managerJ/main.css'
-
+import "@/assets/css/managerY/productLIst.css"
 
 import { Chart, registerables } from 'chart.js'
 Chart.register(...registerables)
@@ -60,6 +128,29 @@ export default {
     plugins: [ChartDataLabels],
     
     methods: {
+        changeSort(sortType) {
+            document.getElementById('sortButton').innerText = sortType;
+            // 여기에 해당 정렬 처리 로직 추가
+        },
+        toggleCategories() {
+            this.showCategories = !this.showCategories; // 클릭 시 카테고리 리스트를 보이거나 숨김
+        },
+        toggleCategories00() {
+            this.showCategories00 = !this.showCategories00; // 클릭 시 카테고리 리스트를 보이거나 숨김
+        },
+        toggleCategories02() {
+            this.showCategories02 = !this.showCategories02; // 클릭 시 카테고리 리스트를 보이거나 숨김
+        },
+        toggleCategories03() {
+            this.showCategories03 = !this.showCategories03; // 클릭 시 카테고리 리스트를 보이거나 숨김
+        },
+        toggleCategories04() {
+            this.showCategories04 = !this.showCategories04; // 클릭 시 카테고리 리스트를 보이거나 숨김
+        },
+        toggleCategories05() {
+            this.showCategories05 = !this.showCategories05; // 클릭 시 카테고리 리스트를 보이거나 숨김
+        },
+
         createChart() {
             new Chart(this.$refs.MyChart, {
 
@@ -118,7 +209,7 @@ export default {
         this.createChart(
 
         )
-    }
-
+    },
+    
 }
 </script>
