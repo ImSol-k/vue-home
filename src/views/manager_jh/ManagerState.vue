@@ -224,7 +224,7 @@ export default {
 		list() {
 			axios({
 				method: 'get', // put, post, delete 
-				url: 'http://localhost:8888/api/manager/state',
+				url: 'http://localhost:8888/home/manager/state',
 				headers: { "Content-Type": "application/json; charset=utf-8" }, //전송타입
 				//params: guestbookVo, //get방식 파라미터로 값이 전달
 				//data: guestbookVo, //put, post, delete 방식 자동으로 JSON으로 변환 전달
