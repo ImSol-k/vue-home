@@ -6,14 +6,17 @@ export default createStore({
         return {
             apiBaseUrl: "http://localhost:9090",
             //apiBaseUrl: "http://54.180.79.237:9000",
-            token: ""
+            token: "",
+            nowOrderList: []
         };
     },
     mutations: {
-        setToken(state, payload){
-            state.token = payload;
+        setToken(state, token) {
+            state.token = token;
         },
-
+        setNowPayment(state, nowOrderList) {
+            state.nowOrderList = nowOrderList;
+        },
     },
     plugins: [
         createPersistedState({
