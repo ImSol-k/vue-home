@@ -19,6 +19,7 @@ import ProductListView from '../views/manager_ys/ProductListView.vue'
 import BedListView from '../views/manager_ys/BedListView.vue'
 //재현
 import ManagerChart from '../views/manager_jh/ManagerChart.vue'
+import ManagerState from '../views/manager_jh/ManagerState.vue'
 
 const routes = [
   {
@@ -80,6 +81,11 @@ const routes = [
     path: '/manager/chart',
     name: '/manager/chart',
     component: ManagerChart
+  },
+  {
+    path: '/manager/state',
+    name: '/manager/state',
+    component: ManagerState
   }
 ]
 

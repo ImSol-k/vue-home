@@ -23,7 +23,7 @@
                 </div>
                 <div class="productContent">
                     <select name="" id="">
-                        <option disabled selected>옵션을 선택해주세요</option>
+                        <option disabled selected>색상을 선택해주세요</option>
                         <option value="">상품1</option>
                         <option value="">상품2</option>
                     </select>
@@ -126,7 +126,7 @@
             <div class="infoSideCart">
                 <div class="sideCartSelect">
                     <select name="" id="">
-                        <option disabled selected>옵션을 선택해주세요</option>
+                        <option disabled selected>색상을 선택해주세요</option>
                         <option value="">상품1</option>
                         <option value="">상품2</option>
                     </select>
@@ -173,11 +173,11 @@
             <p>별점평가</p>
             <div class="starInsert">
                 <div class="starClick">
-                    <button><img src="@/assets/images/homedeco/star2.png" alt=""></button>
-                    <button><img src="@/assets/images/homedeco/star2.png" alt=""></button>
-                    <button><img src="@/assets/images/homedeco/star2.png" alt=""></button>
-                    <button><img src="@/assets/images/homedeco/star2.png" alt=""></button>
-                    <button><img src="@/assets/images/homedeco/star2.png" alt=""></button>
+                    <button v-on:click.prevent="reviewStar(1)"><img src="@/assets/images/homedeco/star2.png" alt=""></button>
+                    <button v-on:click.prevent="reviewStar(1)"><img src="@/assets/images/homedeco/star2.png" alt=""></button>
+                    <button v-on:click.prevent="reviewStar(1)"><img src="@/assets/images/homedeco/star2.png" alt=""></button>
+                    <button v-on:click.prevent="reviewStar(1)"><img src="@/assets/images/homedeco/star2.png" alt=""></button>
+                    <button v-on:click.prevent="reviewStar(1)"><img src="@/assets/images/homedeco/star2.png" alt=""></button>
                 </div>
             </div>
             <p>상품평</p>
@@ -208,6 +208,9 @@ export default {
     },
     methods: {
 
+        reviewStar(star){
+            console.log("별점클릭"+star)
+        },
         openModal(){
             console.log("리뷰작성");
             this.showModal = true;
