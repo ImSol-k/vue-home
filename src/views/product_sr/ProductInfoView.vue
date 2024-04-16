@@ -215,7 +215,8 @@ export default {
                 price: 20000,
                 count: 0,
                 category: "가구",
-                color: ""
+                color: "",
+                mainImg: ""
             },
             productCarts: [],
             productColor: ["white", "black", "wood"],
@@ -235,6 +236,18 @@ export default {
         showProduct() {
             console.log("상품정보: " + this.productVo.name);
             this.showPrice = Number(this.productVo.price).toLocaleString('ko-KR');
+            axios({
+                method: 'post',
+                url: `${this.$store.state.apiBaseUrl}/home/cart/getproduct`, 
+                headers: { "Content-Type": "application/json; charset=utf-8" },
+                param: this.$store.state.productNo,
+                responseType: 'json'
+            }).then(response => {
+                console.log(response); //수신데이터
+
+            }).catch(error => {
+                console.log(error);
+            });
         },
         cartAdd(event) {
             console.log("색상선택: " + event.target.value);
@@ -314,7 +327,7 @@ export default {
         reviewAdd() {
             console.log("리뷰추가");
             //if(유저가 구매한 )
-            
+
         }
     },
     created() {
