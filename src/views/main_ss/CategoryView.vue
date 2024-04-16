@@ -91,11 +91,9 @@
 					<span v-else> ▽</span> <!-- 화살표 아이콘 -->
 				</li>
 				<ul v-show="showCategories"> <!-- 카테고리 리스트 -->
-					<li class="cate-li"><a href="">전체 상품 보기</a></li>
-					<li class="cate-li"><a href="">침대/매트리스</a></li>
-					<li class="cate-li"><a href="">일반소파/좌식소파</a></li>
-					<li class="cate-li"><a href="">식탁/사이드테이블</a></li>
-					<li class="cate-li"><a href="">벽선반/스탠드선반</a></li>
+					<li class="cate-li"><a href="">침대</a></li>
+					<li class="cate-li"><a href="">매트리스</a></li>
+					<li class="cate-li"><a href="">침대프레임</a></li>
 				</ul>
 			</ul>
 			<ul>
@@ -105,25 +103,20 @@
 					<span v-else> ▽</span> <!-- 화살표 아이콘 -->
 				</li>
 				<ul v-show="showCategories02"> <!-- 카테고리 리스트 -->
-					<li class="cate-li"><a href="">전체 상품 보기</a></li>
-					<li class="cate-li"><a href="">침대/매트리스</a></li>
-					<li class="cate-li"><a href="">일반소파/좌식소파</a></li>
-					<li class="cate-li"><a href="">식탁/사이드테이블</a></li>
-					<li class="cate-li"><a href="">벽선반/스탠드선반</a></li>
+					<li class="cate-li"><a href="">일반 쇼파</a></li>
+					<li class="cate-li"><a href="">좌식 쇼파</a></li>
+					<li class="cate-li"><a href="">1인용 쇼파</a></li>
 				</ul>
 			</ul>
 			<ul>
 				<li @click="toggleCategories03">
-					<strong>책상</strong>
+					<strong>테이블</strong>
 					<span v-if="showCategories03"> △ </span>
 					<span v-else> ▽</span> <!-- 화살표 아이콘 -->
 				</li>
 				<ul v-show="showCategories03"> <!-- 카테고리 리스트 -->
-					<li class="cate-li"><a href="">전체 상품 보기</a></li>
-					<li class="cate-li"><a href="">침대/매트리스</a></li>
-					<li class="cate-li"><a href="">일반소파/좌식소파</a></li>
-					<li class="cate-li"><a href="">식탁/사이드테이블</a></li>
-					<li class="cate-li"><a href="">벽선반/스탠드선반</a></li>
+					<li class="cate-li"><a href="">식탁</a></li>
+					<li class="cate-li"><a href="">사이드테이블</a></li>
 				</ul>
 			</ul>
 			<ul>
@@ -133,27 +126,12 @@
 					<span v-else> ▽</span> <!-- 화살표 아이콘 -->
 				</li>
 				<ul v-show="showCategories04"> <!-- 카테고리 리스트 -->
-					<li class="cate-li"><a href="">전체 상품 보기</a></li>
-					<li class="cate-li"><a href="">침대/매트리스</a></li>
-					<li class="cate-li"><a href="">일반소파/좌식소파</a></li>
-					<li class="cate-li"><a href="">식탁/사이드테이블</a></li>
-					<li class="cate-li"><a href="">벽선반/스탠드선반</a></li>
+					<li class="cate-li"><a href="">옷장</a></li>
+					<li class="cate-li"><a href="">행거</a></li>
+					<li class="cate-li"><a href="">붙박이장</a></li>
 				</ul>
 			</ul>
-			<ul>
-				<li @click="toggleCategories05">
-					<strong>기타</strong>
-					<span v-if="showCategories05"> △ </span>
-					<span v-else> ▽</span> <!-- 화살표 아이콘 -->
-				</li>
-				<ul v-show="showCategories05"> <!-- 카테고리 리스트 -->
-					<li class="cate-li"><a href="">전체 상품 보기</a></li>
-					<li class="cate-li"><a href="">침대/매트리스</a></li>
-					<li class="cate-li"><a href="">일반소파/좌식소파</a></li>
-					<li class="cate-li"><a href="">식탁/사이드테이블</a></li>
-					<li class="cate-li"><a href="">벽선반/스탠드선반</a></li>
-				</ul>
-			</ul>
+			
 		</div>
 		<!-- content-side -->
 
@@ -203,7 +181,6 @@ export default {
             showCategories02: false,
 			showCategories03: false,
             showCategories04: false,
-            showCategories05: false
 
 		};
 	},
@@ -225,9 +202,6 @@ export default {
         },
         toggleCategories04() {
             this.showCategories04 = !this.showCategories04; // 클릭 시 카테고리 리스트를 보이거나 숨김
-        },
-        toggleCategories05() {
-            this.showCategories05 = !this.showCategories05; // 클릭 시 카테고리 리스트를 보이거나 숨김
         }
 	},
 	
