@@ -21,21 +21,21 @@
             <!-- vuex에 카트가 생기면 빨간불 -->
             
             <img src="../assets/images/homedeco/cart.png">
-            <img id="ss-red" src="../assets/images/homedeco/red.png">
+            <img v-if="this.$store.state.nowOrderList === null" id="ss-red" src="../assets/images/homedeco/red.png">
             <!-- 로그인하기전 -->
-            <ul v-if="this.$store.state.token === 1">
+            <ul v-if="this.$store.state.token === null">
                 <li><a>로그인</a></li>
                 <li><a>회원가입</a></li>
                 <li><a>고객센터</a></li>
             </ul>
 
             
-            <ul v-if="this.$store.state.token !== null">   
+            <ul v-if="this.$store.state.token !== null && this.$store.state.authUser !== null">   
                 <li><a>ㅁㅁㅁ님</a></li>
                 <li><a>로그아웃</a></li>
                 <li><a>마이페이지</a></li>
             </ul>
-            <ul v-if="this.$store.state.userNo === 1">   
+            <ul v-if="this.$store.state.userNo === 0">   
                 <li><a>관리자</a></li>
                 <li><a>로그아웃</a></li>
                 <li><a>관리페이지</a></li>
@@ -66,6 +66,7 @@ export default {
     methods : {
         search(){
             this.$emit('update',this.keyword);
+
         },
         setColor(){
             console.log('setColor');
