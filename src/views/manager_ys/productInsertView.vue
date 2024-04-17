@@ -76,14 +76,13 @@
 
                             <div class="input-attach">
                                 <label for="add">추가 첨부 파일:&nbsp;</label>
-                                <input type="file" id="add" name="add" class="file-input" multiple>
+                                <input type="file" id="add" name="add" @change="addContentFile" class="file-input">
+                                
                                 <button type="button" class="add-file-button" @click="addFileInput">파일 추가</button>
                             </div>
                         </div>
                     </div>
 
-                </form>
-                <form class="form-insert" v-on:submit.prevent="insertProduct" method="post" enctype="multipart/form-data">
                     <button type="submit" class="insert01">등록</button>
                 </form>
             </div>
@@ -120,6 +119,9 @@ export default {
         handleCategoryChange(event) {
             this.selectedCategory = event.target.value;
         },
+        addContentFile(event) {
+            this.add.push(event.target.files[0]);
+        },
         addFileInput() {
             var rightDiv = document.querySelector('.right'); // right div를 가져옵니다.
             var fileInputContainer = document.createElement('div');
@@ -131,7 +133,9 @@ export default {
             fileInput.className = 'file-input';
             fileInput.multiple = true;
             fileInput.addEventListener('change', (event) => {
-                this.add.push(event.target.files[0]); // 파일을 Vue 컴포넌트의 add 배열에 추가
+                for (let i = 0; i < event.target.files.length; i++) {
+                    this.add.push(event.target.files[i]); // 파일을 Vue 컴포넌트의 add 배열에 추가
+                }
             });
 
             var removeButton = document.createElement('button');
@@ -151,7 +155,8 @@ export default {
         // 이미지 선택 시 미리보기 기능
         handleImagePreview(event) {
             // 선택한 파일
-            const file = event.target.files[0];
+            this.profile = event.target.files[0];
+
 
             // FileReader 객체를 사용하여 이미지를 읽음
             const reader = new FileReader();
@@ -163,28 +168,31 @@ export default {
             };
 
             // 파일을 읽음
-            if (file) {
-                reader.readAsDataURL(file);
+            if (this.profile) {
+                reader.readAsDataURL(this.profile);
             }
 
-            this.profile = event.target.value;
         },
         insertProduct() {
+            console.log("aa");
+            console.log(this.add);
             let formData = new FormData();
 
-            const files = document.querySelector('#add').files;
-            // for (let i = 0; i < files.length; i++) {
-            //     formData.append('add', files[i]);
-            //     this.add.push(files[i]);
-            // }
-            // this.add = files;
-            formData.append('imageList', files);
-            formData.append('profile', this.profile);
+
+            for (let i = 0; i < this.add.length; i++) {
+                formData.append('contentFiles', this.add[i]); // 파일을 Vue 컴포넌트의 add 배열에 추가
+            }
+
+            //타이틀
             formData.append('title', this.title);
             formData.append('price', this.price);
             formData.append('category', this.selectedCategory);
 
-            console.log(formData.profile);
+            //상품대표사진
+            formData.append('profile', this.profile);
+
+            //컨테츠사진들
+            // formData.append('contentFiles', JSON.stringify(this.add));
 
             axios({
                 method: 'post',
@@ -194,7 +202,7 @@ export default {
                 responseType: 'json'
             }).then(response => {
                 console.log(response);
-                //console.log(response.data.apiData);
+                console.log(response.data.apiData);
             }).catch(error => {
                 console.log(error);
             });
