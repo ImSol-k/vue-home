@@ -11,7 +11,8 @@ export default createStore({
             token: "",//토큰
             userNo: 1,  //로그인한 유저번호
             nowOrderList: [],//바로결제 장바구니리스트
-            productColor: []    //상품옵션 색상
+            productColor: [],    //상품옵션 색상
+            authUser: ""
         };
     },
     mutations: {
@@ -26,6 +27,9 @@ export default createStore({
         },
         setColor(state, productColor) {
             state.productColor = productColor;
+        },
+        setAuthUser(state, authUser){
+            state.authUser = authUser;
         }
     },
     plugins: [
