@@ -1,9 +1,11 @@
 <template>
     <div class="login-container">
+
         <div class="login-logo">
             <img src="../../assets/images/homedeco/homelogo.png" alt="집꾸며조">
             <div class="login-brand-text"></div>
         </div>
+
         <form id="loginForm" @submit.prevent="login">
             <div class="login-form-group">
                 <label for="id">아이디</label>
@@ -11,13 +13,18 @@
             </div>
             <div class="login-form-group">
                 <label for="password">비밀번호</label>
-                <input v-model="loginVo.password" type="password" id="password" name="password" placeholder="비밀번호를 입력하세요"
-                    required>
+                <input v-model="loginVo.password" type="password" id="password" name="password"
+                    placeholder="비밀번호를 입력하세요" required>
             </div>
             <button type="submit" class="login-btn">로그인</button>
         </form>
+
+
+
     </div>
 </template>
+
+
 
 
 <script>
@@ -27,18 +34,19 @@ import axios from 'axios';
 export default {
     name: "LoginView",
     components: {
-
     },
     data() {
         return {
             loginVo: {
                 id: "",
                 password: ""
-            }
+            },
         };
     },
     methods: {
         login() {
+            console.log("로그인");
+
             axios({
                 method: 'post', // put, post, delete
                 url: `${this.$store.state.apiBaseUrl}/home/login`,
@@ -47,25 +55,41 @@ export default {
                     "Authorization": "Bearer " + this.$store.state.token
                 },
                 data: this.loginVo,
+
                 responseType: 'json' //수신타입
-            }).then(function (response) {
-                // 로그인 성공 시 처리
-                console.log(response); //수신데이타
-                console.log(response.data);
+            }).then(response => {
+                if (response.data.result == "success") {
 
-                // 로그인 성공 시 메인 화면으로 이동
-                //this.$router.push("/");
+                    // 로그인 성공 시 처리
+                    console.log(response); //수신데이타
+                    console.log(response.data); //수신데이타 User
+
+                    //로그인 사용자 정보
+                    let authUser = response.data.apiData;
+
+                    //token 응답문서의 해더에 있음 
+                    //"Authorization, Bearer  + token"
+                    const token = response.headers.authorization.split(" ")[1]
+
+                    //vuex저장
+                    //this.$store.commit("setAuthUser", authUser);
+                    this.$store.commit("setToken", token);
+
+                    console.log(authUser);
+                    console.log(token);
+
+                    // 로그인 성공 시 메인 화면으로 이동
+                    this.$router.push("/");
+                }
+                }).catch(error => {
+                    // 로그인 실패 시 처리
+                    console.error('로그인 실패:', error);
 
 
-
-            }).catch(function (error) {
-                // 로그인 실패 시 처리
-                console.error('로그인 실패:', error);
-
-                
-            });
+                });
             console.log("로그인 시도:", this.loginVo.id, this.loginVo.password);
         }
-    },
-};
+        },
+    };
 </script>
+
