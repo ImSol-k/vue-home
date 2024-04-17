@@ -3,8 +3,7 @@
         <AppHeader />
 
 
-        <div class="cartContent">
-
+        <div class="cartContent" v-if="token != null">
             <div class="cartList">
                 <div class="cartHearder">
                     <label for="selectAll">
@@ -47,6 +46,11 @@
                 </div>
                 <button>{{ itemCount }}개 상품 구매하기</button>
             </div><!-- cartPay -->
+        </div>
+
+        <div class="notLogincart" v-else>
+            <img src="@/assets/images/homedeco/notlogin.png" alt="">
+            <h1>로그인후 이용가능</h1>
         </div>
 
         <AppFooter />
