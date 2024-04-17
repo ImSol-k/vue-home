@@ -67,46 +67,45 @@
                 <div class="infoImgs" v-for="(img, i) in productVo.imgList" :key="i">
                     <img v-bind:src="`${this.$store.state.apiBaseUrl}/upload/${this.productVo.imgList[i]}`" alt="">
                 </div>
-                <div class="reviewContent">
+                <div class="reviewContent" id="userReviewList">
                     <div class="InfoReview">
                         <p>리뷰 <span>{{ reviewList.length }}</span></p>
                         <button v-on:click.prevent="openModal">리뷰작성</button>
                     </div>
                     <div class="starAverage">
-                        <div class="starTotal">
+                        <div class="starTotal" v-if="starTotal > 0">
                             <span class="starFor" v-for="(star, i) in 5" :key="i">
                                 <img v-if="starTotal > i" src="@/assets/images/homedeco/star.png" alt="">
                                 <img v-else src="@/assets/images/homedeco/star2.png" alt="">
                             </span>
                             <span>{{ starTotal }}</span>
                         </div>
-                        <!-- <div class="star">
-                            <p>5점 <span>1</span>개</p>
-                            <p>4점 <span>1</span>개</p>
-                            <p>3점 <span>0</span>개</p>
-                            <p>2점 <span>0</span>개</p>
-                            <p>1점 <span>0</span>개</p>
-                        </div> -->
+                        <div v-else>작성된 리뷰가 없습니다</div>
                     </div>
-                    <div class="userReviewList" id="userReviewList"><!-- 리뷰 리스트시작 -->
-                        <div class="userReview" v-for="(review, i) in reviewList.length" :key="i">
-                            <p>{{ reviewList[i].id }}</p>
+                    <div class="userReviewList"><!-- 리뷰 리스트시작 -->
+                        <div class="userReview" v-for="(review, i) in showList.length" :key="i">
+                            <p>{{ showList[i].id }}</p>
                             <div class="userStar">
                                 <span v-for="(star, s) in 5" :key="s">
-                                    <img v-if="reviewList[i].star > s" src="@/assets/images/homedeco/star.png" alt="">
+                                    <img v-if="showList[i].star > s" src="@/assets/images/homedeco/star.png" alt="">
                                     <img v-else src="@/assets/images/homedeco/star2.png" alt="">
                                 </span>
-                                <span class="reviewDate">{{ reviewList[i].regDate }}</span>
+                                <span class="reviewDate">{{ showList[i].regDate }}</span>
                                 <span class="userReviewManager">
                                     <button>삭제</button>
                                     <button>수정</button>
                                 </span>
                             </div>
                             <div class="reviewIncontent">
-                                <img v-if="reviewList[i].imgName != null" v-bind:src="`${this.$store.state.apiBaseUrl}/upload/${reviewList[i].imgName}`" alt="">
-                                <p>{{ reviewList[i].content }}</p>
+                                <img v-if="showList[i].imgName != null"
+                                    v-bind:src="`${this.$store.state.apiBaseUrl}/upload/${showList[i].imgName}`" alt="">
+                                <p>{{ showList[i].content }}</p>
                             </div>
                         </div><!-- userReview -->
+                        <div class="reviewPage" v-if="reviewList.length > 0">
+                            <span v-for="(review, i) in Math.ceil(this.reviewList.length / 5)" :key="i"
+                                v-on:click="showReview(i)">{{ i + 1 }}</span>
+                        </div>
                     </div><!-- userReviewList -->
                 </div><!-- reviewContent -->
             </div>
@@ -199,7 +198,7 @@ export default {
     data() {
         return {
             showModal: false, //리뷰 작성창
-            
+
             //상품정보 관련
             productVo: {
                 productName: "",
@@ -217,14 +216,16 @@ export default {
             showPriceTotal: 0,
 
             //리뷰관련
-            starTotal: "",
+            starTotal: 0,
             reviewImg: "",
             reviewVo: {
                 star: "",
                 content: "",
                 userNo: this.$store.state.userNo
             },
-            reviewList: []
+            reviewList: [],
+            showList: [],
+            reviewPage: 0
         };
     },
     methods: {
@@ -245,7 +246,7 @@ export default {
                 console.log(error);
             });
         },
-        showReview() {
+        showReview(page) {
             console.log("리뷰리스트");
             axios({
                 method: 'post',
@@ -254,15 +255,19 @@ export default {
                 responseType: 'json'
             }).then(response => {
                 console.log(response); //수신데이터
-                if(response.data.result == "success"){
+                if (response.data.result == "success") {
                     this.reviewList = response.data.apiData;
+                    // this.reviewList = response.data.apiData.slice(0, 5);
                     let sum = 0;
                     for (let i = 0; i < this.reviewList.length; i++) {
                         sum += this.reviewList[i].star;
                     }
                     this.starTotal = sum / this.reviewList.length;
                     this.starTotal = this.starTotal.toFixed(1);
-                    console.log(this.reviewList);
+
+                    this.reviewPage = Math.ceil(this.reviewList.length / 5);
+                    console.log(page * 5);
+                    this.showList = this.reviewList.slice(page * 5, (page + 1) * 5, this.reviewList.length);
                 }
             }).catch(error => {
                 console.log(error);
@@ -306,23 +311,26 @@ export default {
         //장바구니 ******************************************
         cartUpdate() {
             console.log("장바구니 추가");
-            
-            axios({
-                method: 'post',
-                url: `${this.$store.state.apiBaseUrl}/home/info/add`, //SpringBoot주소
-                headers: { "Content-Type": "application/json; charset=utf-8" },
-                data: this.productCarts,
-                responseType: 'json'
-            }).then(response => {
-                console.log(response); //수신데이터
-                if (response.data.result == "success") {
-                    alert(response.data.apiData + "개 상품이 추가되었습니다.");
-                } else {
-                    alert("선택하신 상품이 없습니다");
-                }
-            }).catch(error => {
-                console.log(error);
-            });
+            if (this.$store.state.token != null) {
+                axios({
+                    method: 'post',
+                    url: `${this.$store.state.apiBaseUrl}/home/info/add`, //SpringBoot주소
+                    headers: { "Content-Type": "application/json; charset=utf-8" },
+                    data: this.productCarts,
+                    responseType: 'json'
+                }).then(response => {
+                    console.log(response); //수신데이터
+                    if (response.data.result == "success") {
+                        alert(response.data.apiData + "개 상품이 추가되었습니다.");
+                    } else {
+                        alert("선택하신 상품이 없습니다");
+                    }
+                }).catch(error => {
+                    console.log(error);
+                });
+            } else {
+                alert("로그인후 이용가능");
+            }
         },
         // 바로구매 **************************************************
         nowPayment() {
@@ -350,38 +358,40 @@ export default {
         reviewAdd() {
             console.log("리뷰추가");
             console.log(this.reviewVo);
-            //if(유저가 구매한 내역있는지 확인)
-            const formData = new FormData();
-            formData.append('file', this.reviewImg);
-            formData.append('star', this.reviewVo.star);
-            formData.append('content', this.reviewVo.content);
-            formData.append('userNo', this.reviewVo.userNo);
-            formData.append('productNo', this.$route.params.no);
+            if (this.$store.state.token != null) {
+                const formData = new FormData();
+                formData.append('file', this.reviewImg);
+                formData.append('star', this.reviewVo.star);
+                formData.append('content', this.reviewVo.content);
+                formData.append('userNo', this.reviewVo.userNo);
+                formData.append('productNo', this.$route.params.no);
 
-            axios({
-                method: 'post',
-                url: `${this.$store.state.apiBaseUrl}/home/info/review`,
-                headers: { "Content-Type": "multipart/form-data" },
-                data: formData,
-                responseType: 'json',
-            }).then(response => {
-                console.log(response); //수신데이터
-                if(response.data.result){
-                    this.reviewList.push(response.data.apiData);
-                    alert("리뷰작성 완료");
-                } else {
-                    alert("리뷰작성 실패");
-                }
-                this.closeModal();
-            }).catch(error => {
-                console.log(error);
-            });
-            
+                axios({
+                    method: 'post',
+                    url: `${this.$store.state.apiBaseUrl}/home/info/review`,
+                    headers: { "Content-Type": "multipart/form-data" },
+                    data: formData,
+                    responseType: 'json',
+                }).then(response => {
+                    console.log(response); //수신데이터
+                    if (response.data.result == "success") {
+                        this.reviewList.push(response.data.apiData);
+                        alert("리뷰작성 완료");
+                    } else {
+                        alert("리뷰작성 실패");
+                    }
+                    this.closeModal();
+                }).catch(error => {
+                    console.log(error);
+                });
+            } else {
+                alert("로그인후 작성 가능");
+            }
         }
     },
     created() {
         this.showProduct();
-        this.showReview();
+        this.showReview(0);
     }
 };
 </script>

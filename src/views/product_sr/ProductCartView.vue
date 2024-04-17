@@ -3,7 +3,7 @@
         <AppHeader />
 
 
-        <div class="cartContent" v-if="token != null">
+        <div class="cartContent" v-if="showCart">
             <div class="cartList">
                 <div class="cartHearder">
                     <label for="selectAll">
@@ -75,7 +75,8 @@ export default {
             totalPrice: 0,
             payPrice: 0,
             checkList: [],
-            itemCount: 0
+            itemCount: 0,
+            showCart: ""
         };
     },
     methods: {
@@ -84,14 +85,19 @@ export default {
             axios({
                 method: 'post',
                 url: `${this.$store.state.apiBaseUrl}/home/info/usercart`, //SpringBoot주소
-                headers: { "Content-Type": "application/json; charset=utf-8" },
+                headers: { "Content-Type": "application/json; charset=utf-8","Authorization": "Bearer " + this.$store.state.token  },
                 params: { userNo: this.$store.state.userNo },
                 responseType: 'json'
             }).then(response => {
                 console.log(response);
-                this.cartList = response.data.apiData;
-                for (let i = 0; i < this.cartList.length; i++) {
-                    this.totalPrice += this.cartList[i].count * this.cartList[i].price;
+                if(response.data.result == "success"){
+                    this.showCart = true;
+                    this.cartList = response.data.apiData;
+                    for (let i = 0; i < this.cartList.length; i++) {
+                        this.totalPrice += this.cartList[i].count * this.cartList[i].price;
+                    }
+                } else {
+                    this.showCart = false;
                 }
 
             }).catch(error => {

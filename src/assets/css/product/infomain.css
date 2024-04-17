@@ -449,4 +449,12 @@
     font-size: 17px;
     font-weight: bold;
 }
-
+.reviewPage{
+    display: flex;
+    align-items: center; /* 세로 가운데 정렬 */
+    justify-content: center;/* 가로 가운데 정렬 */
+    cursor: pointer;
+}
+.reviewPage>span{
+    margin: 10px 3px 0px 3px;
+}
