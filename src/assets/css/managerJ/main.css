@@ -62,7 +62,10 @@ a{
     border-collapse: collapse;
 }
 
-table tr>td{
+.ppp tr>td{
+    border: none;
+}
+.bbb tr>td{
     border: none;
 }
 

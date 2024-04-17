@@ -97,7 +97,7 @@
 						<tbody>
 							<tr>
 								<td class="img" rowspan="3"><img class="img"
-										v-bind:src="`${this.$store.state.apiBaseUrl}/upload/1713326911999e7c7a418-69b0-4097-94f5-89473802a605.jpg`"
+										v-bind:src="`${this.$store.state.apiBaseUrl}/upload/${v.mainImage}`"
 										alt=""></td>
 								<td class="word">상품명: {{ v.productName }}</td>
 								<td class="nick" rowspan="3">닉네임: {{ v.nickName }}</td>

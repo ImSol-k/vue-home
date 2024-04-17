@@ -85,8 +85,9 @@
                 <h3 id="eee">통계</h3>
                 <div id="line">
                     <div id="chartContent">
-                        <p id="www">금일 판매량 :<span>{{ this.tcount }} </span></p>
-                        <p id="www">누적 판매량 :<span>{{ this.ccount }}</span></p>
+                        <p id="www">금일 판매량 : <span>{{ this.tcount }}</span></p>
+                        <p id="www">누적 판매량 : <span>{{ this.ccount }}</span></p>
+                        <p id="www">총 매출금 : <span>{{ this.cprice }}</span></p>
                     </div>
 
                     <canvas id="chart" ref="MyChart" />
@@ -95,15 +96,15 @@
             <div class="clearfix">
 
                 <div id="pp">
-                    <h3>판매량</h3>
-                    
+                    <h3>월별 판매표</h3>
 
+                    <canvas id="chart" ref="MyChart2" />
 
                 </div>
 
             </div>
         </div>
-        
+
     </div>
     <AppFooter />
 </template>
@@ -199,6 +200,8 @@ export default {
                 console.log(this.tcount)
                 console.log(this.allbed)
                 //window.location.reload() -> 새로고침 지금은 소용이 없다...
+
+                //이건 원형
                 new Chart(this.$refs.MyChart, {
 
                     type: 'doughnut',
@@ -232,6 +235,53 @@ export default {
 
                     options: {
                         responsive: false,
+                        plugins: {
+                            datalabels: {
+                                color: '#000000'
+                            },
+                            title: {
+                                display: true,
+                                text: '총 판매비율'
+                            },
+                        }
+                    }
+                })
+
+                //이건 가로
+                new Chart(this.$refs.MyChart2, {
+
+                    type: 'line',
+                    data: {
+                        labels: ['총침대', '총쇼파', '총테이블', '옷장'],
+                        datasets: [{
+                            dataIndex: true,
+                            display: true,
+                            data: [this.allbed, this.allshopa, this.alltable, this.allhanger],
+                            datalabels: {
+                                color: '#000000'
+                            },
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(255, 206, 86, 0.2)',
+                                'rgba(75, 192, 192, 0.2)',
+
+                            ],
+                            borderColor: [
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+
+                            ],
+                            borderWidth: 1
+                        }],
+
+                    },
+
+                    options: {
+                        indexAxis: 'y',
+                        responsive: true,
                         plugins: {
                             datalabels: {
                                 color: '#000000'
