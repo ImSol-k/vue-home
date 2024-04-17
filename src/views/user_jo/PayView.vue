@@ -42,7 +42,7 @@
                             <li>
                                 <img src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/163357669718709013.webp?w=108&h=108&c=c"
                                     alt="Product Image">
-                                <div class="pay-name">(1+1) 캔버스 삼각 등받이 쿠션 (8colors) 솜포함</div>
+                                <div class="pay-name">(1+1) 캔버스 삼각 등받이 쿠션  솜포함</div>
                                 <div class="pay-price">가격: 55,000원</div>
                             </li>
                         </ul>
@@ -101,7 +101,7 @@
                         <p style="font-size: 14px;">상세 내용은 <a href="#">여기</a>를 클릭하여 확인하세요.</p>
                     </div>
 
-                    <button class="pay-btn">결제 완료</button>
+                    <button class="pay-btn" @click="completePayment">결제 완료</button>
                 </div>
             </div>
         </div>
@@ -144,12 +144,15 @@ export default {
                     label.classList.add('active'); // 선택된 결제 수단의 라벨에 active 클래스를 추가합니다.
                 }
             });
-        }
+        },
+        completePayment() {
+        // 결제 완료 버튼을 클릭했을 때 실행할 코드 작성
+        console.log("결제가 완료되었습니다!");
+    }
+
+
     },
     created() { }
 };
 </script>
 
-<style scoped>
-/* 추가적인 CSS 스타일링을 원하신다면 여기에 작성하세요. */
-</style>
