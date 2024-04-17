@@ -33,7 +33,7 @@ const routes = [
     component: CategoryView
   },
   {
-    path: '/product',
+    path: '/product/:no',
     name: 'product',
     component: ProductInfoView
   },
