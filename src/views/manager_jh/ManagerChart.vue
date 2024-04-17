@@ -84,23 +84,21 @@
             <div id="graph">
                 <h3 id="eee">통계</h3>
                 <div id="line">
-                    <div id="chartContent">
-                        <p id="www">금일 판매량 : <span>{{ this.tcount }}</span></p>
-                        <p id="www">누적 판매량 : <span>{{ this.ccount }}</span></p>
-                        <p id="www">총 매출금 : <span>{{ this.cprice }}</span></p>
-                    </div>
+                    
 
                     <canvas id="chart" ref="MyChart" />
-                </div>
-            </div>
-            <div class="clearfix">
-
-                <div id="pp">
+                    <div id="pp">
                     <h3>월별 판매표</h3>
 
                     <canvas id="chart" ref="MyChart2" />
 
                 </div>
+                </div>
+                
+            </div>
+            <div class="clearfix">
+
+                
 
             </div>
         </div>
@@ -117,7 +115,7 @@ import { Chart, registerables } from 'chart.js'
 Chart.register(...registerables)
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import axios from 'axios';
-import AppHeader from '../../components/AppHeader.vue'
+import AppHeader from '../../components/AppHeaderManager.vue'
 import AppFooter from '../../components/AppFooter.vue'
 
 Chart.register(ChartDataLabels);

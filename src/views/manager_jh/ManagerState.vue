@@ -148,7 +148,7 @@ import axios from 'axios';
 
 
 
-import AppHeader from '../../components/AppHeader.vue'
+import AppHeader from '../../components/AppHeaderManager.vue'
 import AppFooter from '../../components/AppFooter.vue'
 
 
