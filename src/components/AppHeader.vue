@@ -52,6 +52,7 @@
 
 <script>
 import '@/assets/css/main/ss-home.css';
+import axios from 'axios';
 
 export default {
     name : 'AppHeader',
@@ -66,10 +67,30 @@ export default {
     methods : {
         search(){
             this.$emit('update',this.keyword);
+        },
+        setColor(){
+            console.log('setColor');
+            if(this.$store.state.productColor == null){
+                axios({
+                    method: 'get', // put, post, delete 
+                    url: `${this.$store.state.apiBaseUrl}/home/getColor`,
+                    headers: { "Content-Type": "application/json; charset=utf-8" }, //전송타입
+                    // params: { page : this.page, keyword : keyword}, //get방식 파라미터로 값이 전달
+                    // data: , //put, post, delete 방식 자동으로 JSON으로 변환 전달
+                    responseType: 'json' //수신타입
+                }).then(response => {
+                    console.log(response);
+
+                }).catch(error => {
+                    console.log(error);
+                });
+            } else {
+                console.log('컬러있음');
+            }
         }
     },
     created (){
-
+        this.setColor();
     }
 }
 
