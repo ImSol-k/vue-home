@@ -94,7 +94,7 @@
             </div>
              
         </div>    
-        <Observer @show="loadItems"></Observer>
+        <Observer @show="catchKeyword"></Observer>
 
     </div>
     <!-- //ss-content 부분 -->
@@ -150,7 +150,11 @@ export default {
         mouseleave(){ // 마우스 떼면 서브메뉴 사라짐
             this.show = false;
         },
-        catchKeyword(keyword){            
+        catchKeyword(keyword){    
+            console.log('어디서 에러가날까');
+
+            this.page ++;   
+            console.log('ㅅㅣ작')
             axios({
                 method: 'get', // put, post, delete 
                 url: `${this.$store.state.apiBaseUrl}/home/main`,
@@ -159,36 +163,28 @@ export default {
                 // data: , //put, post, delete 방식 자동으로 JSON으로 변환 전달
                 responseType: 'json' //수신타입
             }).then(response => {
-                console.log(response.data); //수신데이타
-                if(response.data.result == 'success'){
-                    console.log(this.goodsList)
-                    if(response.data.apiData != null){
-                        this.goodsList.push(...(response.data.apiData));
-                    } else {
-                        console.log(response.data.message);
-                    }
+                if(response.data.result == 'success' && response.data.apiData != null){
+                    this.goodsList.push(...(response.data.apiData));
+                    console.log("데이터추가")
                 } else {
                     console.log(response.data.message);
+                    console.log("데이터끝")
                 }
+                console.log("끝")
+
             }).catch(error => {
+                console.log("에러")
                 console.log(error);
             });
-        },
-        
-        loadItems() {
-            console.log('되나')
-            console.log(this.page);
-            this.page ++;
-            console.log(this.page);
-            this.catchKeyword();
-            console.log(this.goodsList);
-        }, 
+            console.log("끝ㄲ,ㅌ")
+        }
+      
     },
     mounted() {
-        // this.loadItems();
+       
     },
     created (){
-        this.catchKeyword();
+
     }
 };
 </script>
