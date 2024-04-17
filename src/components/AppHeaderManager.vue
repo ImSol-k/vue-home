@@ -9,10 +9,8 @@
         </div>
         <!-- //header1 -->
 
-        <div class="ss-header2">
-            <!-- 검색 키워드 사용 -->
-            <img src="../assets/images/homedeco/find.png" v-on:click="search">
-            <input type="text" name="keyword" v-model="keyword" placeholder="상품명으로 검색하세요.">
+        <div class="ss-header4">
+            
         </div>
         <!-- //header2 -->
 
