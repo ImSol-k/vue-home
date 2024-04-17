@@ -1,6 +1,6 @@
 <template>
     <div class="wrap">
-        <AppHeader />
+        <AppHeaderManager />
 
         <div class="content">
             <div class="main-insert">
@@ -40,37 +40,37 @@
                             </div>
 
                             <div id="subCategoryBed" class="input" v-show="selectedCategory === 'bed'">
-                                <select id="subCategoryBedSelect">
+                                <select id="subCategoryBedSelect" @change="selectCategory">
                                     <option value="" selected disabled hidden>세부 카테고리 선택</option>
-                                    <option value="bed">침대</option>
-                                    <option value="mattress">매트리스</option>
-                                    <option value="frame">프레임</option>
+                                    <option v-bind:value="category[0]">침대</option>
+                                    <option v-bind:value="category[1]">매트리스</option>
+                                    <option v-bind:value="category[2]">프레임</option>
                                 </select>
                             </div>
 
                             <div id="subCategorySofa" class="input" v-show="selectedCategory === 'sofa'">
-                                <select id="subCategorySofaSelect">
+                                <select id="subCategorySofaSelect" @change="selectCategory">
                                     <option value="" selected disabled hidden>세부 카테고리 선택</option>
-                                    <option value="normal-sofa">일반소파</option>
-                                    <option value="lounge-sofa">좌식소파</option>
-                                    <option value="single-sofa">1인용 소파</option>
+                                    <option v-bind:value="category[3]">일반소파</option>
+                                    <option v-bind:value="category[4]">좌식소파</option>
+                                    <option v-bind:value="category[5]">1인용 소파</option>
                                 </select>
                             </div>
 
                             <div id="subCategoryTable" class="input" v-show="selectedCategory === 'table'">
-                                <select id="subCategoryTableSelect">
+                                <select id="subCategoryTableSelect" @change="selectCategory">
                                     <option value="" selected disabled hidden>세부 카테고리 선택</option>
-                                    <option value="dining-table">식탁</option>
-                                    <option value="side-table">사이드 테이블</option>
+                                    <option v-bind:value="category[6]">식탁</option>
+                                    <option v-bind:value="category[7]">사이드 테이블</option>
                                 </select>
                             </div>
 
                             <div id="subCategoryCloset" class="input" v-show="selectedCategory === 'closet'">
-                                <select id="subCategoryClosetSelect">
+                                <select id="subCategoryClosetSelect" @change="selectCategory">
                                     <option value="" selected disabled hidden>세부 카테고리 선택</option>
-                                    <option value="closet">옷장</option>
-                                    <option value="hanger">행거</option>
-                                    <option value="built-in">붙박이장</option>
+                                    <option v-bind:value="category[8]">옷장</option>
+                                    <option v-bind:value="category[9]">행거</option>
+                                    <option v-bind:value="category[10]">붙박이장</option>
                                 </select>
                             </div>
 
@@ -94,14 +94,14 @@
 
 <script>
 import "@/assets/css/managerY/productInsert.css"
-import AppHeader from '@/components/AppHeader.vue';
+import AppHeaderManager from '@/components/AppHeaderManager.vue';
 import AppFooter from '@/components/AppFooter.vue';
 import axios from 'axios';
 
 export default {
     name: "ProductInsertView",
     components: {
-        AppHeader,
+        AppHeaderManager,
         AppFooter
     },
     data() {
@@ -111,8 +111,9 @@ export default {
             profile: '',
             title: '',
             price: '',
-            category: '',
-            add: []
+            category: ["bed","mattress","frame","normal-sofa","lounge-sofa","single-sofa","dining-table","side-table","closet","hanger","built-in"],
+            add: [],
+            selectCate: ""
         };
     },
     methods: {
@@ -173,6 +174,10 @@ export default {
             }
 
         },
+        selectCategory(event){
+            console.log(event.target.value);
+            this.selectCate = event.target.value;
+        },
         insertProduct() {
             console.log("aa");
             console.log(this.add);
@@ -186,7 +191,7 @@ export default {
             //타이틀
             formData.append('title', this.title);
             formData.append('price', this.price);
-            formData.append('category', this.selectedCategory);
+            formData.append('category', this.selectCate);
 
             //상품대표사진
             formData.append('profile', this.profile);

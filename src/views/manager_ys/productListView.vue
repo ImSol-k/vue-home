@@ -1,6 +1,6 @@
 <template>
     <div class="wrap">
-        <AppHeader />
+        <AppHeaderManager />
 
         <div class="content">
             <div class="side">
@@ -11,7 +11,7 @@
                         <span v-else> ▽</span> <!-- 화살표 아이콘 -->
                     </li>
                     <ul v-show="showCategories"> <!-- 카테고리 리스트 -->
-                        <li class="cate-li"><strong>전체 상품 보기</strong></li>
+                        <li class="cate-li"><strong @click="getList('recent')">전체 상품 보기</strong></li>
                         <li class="cate-li">
                             <ul>
                                 <li @click="toggleCategories00">
@@ -20,9 +20,12 @@
                                     <span v-else> ▽</span> <!-- 화살표 아이콘 -->
                                 </li>
                                 <ul v-show="showCategories00"> <!-- 카테고리 리스트 -->
-                                    <li class="cate-li"><a href="">침대</a></li>
-                                    <li class="cate-li"><a href="">매트리스</a></li>
-                                    <li class="cate-li"><a href="">침대 프레임</a></li>
+                                    <li class="cate-li" v-on:click.prevent="showProductList('bed')"><a href="">침대</a>
+                                    </li>
+                                    <li class="cate-li" v-on:click.prevent="showProductList('mattress')"><a
+                                            href="">매트리스</a></li>
+                                    <li class="cate-li" v-on:click.prevent="showProductList('frame')"><a href="">침대
+                                            프레임</a></li>
                                 </ul>
                             </ul>
                         </li>
@@ -34,9 +37,12 @@
                                     <span v-else> ▽</span> <!-- 화살표 아이콘 -->
                                 </li>
                                 <ul v-show="showCategories02"> <!-- 카테고리 리스트 -->
-                                    <li class="cate-li"><a href="">일반 쇼파</a></li>
-                                    <li class="cate-li"><a href="">좌식 쇼파</a></li>
-                                    <li class="cate-li"><a href="">1인용 쇼파</a></li>
+                                    <li class="cate-li" v-on:click.prevent="showProductList('normal-sofa')"><a
+                                            href="">일반 쇼파</a></li>
+                                    <li class="cate-li" v-on:click.prevent="showProductList('lounge-sofa')"><a
+                                            href="">좌식 쇼파</a></li>
+                                    <li class="cate-li" v-on:click.prevent="showProductList('single-sofa')"><a
+                                            href="">1인용 쇼파</a></li>
                                 </ul>
                             </ul>
                         </li>
@@ -48,8 +54,10 @@
                                     <span v-else> ▽</span> <!-- 화살표 아이콘 -->
                                 </li>
                                 <ul v-show="showCategories03"> <!-- 카테고리 리스트 -->
-                                    <li class="cate-li"><a href="">식탁</a></li>
-                                    <li class="cate-li"><a href="">사이드 테이블</a></li>
+                                    <li class="cate-li" v-on:click.prevent="showProductList('dining-table')"><a
+                                            href="">식탁</a></li>
+                                    <li class="cate-li" v-on:click.prevent="showProductList('side-table')"><a
+                                            href="">사이드 테이블</a></li>
                                 </ul>
                             </ul>
                         </li>
@@ -61,9 +69,12 @@
                                     <span v-else> ▽</span> <!-- 화살표 아이콘 -->
                                 </li>
                                 <ul v-show="showCategories04"> <!-- 카테고리 리스트 -->
-                                    <li class="cate-li"><a href="">옷장</a></li>
-                                    <li class="cate-li"><a href="">행거</a></li>
-                                    <li class="cate-li"><a href="">붙박이장</a></li>
+                                    <li class="cate-li" v-on:click.prevent="showProductList('closet')"><a href="">옷장</a>
+                                    </li>
+                                    <li class="cate-li" v-on:click.prevent="showProductList('hanger')"><a href="">행거</a>
+                                    </li>
+                                    <li class="cate-li" v-on:click.prevent="showProductList('built-in')"><a
+                                            href="">붙박이장</a></li>
                                 </ul>
                             </ul>
                         </li>
@@ -87,13 +98,13 @@
                     <div class="dropdown">
                         <button class="dropbtn" id="sortButton">최신순</button>
                         <div class="dropdown-content">
-                            <a href="#" data-sort="recent">최신순</a>
-                            <a href="#" data-sort="review">리뷰순</a>
-                            <a href="#" data-sort="rating">별점순</a>
+                            <a href="#" @click="changeSort('recent')">최신순</a>
+                            <a href="#" @click="changeSort('review')">리뷰순</a>
+                            <a href="#" @click="changeSort('rating')">별점순</a>
                         </div>
                     </div>
                 </div>
-                <span class="manage-products">상품 관리 > 전체 상품 보기</span>
+                <span class="manage-products">상품 관리</span>
                 <div class="bed">
                     <h3><br>전체 상품</h3>
                     <div class="product" v-bind:key="i" v-for="(productVo, i) in productList">
@@ -103,7 +114,7 @@
                             <span class="product-name">{{ productVo.product_name }}</span>
                             <div class="review-manager">
                                 <span v-for="(star, i) in 5" :key="i" class="star">
-                                    <img v-if="3 > i" src="@/assets/images/homedeco/star.png" alt="">
+                                    <img v-if="productVo.avg_star > i" src="@/assets/images/homedeco/star.png" alt="">
                                     <img v-else src="@/assets/images/homedeco/star2.png" alt="">
                                 </span>
                             </div>
@@ -126,14 +137,14 @@
 
 <script>
 import "@/assets/css/managerY/productLIst.css"
-import AppHeader from '@/components/AppHeader.vue';
+import AppHeaderManager from '@/components/AppHeaderManager.vue';
 import AppFooter from '@/components/AppFooter.vue';
 import axios from 'axios';
 
 export default {
     name: "ProductListView",
     components: {
-        AppHeader,
+        AppHeaderManager,
         AppFooter
     },
     data() {
@@ -152,7 +163,8 @@ export default {
                 category: '',
                 main_img: '',
                 avg_star: ''
-            }
+            },
+
         };
     },
     mounted() {
@@ -161,22 +173,16 @@ export default {
         var dropdownItems = document.querySelectorAll('.dropdown-content a');
         dropdownItems.forEach(function (item) {
             item.addEventListener('click', function () {
-                var sortType = this.getAttribute('data-sort');
+                //var sortType = this.getAttribute('data-sort');
                 document.getElementById('sortButton').innerText = this.innerText;
-                if (sortType === 'recent') {
-                    // 최신순 처리
-                } else if (sortType === 'review') {
-                    // 리뷰순 처리
-                } else if (sortType === 'rating') {
-                    // 별점순 처리
-                }
+                
             });
         });
     },
     methods: {
         changeSort(sortType) {
             document.getElementById('sortButton').innerText = sortType;
-            // 여기에 해당 정렬 처리 로직 추가
+            this.getList(sortType);
         },
         toggleCategories() {
             this.showCategories = !this.showCategories; // 클릭 시 카테고리 리스트를 보이거나 숨김
@@ -196,19 +202,18 @@ export default {
         toggleCategories05() {
             this.showCategories05 = !this.showCategories05; // 클릭 시 카테고리 리스트를 보이거나 숨김
         },
-        getList() {
+        getList(sortType = 'recent') {
             console.log("데이터 가져오기");
 
             axios({
-                method: 'get',  //put,post,delete
+                method: 'get',
                 url: `${this.$store.state.apiBaseUrl}/home/manager/list`,
-                headers: { "Content-Type": "application/json; charset=utf-8" }, //전송타입
-
-                responseType: 'json' //수신타입
+                headers: { "Content-Type": "application/json; charset=utf-8" },
+                params: { sortType: sortType },
+                responseType: 'json'
             }).then(response => {
-                console.log(response.data); //수신데이타
+                console.log(response.data.apiData);
                 this.productList = response.data.apiData;
-
             }).catch(error => {
                 console.log(error);
             });
@@ -225,11 +230,25 @@ export default {
             }).catch(error => {
                 console.log(error);
             });
-        }
-
+        },
+        showProductList(category) {
+            console.log("리스트: " + category);
+            axios({
+                method: 'post',  //put,post,delete
+                url: `${this.$store.state.apiBaseUrl}/home/manager/categorylist`,
+                headers: { "Content-Type": "application/json; charset=utf-8" }, //전송타입
+                params: { category: category },
+                responseType: 'json' //수신타입
+            }).then(response => {
+                console.log(response.data.apiData); //수신데이타
+                this.productList = response.data.apiData;
+            }).catch(error => {
+                console.log(error);
+            });
+        },
     },
     created() {
-        this.getList();
+        this.getList('recent'); // 기본값으로 최신순을 설정
     }
 };
 </script>

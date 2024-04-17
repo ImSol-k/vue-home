@@ -71,9 +71,7 @@
 /* goodsList 상품리스트나올부분 */
 .ss-goodsList {
     width: 1300px;
-    /* height: 650px; */
     margin: 0 auto 0 auto;
-    /* border: 1px solid #000; */
 }
 
 .ss-goodsList .goods {

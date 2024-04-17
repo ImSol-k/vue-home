@@ -17,7 +17,7 @@
     margin-top: 20px;
     /* 헤더와의 간격 조절 */
     border-radius: 10px;
-    height: auto;
+    height: 600px;
     text-align: left;
 }
 
@@ -27,6 +27,7 @@
     list-style: none;
     /* 목록 기호 제거 */
     margin-bottom: 20px; /* 간격 조절 */
+    cursor: pointer;
 }
 
 .ss-side li {
@@ -64,9 +65,34 @@
 .ss-main {
     display: block;
     width: 800px;
-    height: 300px;
+    /* height: 300px; */
     float: right;
-    border: 1px solid #000;
+    margin : 20px 0 0 20px;
+    padding : 10px;
+    background-color: #fff;
     box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.1);
     flex-grow: 1;
+}
+
+.ss-main .ss-goods {
+    display: block;
+    width: 200px;
+    height: 230px;
+    background-color: #fff;
+    box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.1);
+    float: left;
+    margin: 10px 10px 40px 10px;
+}
+
+.ss-main .ss-goods img {
+    display: flex;
+    width: 150px;
+    height: 130px;
+}
+
+.ss-3btn {
+    width: auto;
+    height: 50px;
+    display: block;
+    border: 1px solid #000;
 }

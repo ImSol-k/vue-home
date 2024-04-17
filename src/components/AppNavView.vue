@@ -8,32 +8,32 @@
                 <li>
                     <router-link to="/category" v-on:mouseover="mouseover">침대</router-link>
                     <ul class="nav1-sub" v-show="show">
-                        <li><a>침대</a></li>
-                        <li><a>매트리스</a></li>
-                        <li><a>침대프레임</a></li>
+                        <li v-on:click.prevent="showProductList('bed')"><a>침대</a></li>
+                        <li v-on:click.prevent="showProductList('mattress')"><a>매트리스</a></li>
+                        <li v-on:click.prevent="showProductList('frame')"><a>침대프레임</a></li>
                     </ul>
                 </li>
                 <li>
                     <router-link to="/category"  v-on:mouseover="mouseover">쇼파</router-link>
                     <ul class="nav1-sub" v-show="show">
-                        <li><a>일반쇼파</a></li>
-                        <li><a>좌식쇼파</a></li>
-                        <li><a>1인용 쇼파</a></li>
+                        <li v-on:click.prevent="showProductList('normal-sofa')"><a>일반쇼파</a></li>
+                        <li v-on:click.prevent="showProductList('lounge-sofa')"><a>좌식쇼파</a></li>
+                        <li v-on:click.prevent="showProductList('single-sofa')"><a>1인용 쇼파</a></li>
                     </ul>
                 </li>
                 <li>
                     <router-link to="/category"  v-on:mouseover="mouseover" >테이블</router-link>
                     <ul class="nav1-sub" v-show="show">
-                        <li><a>식탁</a></li>
-                        <li><a>사이드 테이블</a></li>
+                        <li v-on:click.prevent="showProductList('dining-table')"><a>식탁</a></li>
+                        <li v-on:click.prevent="showProductList('side-table')"><a>사이드 테이블</a></li>
                     </ul>
                 </li>
                 <li>
                     <router-link to="/category" v-on:mouseover="mouseover" >옷장</router-link>
                     <ul class="nav1-sub" v-show="show">
-                        <li><a>옷장</a></li>
-                        <li><a>행거</a></li>
-                        <li><a>붙박이장</a></li>
+                        <li v-on:click.prevent="showProductList('closet')"><a>옷장</a></li>
+                        <li v-on:click.prevent="showProductList('hanger')"><a>행거</a></li>
+                        <li v-on:click.prevent="showProductList('built-in')"><a>붙박이장</a></li>
                     </ul>
                 </li>
             </ul>
@@ -68,6 +68,7 @@
 <script>
 import '@/assets/css/main/ss-home.css';
 import '@/assets/css/main/ss-main.css';
+import axios from 'axios';
 
 export default {
     name : 'AppNavView',
@@ -96,6 +97,27 @@ export default {
         },
         mouseleave(){ // 마우스 떼면 서브메뉴 사라짐
             this.show = false;
+        },
+        showProductList(category){
+            axios({
+                    method: 'get', // put, post, delete 
+                    url: `${this.$store.state.apiBaseUrl}/home/main/category`,
+                    headers: { "Content-Type": "application/json; charset=utf-8" }, //전송타입
+                    params: {keyword : category}, //get방식 파라미터로 값이 전달
+                    // data: , //put, post, delete 방식 자동으로 JSON으로 변환 전달
+                    responseType: 'json' //수신타입
+                }).then(response => {
+                    if(response.data.result == 'success'){
+                        this.$router.push('/category')
+                        this.list = null;
+                        this.list = response.data.apiData;
+                    } else {
+                        this.$router.push('/category');
+                        alert("상품 준비중입니다.")
+                    }
+                }).catch(error => {
+                    console.log(error);
+                });
         },
 
 

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <AppHeader />
+        <AppHeaderManager />
         <!-- //header 부분 -->
 
         <div class="mypage-container">
@@ -40,14 +40,14 @@
 
 <script>
 import "@/assets/css/user/mypage.css";
-import AppHeader from '@/components/AppHeader.vue';
+import AppHeaderManager from '@/components/AppHeaderManager.vue';
 import AppFooter from '@/components/AppFooter.vue';
 import axios from 'axios';
 
 export default {
     name: "MyPageView",
     components: {
-        AppHeader,
+        AppHeaderManager,
         AppFooter
     },
     data() {
