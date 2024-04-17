@@ -1,6 +1,7 @@
 <template>
 
 	<AppHeader />
+
 	<div class="clearfix" id="full">
 		<div id="contentNav">
 			<div class="side">
@@ -78,27 +79,30 @@
 					</ul>
 				</ul>
 			</div>
-		</div>
+			<!-- //side -->
 
-		<div id="contentMain">
+		</div>
+		<!-- //contentNav -->
+
+		<div id="contentMain" class="">
 			<div id="graph">
 				<h3 id="eee">주문현황</h3>
-
 			</div>
 			<div class="clearfix" id="size">
 				<div id="pp">
 
 					<h3>구매진행중</h3>
+					<table class="ppp" v-bind:key="i" v-for="(v, i) in ing">
 
-					<table class="ppp" v-bind:key="i" v-for="(v,i) in ing">
-						
 						<tbody>
 							<tr>
-								<td class="img" rowspan="3"><img class="img" v-bind:src="`http://localhost:8080/upload/1711507322783ac6ea707-9665-4f8a-a745-4123531d7ae1.jpg`"
+								<td class="img" rowspan="3"><img class="img"
+										v-bind:src="`${this.$store.state.apiBaseUrl}/upload/1713326911999e7c7a418-69b0-4097-94f5-89473802a605.jpg`"
 										alt=""></td>
 								<td class="word">상품명: {{ v.productName }}</td>
 								<td class="nick" rowspan="3">닉네임: {{ v.nickName }}</td>
-								<td class="nick2" rowspan="3"><button class="state" type="button">완료</button></td>
+								<td class="nick2" rowspan="3"><button v-on:click.prevent="change(v.no)" class="state"
+										type="button">완료</button></td>
 							</tr>
 							<tr>
 								<td>색상: {{ v.color }}</td>
@@ -108,14 +112,14 @@
 							</tr>
 						</tbody>
 					</table>
-					
 				</div>
 				<div class="bb">
 					<h3 class="bx">구매진행완료</h3>
-					<table class="bbb" v-bind:key="i" v-for="(v,i) in end">
+					<table class="bbb" v-bind:key="i" v-for="(v, i) in end">
 						<tbody>
 							<tr>
-								<td class="img" rowspan="3"><img class="img" src="../../assets/images/managerJ/test.png"
+								<td class="img" rowspan="3"><img class="img"
+										v-bind:src="`${this.$store.state.apiBaseUrl}/upload/1713326911999e7c7a418-69b0-4097-94f5-89473802a605.jpg`"
 										alt=""></td>
 								<td>상품명 :{{ v.productName }}</td>
 								<td class="nick" rowspan="3">닉네임: {{ v.nickName }}</td>
@@ -128,13 +132,13 @@
 							</tr>
 						</tbody>
 					</table>
-					
 				</div>
 
 			</div>
 		</div>
-		<AppFooter />
 	</div>
+	<!-- //clearfix -->
+	<AppFooter />
 </template>
 
 <script>
@@ -162,8 +166,8 @@ export default {
 			showCategories03: false,
 			showCategories04: false,
 			showCategories05: false,
-			end:[],
-			ing:[]
+			end: [],
+			ing: []
 		}
 	},
 	methods: {
@@ -192,7 +196,7 @@ export default {
 		list() {
 			axios({
 				method: 'get', // put, post, delete 
-				url: 'http://localhost:9090/home/manager/state',
+				url: `${this.$store.state.apiBaseUrl}/home/manager/state`,
 				headers: { "Content-Type": "application/json; charset=utf-8" }, //전송타입
 				//params: guestbookVo, //get방식 파라미터로 값이 전달
 				//data: guestbookVo, //put, post, delete 방식 자동으로 JSON으로 변환 전달
@@ -204,7 +208,26 @@ export default {
 				this.end = response.data.end;
 				//console.log(this.ing.nickName)
 				console.log(this.end)
-				
+
+			}).catch(error => {
+				console.log(error);
+			});
+		},
+		change(a) {
+			console.log("aaa")
+			console.log(a)
+			axios({
+				method: 'post', // put, post, delete 
+				url: `${this.$store.state.apiBaseUrl}/home/manager/state`,
+				headers: { "Content-Type": "application/json; charset=utf-8" }, //전송타입
+				//params: guestbookVo, //get방식 파라미터로 값이 전달
+				data: a, //put, post, delete 방식 자동으로 JSON으로 변환 전달
+				responseType: 'json' //수신타입
+			}).then(response => {
+				console.log(response); //수신데이타
+
+				window.location.reload();
+
 			}).catch(error => {
 				console.log(error);
 			});

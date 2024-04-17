@@ -9,7 +9,6 @@ textarea, button, form {margin: 0; padding: 0;}
 
 #contentNav{
     width: 342px;
-    height: 1000px;
     float: left;
     text-align: center;
 }
@@ -25,12 +24,14 @@ a{
 
 #contentMain{
     margin-top: 30px;
-    width: 960px;
+    width: 958px;
+    float:right;
 }
 
 #graph{
     margin-bottom: 20px;
 }
+
 
 .clearfix:before, .clearfix:after {
     display: block;
@@ -45,8 +46,10 @@ a{
 
 
 #pp{
+    width: 460px;
     float: left;
     margin-left: 15px;
+    
 }
 
 .ppp{
@@ -64,7 +67,13 @@ table tr>td{
 }
 
 .bx{
-    padding-left: 820px;
+    width: 460px;
+    padding-left: 20px;
+}
+
+.bb{
+    width: 480px;
+    float: left;
 }
 
 .bbb{
@@ -117,8 +126,8 @@ table tr>td{
     font-size: 35px;
     font-weight: bold;
     padding-top: 40px;
-    margin-left: 380px;
     margin-bottom: 20px;
+    padding-left: 30px;
 }
 
 #www{
@@ -134,12 +143,12 @@ table tr>td{
 
 #line{
     border-top: 1px solid #aaaaaa;
-    margin-left: 380px;
     width: 920px;
+    margin-left: 20px;
 }
 
 #aside {width: 250px; height: 60px; line-height: 60px; font-size: 20px; font-weight: bold; text-align: center; margin-left: 25px; font-size: 25px;}
 
 #size{
-    width: 1300px;
+    width: 960px;
 }

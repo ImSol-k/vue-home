@@ -85,8 +85,8 @@
                 <h3 id="eee">통계</h3>
                 <div id="line">
                     <div id="chartContent">
-                        <p id="www">금일 판매량 : <span>100</span></p>
-                        <p id="www">누적 판매량: <span>100</span></p>
+                        <p id="www">금일 판매량 :<span>{{ this.tcount }} </span></p>
+                        <p id="www">누적 판매량 :<span>{{ this.ccount }}</span></p>
                     </div>
 
                     <canvas id="chart" ref="MyChart" />
@@ -96,15 +96,16 @@
 
                 <div id="pp">
                     <h3>판매량</h3>
-
+                    
 
 
                 </div>
 
             </div>
         </div>
-        <AppFooter />
+        
     </div>
+    <AppFooter />
 </template>
 
 <script>
@@ -137,7 +138,11 @@ export default {
             allbed: "",
             allshopa: "",
             alltable: "",
-            allhanger: ""
+            allhanger: "",
+            cprice: "",
+            tprice: "",
+            ccount: "",
+            tcount: ""
         }
     },
 
@@ -166,78 +171,85 @@ export default {
         toggleCategories05() {
             this.showCategories05 = !this.showCategories05; // 클릭 시 카테고리 리스트를 보이거나 숨김
         },
-
-        createChart() {
-            new Chart(this.$refs.MyChart, {
-
-                type: 'doughnut',
-                data: {
-                    labels: ['총침대', '총쇼파', '총테이블', '옷장'],
-                    datasets: [{
-                        dataIndex: true,
-                        display: true,
-                        data: [this.allbed, this.allshopa, this.alltable, this.allhanger],
-                        datalabels: {
-                            color: '#000000'
-                        },
-                        backgroundColor: [
-                            'rgba(255, 99, 132, 0.2)',
-                            'rgba(54, 162, 235, 0.2)',
-                            'rgba(255, 206, 86, 0.2)',
-                            'rgba(75, 192, 192, 0.2)',
-
-                        ],
-                        borderColor: [
-                            'rgba(255, 99, 132, 1)',
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(255, 206, 86, 1)',
-                            'rgba(75, 192, 192, 1)',
-
-                        ],
-                        borderWidth: 1
-                    }],
-
-
-
-                },
-
-                options: {
-                    responsive: false,
-                    plugins: {
-                        datalabels: {
-                            color: '#000000'
-                        },
-                        title: {
-                            display: true,
-                            text: '총 판매비율'
-                        },
-
-
-                    }
-                }
-            })
-        },
         datas() {
             console.log("start")
-            this.allbed = 5;
-            this.allshopa = 5;
-            this.alltable = 3;
-            this.allhanger = 2;
+            this.allbed = 1;
+            console.log(this.allbed)
+
             axios({
                 method: 'get', // put, post, delete 
-                url: 'http://localhost:9090/home/manager/datas',
+                url: `${this.$store.state.apiBaseUrl}/home/manager/datas`,
                 headers: { "Content-Type": "application/json; charset=utf-8" }, //전송타입
                 //params: guestbookVo, //get방식 파라미터로 값이 전달
                 //data: guestbookVo, //put, post, delete 방식 자동으로 JSON으로 변환 전달
                 responseType: 'json' //수신타입
             }).then(response => {
-                console.log(response); //수신데이타
+                console.log(response.data); //수신데이타
+                this.allbed = response.data.bedcount;
+                this.allshopa = response.data.shopacount;
+                this.alltable = response.data.tablecount;
+                this.allhanger = response.data.hangercount;
+                this.cprice = response.data.cprice;
+                this.tprice = response.data.tprice;
+                this.ccount = response.data.ccount;
+                this.tcount = response.data.tcount;
+                console.log(this.cprice)
+                console.log(this.tprice)
+                console.log(this.ccount)
+                console.log(this.tcount)
+                console.log(this.allbed)
+                //window.location.reload() -> 새로고침 지금은 소용이 없다...
+                new Chart(this.$refs.MyChart, {
 
+                    type: 'doughnut',
+                    data: {
+                        labels: ['총침대', '총쇼파', '총테이블', '옷장'],
+                        datasets: [{
+                            dataIndex: true,
+                            display: true,
+                            data: [this.allbed, this.allshopa, this.alltable, this.allhanger],
+                            datalabels: {
+                                color: '#000000'
+                            },
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(255, 206, 86, 0.2)',
+                                'rgba(75, 192, 192, 0.2)',
+
+                            ],
+                            borderColor: [
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+
+                            ],
+                            borderWidth: 1
+                        }],
+
+                    },
+
+                    options: {
+                        responsive: false,
+                        plugins: {
+                            datalabels: {
+                                color: '#000000'
+                            },
+                            title: {
+                                display: true,
+                                text: '총 판매비율'
+                            },
+                        }
+                    }
+                })
             }).catch(error => {
                 console.log(error);
             });
-        }
+        },
+        createChart() {
 
+        }
     },
 
     created() {
@@ -246,6 +258,7 @@ export default {
 
 
     mounted() {
+
         this.createChart(
 
         )
