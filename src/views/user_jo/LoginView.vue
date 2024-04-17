@@ -17,6 +17,8 @@
                     placeholder="비밀번호를 입력하세요" required>
             </div>
             <button type="submit" class="login-btn">로그인</button>
+            <!-- 실패 메시지를 표시할 곳 -->
+            <div v-if="loginFailed" class="login-failed-message">로그인에 실패했습니다. 다시 시도해주세요.</div>
         </form>
 
 
@@ -41,6 +43,7 @@ export default {
                 id: "",
                 password: ""
             },
+            loginFailed: false // 로그인 실패 여부를 나타내는 변수
         };
     },
     methods: {
@@ -77,19 +80,31 @@ export default {
 
                     console.log(authUser);
                     console.log(token);
+                    console.log("토큰 값:", this.$store.state.token);
 
                     // 로그인 성공 시 메인 화면으로 이동
                     this.$router.push("/");
+                } else {
+                    // 로그인 실패 처리
+                    this.loginFailed = true;
                 }
-                }).catch(error => {
-                    // 로그인 실패 시 처리
-                    console.error('로그인 실패:', error);
+            }).catch(error => {
 
+                // 로그인 실패 시 처리
+                console.error('로그인 실패:', error);
+                this.loginFailed = true;
 
-                });
+                // 입력값 초기화 확인
+                console.log("로그인 실패. 입력값 초기화:", this.loginVo.id, this.loginVo.password);
+
+                // 입력값 초기화
+                this.loginVo.id = "";
+                this.loginVo.password = "";
+
+            });
+
             console.log("로그인 시도:", this.loginVo.id, this.loginVo.password);
         }
-        },
-    };
+    },
+};
 </script>
-
