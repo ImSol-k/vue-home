@@ -11,13 +11,13 @@
             <div class="paymentEndInfo">
                 <table>
                     <tr>
-                        <td>주문자</td>
+                        <td><b>주문자</b></td>
                         <td>김소리</td>
-                        <td>핸드폰번호</td>
+                        <td><b>핸드폰번호</b></td>
                         <td>010-2222-3333</td>
                     </tr>
                     <tr>
-                        <td>배송지</td>
+                        <td><b>배송지</b></td>
                         <td colspan="3">경기도 성남시 중원구</td>
                     </tr>
                 </table>
@@ -26,13 +26,13 @@
                         <th colspan="4">주문정보</th>
                     </tr>
                     <tr>
-                        <td>상품명</td>
+                        <td><b>상품명</b></td>
                         <td>알리 커피머신</td>
-                        <td>금액</td>
+                        <td><b>금액</b></td>
                         <td>42,000</td>
                     </tr>
                     <tr>
-                        <td>총 결제금액</td>
+                        <td><b>총 결제금액</b></td>
                         <td colspan="3">42,000</td>
                     </tr>
                 </table>
@@ -55,10 +55,23 @@ export default {
         AppFooter
     },
     data() {
-        return {};
+        return {
+            orderUser: {
+                name: "",
+                hp: "",
+                address: ""
+            },
+            orderInfoList: []
+        };
     },
-    methods: {},
-    created() { }
+    methods: {
+        orderInfo(){
+            console.log("주문완료페이지");
+        }
+    },
+    created() { 
+        this.orderInfo();
+    }
 };
 </script>
 

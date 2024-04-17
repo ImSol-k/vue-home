@@ -59,7 +59,7 @@
 }
 .cartObjHeader>p{
     width: 400px;
-    height: 50px;
+    height: 26px;
 }
 .cartObjHeader>.deleteCart{
     /* margin-left: 180px; */
@@ -92,6 +92,11 @@
     position: absolute; /* 절대 위치 지정 */
     bottom: 10px; /* 상단에서 5px 떨어지도록 설정 */
     right: 15px; /* 우측에서 10px 떨어지도록 설정 */
+}
+.listPreice{
+    font-size: 15px;
+    font-weight: lighter;
+    margin-left: 3px;
 }
 .cartOnePrice>span{
     font-size: 18px;

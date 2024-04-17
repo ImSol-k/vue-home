@@ -306,7 +306,7 @@ export default {
         //장바구니 ******************************************
         cartUpdate() {
             console.log("장바구니 추가");
-
+            
             axios({
                 method: 'post',
                 url: `${this.$store.state.apiBaseUrl}/home/info/add`, //SpringBoot주소

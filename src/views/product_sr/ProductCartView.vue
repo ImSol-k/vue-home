@@ -21,14 +21,19 @@
                     <div class="cartObjHeader">
                         <span class="deleteCart">×</span>
                         <p>{{ cartList[i].product }}({{ cartList[i].color }})</p>
+                        <span class="listPreice">{{ Number(cartList[i].price).toLocaleString('ko-KR') }}원</span>
+                        
                         <div>
                             <div class="cartCountBtn">
                                 <button type="button" v-on:click.prevent="updateCart(0, i)">-</button>
                                 <span>{{ cartList[i].count }}</span>
                                 <button type="button" v-on:click.prevent="updateCart(1, i)">+</button>
                             </div>
-                            <p class="cartOnePrice"><span>{{
-                                Number(cartList[i].price * cartList[i].count).toLocaleString('ko-KR') }}</span>원</p>
+
+                            <p class="cartOnePrice">
+                                
+                                <span>{{ Number(cartList[i].price * cartList[i].count).toLocaleString('ko-KR') }}</span>원
+                            </p>
                         </div>
                     </div>
                 </div><!-- cartObj -->
@@ -119,24 +124,30 @@ export default {
                 console.log("장바구니 추가");
                 this.cartList[select].count++;
                 this.totalPrice += this.cartList[select].price;
+                this.payPrice += this.cartList[select].price * this.cartList[select].count;
             } else {
                 console.log("장바구니 삭제");
                 this.cartList[select].count--;
                 this.totalPrice -= this.cartList[select].price;
+                this.payPrice -= this.cartList[select].price * this.cartList[select].count;
             }
-            // axios({
-            //     method: 'post',
-            //     url: `${this.$store.state.apiBaseUrl}/home/info/cartupdate`,
-            //     headers: { //전송타입 + 토큰
-            //         "Content-Type": "application/json; charset=utf-8"
-            //     },
-            //     data: ,
-            //     responseType: 'json'
-            // }).then(response => {
-            //     console.log(response.data);
-            // }).catch(error => {
-            //     console.log(error);
-            // });
+            let tempVo = {
+                product: this.cartList[select].product,
+                count: this.cartList[select].count,
+                color: this.cartList[select].color
+            };
+            console.log(tempVo);
+            axios({
+                method: 'post',
+                url: `${this.$store.state.apiBaseUrl}/home/info/cartupdate`,
+                headers: { "Content-Type": "application/json; charset=utf-8" },
+                data: tempVo,
+                responseType: 'json'
+            }).then(response => {
+                console.log(response.data);
+            }).catch(error => {
+                console.log(error);
+            });
         }
 
     },

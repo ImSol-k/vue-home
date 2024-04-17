@@ -29,10 +29,11 @@
     width: 700px;
     margin: 10px auto;
     font-size: 15px;
+    border: 1px solid black;
 }
-.paymentEndInfo>table, th, td {
+
+.paymentEndInfo>table, th, td, tr {
     height: 30px;
     border: 1px solid black;
     border-collapse: collapse;
-    /* padding-left: 10px; */
   }
