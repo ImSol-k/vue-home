@@ -90,79 +90,45 @@
 
 					<h3>구매진행중</h3>
 
-					<table id="ppp">
-						<form action="">
-							<tbody>
-								<tr>
-									<td id="img" rowspan="3"><img id="img" src="../../assets/images/managerJ/test.png"
-											alt=""></td>
-									<td id="word">상품명 :</td>
-									<td id="nick" rowspan="3">닉네임</td>
-									<td id="nick2" rowspan="3"><button id="state" type="submit">완료</button></td>
-								</tr>
-								<tr>
-									<td>색상 :</td>
-								</tr>
-								<tr>
-									<td>수량 :</td>
-								</tr>
-							</tbody>
-						</form>
+					<table class="ppp" v-bind:key="i" v-for="(v,i) in ing">
+						
+						<tbody>
+							<tr>
+								<td class="img" rowspan="3"><img class="img" v-bind:src="`http://localhost:8080/upload/1711507322783ac6ea707-9665-4f8a-a745-4123531d7ae1.jpg`"
+										alt=""></td>
+								<td class="word">상품명: {{ v.productName }}</td>
+								<td class="nick" rowspan="3">닉네임: {{ v.nickName }}</td>
+								<td class="nick2" rowspan="3"><button class="state" type="button">완료</button></td>
+							</tr>
+							<tr>
+								<td>색상: {{ v.color }}</td>
+							</tr>
+							<tr>
+								<td>수량: {{ v.count }}</td>
+							</tr>
+						</tbody>
 					</table>
-					<table id="ppp">
-						<form action="">
-							<tbody>
-								<tr>
-									<td id="img" rowspan="3"><img id="img" src="../../assets/images/managerJ/test.png"
-											alt=""></td>
-									<td id="word">상품명 :</td>
-									<td id="nick" rowspan="3">닉네임</td>
-									<td id="nick2" rowspan="3"><button id="state" type="submit">완료</button></td>
-								</tr>
-								<tr>
-									<td>색상 :</td>
-								</tr>
-								<tr>
-									<td>수량 :</td>
-								</tr>
-							</tbody>
-						</form>
-					</table>
+					
 				</div>
-				<div id="bb">
-					<h3 id="bx">구매진행완료</h3>
-					<table id="bbb">
+				<div class="bb">
+					<h3 class="bx">구매진행완료</h3>
+					<table class="bbb" v-bind:key="i" v-for="(v,i) in end">
 						<tbody>
 							<tr>
-								<td id="img" rowspan="3"><img id="img" src="../../assets/images/managerJ/test.png"
+								<td class="img" rowspan="3"><img class="img" src="../../assets/images/managerJ/test.png"
 										alt=""></td>
-								<td>상품명 :</td>
-								<td id="nick" rowspan="3">닉네임</td>
+								<td>상품명 :{{ v.productName }}</td>
+								<td class="nick" rowspan="3">닉네임: {{ v.nickName }}</td>
 							</tr>
 							<tr>
-								<td>색상 :</td>
+								<td>색상 :{{ v.color }}</td>
 							</tr>
 							<tr>
-								<td>수량 :</td>
+								<td>수량 :{{ v.count }}</td>
 							</tr>
 						</tbody>
 					</table>
-					<table id="bbb">
-						<tbody>
-							<tr>
-								<td id="img" rowspan="3"><img id="img" src="../../assets/images/managerJ/test.png"
-										alt=""></td>
-								<td>상품명 :</td>
-								<td id="nick" rowspan="3">닉네임</td>
-							</tr>
-							<tr>
-								<td>색상 :</td>
-							</tr>
-							<tr>
-								<td>수량 :</td>
-							</tr>
-						</tbody>
-					</table>
+					
 				</div>
 
 			</div>
@@ -196,6 +162,8 @@ export default {
 			showCategories03: false,
 			showCategories04: false,
 			showCategories05: false,
+			end:[],
+			ing:[]
 		}
 	},
 	methods: {
@@ -224,13 +192,19 @@ export default {
 		list() {
 			axios({
 				method: 'get', // put, post, delete 
-				url: 'http://localhost:8888/home/manager/state',
+				url: 'http://localhost:9090/home/manager/state',
 				headers: { "Content-Type": "application/json; charset=utf-8" }, //전송타입
 				//params: guestbookVo, //get방식 파라미터로 값이 전달
 				//data: guestbookVo, //put, post, delete 방식 자동으로 JSON으로 변환 전달
 				responseType: 'json' //수신타입
 			}).then(response => {
-				console.log(response); //수신데이타
+				console.log(response.data.end); //수신데이타
+				console.log(response.data.ing)
+				this.ing = response.data.ing;
+				this.end = response.data.end;
+				//console.log(this.ing.nickName)
+				console.log(this.end)
+				
 			}).catch(error => {
 				console.log(error);
 			});
