@@ -23,8 +23,8 @@
                 </div>
             </div>
         </div>
-        <!-- https://cntechsystems.tistory.com/58 -->
-        <div class="ss-goodsList clearfix" >
+        
+        <div class="ss-goodsList clearfix">
             <div  class="goods" v-for="(list, i) in goodsList" v-bind:key="i">
                 <img v-bind:src="`${this.$store.state.apiBaseUrl}/upload/${list.mainImg}`"><br>
                 <span>{{ list.category }}</span><br>
@@ -82,7 +82,6 @@ export default {
                 // data: , //put, post, delete 방식 자동으로 JSON으로 변환 전달
                 responseType: 'json' //수신타입
             }).then(response => {
-                console.log()
                 if(response.data.result == 'success' && response.data.apiData != null){
                     this.goodsList.push(...(response.data.apiData));
                 } else {

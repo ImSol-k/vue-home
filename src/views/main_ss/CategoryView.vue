@@ -2,7 +2,7 @@
 	
 <div id="wrap">
 
-	<AppHeader @update="categoryList"/>
+	<AppHeader @update="catchKeyword"/>
 	<!-- //header 부분 -->
 
 	<AppNavView/>
@@ -17,9 +17,9 @@
 					<span v-else> ▽</span> <!-- 화살표 아이콘 -->
 				</li>
 				<ul v-show="showCategories"> <!-- 카테고리 리스트 -->
-					<li class="cate-li"><a href="">침대</a></li>
-					<li class="cate-li"><a href="">매트리스</a></li>
-					<li class="cate-li"><a href="">침대프레임</a></li>
+					<li class="cate-li" v-on:click.prevent="showProductList('bed')"><a>침대</a></li>
+					<li class="cate-li" v-on:click.prevent="showProductList('mattress')"><a href="">매트리스</a></li>
+					<li class="cate-li" v-on:click.prevent="showProductList('frame')"><a href="">침대프레임</a></li>
 				</ul>
 			</ul>
 			<ul>
@@ -29,9 +29,9 @@
 					<span v-else> ▽</span> <!-- 화살표 아이콘 -->
 				</li>
 				<ul v-show="showCategories02"> <!-- 카테고리 리스트 -->
-					<li class="cate-li"><a href="">일반 쇼파</a></li>
-					<li class="cate-li"><a href="">좌식 쇼파</a></li>
-					<li class="cate-li"><a href="">1인용 쇼파</a></li>
+					<li class="cate-li" v-on:click.prevent="showProductList('normal-sofa')"><a href="">일반 쇼파</a></li>
+					<li class="cate-li" v-on:click.prevent="showProductList('lounge-sofa')"><a href="">좌식 쇼파</a></li>
+					<li class="cate-li" v-on:click.prevent="showProductList('single-sofa')"><a href="">1인용 쇼파</a></li>
 				</ul>
 			</ul>
 			<ul>
@@ -41,8 +41,8 @@
 					<span v-else> ▽</span> <!-- 화살표 아이콘 -->
 				</li>
 				<ul v-show="showCategories03"> <!-- 카테고리 리스트 -->
-					<li class="cate-li"><a href="">식탁</a></li>
-					<li class="cate-li"><a href="">사이드테이블</a></li>
+					<li class="cate-li" v-on:click.prevent="showProductList('dining-table')"><a href="" >식탁</a></li>
+					<li class="cate-li" v-on:click.prevent="showProductList('side-table')"><a href="">사이드테이블</a></li>
 				</ul>
 			</ul>
 			<ul>
@@ -52,9 +52,9 @@
 					<span v-else> ▽</span> <!-- 화살표 아이콘 -->
 				</li>
 				<ul v-show="showCategories04"> <!-- 카테고리 리스트 -->
-					<li class="cate-li"><a href="">옷장</a></li>
-					<li class="cate-li"><a href="">행거</a></li>
-					<li class="cate-li"><a href="">붙박이장</a></li>
+					<li class="cate-li" v-on:click.prevent="showProductList('closet')"><a href="">옷장</a></li>
+					<li class="cate-li" v-on:click.prevent="showProductList('hanger')"><a href="">행거</a></li>
+					<li class="cate-li" v-on:click.prevent="showProductList('built-in')"><a href="">붙박이장</a></li>
 				</ul>
 			</ul>
 			
@@ -62,7 +62,23 @@
 		<!-- content-side -->
 
 		<div class="ss-main">
-            aaa
+            <div class="ss-3btn">
+                <div class="dropdown">
+                        <button class="dropbtn" id="sortButton">최신순</button>
+                        <div class="dropdown-content">
+                            <a href="#" @click="changeSort('recent')">최신순</a>
+                            <a href="#" @click="changeSort('review')">리뷰순</a>
+                            <a href="#" @click="changeSort('rating')">별점순</a>
+                        </div>
+                    </div>
+            </div>
+            <div class="ss-goods" v-for="(list,i) in list" v-bind:key="i">
+                <img v-bind:src="`${this.$store.state.apiBaseUrl}/upload/${list.mainImg}`"><br>
+                <span>{{ list.category }}</span><br>
+                <span>이름 : {{ list.name }}</span><br>
+                <span>별점 : {{ list.star }}</span>&nbsp;
+                <span>가격 : {{ list.price }}</span>
+            </div>
 		</div>
 		<!-- content-main -->
 	</div>
@@ -82,6 +98,7 @@ import '@/assets/css/main/ss-category.css';
 import AppHeader from '@/components/AppHeader.vue';
 import AppNavView from '@/components/AppNavView.vue';
 import AppFooter from '@/components/AppFooter.vue';
+import axios from 'axios';
 
 export default {
 	name: "CategoryView",
@@ -93,7 +110,10 @@ export default {
 	data() {
 		return {
 			show : false, //
-			
+			showCategories: false,
+            showCategories02: false,
+			showCategories03: false,
+            showCategories04: false,
             hitList : [
                 '쇼파' ,
                 '침대',
@@ -106,11 +126,9 @@ export default {
                 '쇼파' ,
                 '침대' 
             ],
-			showCategories: false,
-            showCategories02: false,
-			showCategories03: false,
-            showCategories04: false,
-			
+			list :[],
+			keyword : 'bed'
+
 
 		};
 	},
@@ -135,15 +153,107 @@ export default {
         toggleCategories04() {
             this.showCategories04 = !this.showCategories04; // 클릭 시 카테고리 리스트를 보이거나 숨김
         },
+        
 
-        categoryList(keyword){
-            console.log(keyword);
-        }
+        catchKeyword(keyword){
+            this.keyword = keyword
+            if(typeof keyword !== 'undefined'){
+                axios({
+                    method: 'get', // put, post, delete 
+                    url: `${this.$store.state.apiBaseUrl}/home/main/category`,
+                    headers: { "Content-Type": "application/json; charset=utf-8" }, //전송타입
+                    params: {keyword : keyword}, //get방식 파라미터로 값이 전달
+                    // data: , //put, post, delete 방식 자동으로 JSON으로 변환 전달
+                    responseType: 'json' //수신타입
+                }).then(response => {
+                    if(response.data.result == 'success'){
+                        this.list = null;
+                        this.list = response.data.apiData;
+                    } else {
+                        alert("상품 준비중입니다.")
+                        this.$router.push('/category');
+                    }
+                }).catch(error => {
+                    console.log(error);
+                });
+            } else {
+                axios({
+                    method: 'get', // put, post, delete 
+                    url: `${this.$store.state.apiBaseUrl}/home/main/nocategory`,
+                    headers: { "Content-Type": "application/json; charset=utf-8" }, //전송타입
+                    // params: , //get방식 파라미터로 값이 전달
+                    // data: , //put, post, delete 방식 자동으로 JSON으로 변환 전달
+                    responseType: 'json' //수신타입
+                }).then(response => {
+                    if(response.data.result == 'success'){
+                        this.list = null;
+                        this.list = response.data.apiData;
+                    } else {
+                        alert("상품 준비중입니다.")
+                        this.$router.push('/category');
+                    }
+                }).catch(error => {
+                    console.log(error);
+                });
+            }
+        },
+        showProductList(category){
+            axios({
+                    method: 'get', // put, post, delete 
+                    url: `${this.$store.state.apiBaseUrl}/home/main/category`,
+                    headers: { "Content-Type": "application/json; charset=utf-8" }, //전송타입
+                    params: {keyword : category}, //get방식 파라미터로 값이 전달
+                    // data: , //put, post, delete 방식 자동으로 JSON으로 변환 전달
+                    responseType: 'json' //수신타입
+                }).then(response => {
+                    if(response.data.result == 'success'){
+                        this.list = null;
+                        this.list = response.data.apiData;
+                    } else {
+                        alert("상품 준비중입니다.")
+                        this.$router.push('/category');
+                    }
+                }).catch(error => {
+                    console.log(error);
+                });
+        },
+
+        changeSort(sortType) {
+            document.getElementById('sortButton').innerText = sortType;
+            this.getList(sortType);
+        },
+        getList(word,sortType){
+            word = this.keyword;
+
+            axios({
+                    method: 'get', // put, post, delete 
+                    url: `${this.$store.state.apiBaseUrl}/home/main/sorttype`,
+                    headers: { "Content-Type": "application/json; charset=utf-8" }, //전송타입
+                    params: {keyword : word, sort : sortType}, //get방식 파라미터로 값이 전달
+                    // data: , //put, post, delete 방식 자동으로 JSON으로 변환 전달
+                    responseType: 'json' //수신타입
+                }).then(response => {
+                    console.log(response.data);
+                }).catch(error => {
+                    console.log(error);
+                });
+        }  
 	},
+    mounted(){
+        document.getElementById('sortButton').innerText = '최신순';
+        
+        let dropdownItems = document.querySelectorAll('.dropdown-content a');
+        dropdownItems.forEach(function (item) {
+            item.addEventListener('click', function () {
+                document.getElementById('sortButton').innerText = this.innerText;
+            });
+        });
+    },
 	
 	created(){
-
-	}
+        this.catchKeyword();
+        
+    }
 };
 </script>
 
