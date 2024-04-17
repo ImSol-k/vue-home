@@ -23,24 +23,23 @@
             <img src="../assets/images/homedeco/cart.png">
             <img id="ss-red" src="../assets/images/homedeco/red.png">
             <!-- 로그인하기전 -->
-            <ul>
+            <ul v-if="this.$store.state.token === 1">
                 <li><a>로그인</a></li>
                 <li><a>회원가입</a></li>
                 <li><a>고객센터</a></li>
             </ul>
 
-            <!-- 로그인하고나서 -->
-            <!-- <ul>   
+            
+            <ul v-if="this.$store.state.token !== null">   
                 <li><a>ㅁㅁㅁ님</a></li>
                 <li><a>로그아웃</a></li>
                 <li><a>마이페이지</a></li>
-            </ul> -->
-            <!-- 관리자가 로그인했을때 -->
-            <!-- <ul>   
+            </ul>
+            <ul v-if="this.$store.state.userNo === 1">   
                 <li><a>관리자</a></li>
                 <li><a>로그아웃</a></li>
                 <li><a>관리페이지</a></li>
-            </ul> -->
+            </ul>
         </div>
         <!-- //header3 -->
     </div>
@@ -52,6 +51,7 @@
 
 <script>
 import '@/assets/css/main/ss-home.css';
+import axios from 'axios';
 
 export default {
     name : 'AppHeader',
@@ -66,10 +66,35 @@ export default {
     methods : {
         search(){
             this.$emit('update',this.keyword);
+        },
+        setColor(){
+            console.log('setColor');
+            if( this.$store.state.productColor !== null){
+                axios({
+                    method: 'get', // put, post, delete 
+                    url: `${this.$store.state.apiBaseUrl}/home/getColor`,
+                    headers: { "Content-Type": "application/json; charset=utf-8" }, //전송타입
+                    // params: { page : this.page, keyword : keyword}, //get방식 파라미터로 값이 전달
+                    // data: , //put, post, delete 방식 자동으로 JSON으로 변환 전달
+                    responseType: 'json' //수신타입
+                }).then(response => {
+                    console.log(response.data);
+                    if(response.data.result == 'success'){
+                        console.log(response.data.apiData);
+                        
+                    } else {
+                        console.log(response.data.message);
+                    }
+                }).catch(error => {
+                    console.log(error);
+                });
+            } else {
+                console.log('컬러있음');
+            }
         }
     },
     created (){
-
+        this.setColor();
     }
 }
 

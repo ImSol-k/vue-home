@@ -93,73 +93,26 @@
                 </div>
                 <span class="manage-products">상품 관리 > 전체 상품 보기</span>
                 <div class="bed">
-                    <h3><br>침대</h3>
-
-                    <div class="product">
-                        <img src="../../assets/images/managerY/bed.jpg" alt="상품1">
+                    <h3><br>전체 상품</h3>
+                    <div class="product" v-bind:key="i" v-for="(productVo, i) in productList">
+                        <img v-bind:src="`${this.$store.state.apiBaseUrl}/upload/${productVo.main_img}`" alt="">
                         <div class="product-info">
-                            <span class="product-name">어쩌구 침대</span>
+                            <span class="product-name">{{productVo.product_name}}</span>
                             <div class="review">
-                                <img src="../../assets/images/homedeco/star.png"><img
-                                    src="../../assets/images/homedeco/star.png"><img
-                                    src="../../assets/images/homedeco/star.png"><img
-                                    src="../../assets/images/homedeco/star.png"><img
-                                    src="../../assets/images/homedeco/star2.png">
+                                <span v-for="(star, i) in 5" :key="i">
+                                <img v-if="starTotal > i" src="@/assets/images/homedeco/star.png" alt="">
+                                <img v-else src="@/assets/images/homedeco/star2.png" alt="">
+                            </span>
+                                <img src="../../assets/images/homedeco/star.png">
+                                <img src="../../assets/images/homedeco/star.png">
+                                <img src="../../assets/images/homedeco/star.png">
+                                <img src="../../assets/images/homedeco/star.png">
+                                <img src="../../assets/images/homedeco/star2.png">
                             </div>
-                            <span class="product-rating">4.5</span>
+                            <span class="product-rating">{{productVo.avg_star}}</span>
                             <button class="delete-button">삭제</button>
                         </div>
-                    </div>
-                    <div class="product">
-                        <img src="../../assets/images/managerY/bed.jpg" alt="상품2">
-                        <div class="product-info">
-                            <span>어쩌구 작은 침대</span>
-                            <div class="review">
-                                <img src="../../assets/images/homedeco/star.png"><img
-                                    src="../../assets/images/homedeco/star.png"><img
-                                    src="../../assets/images/homedeco/star.png"><img
-                                    src="../../assets/images/homedeco/star.png"><img
-                                    src="../../assets/images/homedeco/star2.png">
-                            </div>
-                            <span class="product-rating">4.5</span>
-                            <button class="delete-button">삭제</button>
-                        </div>
-                    </div>
-                </div>
-
-                <br>
-
-                <div class="sofa">
-                    <h3><br>소파</h3>
-                    <div class="product">
-                        <img src="../../assets/images/managerY/sofa.jpg" alt="상품1">
-                        <div class="product-info">
-                            <span>어쩌구 쇼파</span>
-                            <div class="review">
-                                <img src="../../assets/images/homedeco/star.png"><img
-                                    src="../../assets/images/homedeco/star.png"><img
-                                    src="../../assets/images/homedeco/star.png"><img
-                                    src="../../assets/images/homedeco/star.png"><img
-                                    src="../../assets/images/homedeco/star2.png">
-                            </div>
-                            <span class="product-rating">4.5</span>
-                            <button class="delete-button">삭제</button>
-                        </div>
-                    </div>
-                    <div class="product">
-                        <img src="../../assets/images/managerY/sofa.jpg" alt="상품2">
-                        <div class="product-info">
-                            <span>어쩌구 쇼파 야호</span>
-                            <div class="review">
-                                <img src="../../assets/images/homedeco/star.png"><img
-                                    src="../../assets/images/homedeco/star.png"><img
-                                    src="../../assets/images/homedeco/star.png"><img
-                                    src="../../assets/images/homedeco/star.png"><img
-                                    src="../../assets/images/homedeco/star2.png">
-                            </div>
-                            <span class="product-rating">4.5</span>
-                            <button class="delete-button">삭제</button>
-                        </div>
+                        <br>
                     </div>
                 </div>
             </div>
@@ -191,6 +144,15 @@ export default {
             showCategories03: false,
             showCategories04: false,
             showCategories05: false,
+            productList: [],
+            productVo: {
+                product_no: '',
+                title: '',
+                price: '',
+                category: '',
+                main_img: '',
+                avg_star: ''
+            }
         };
     },
     mounted() {
@@ -234,18 +196,19 @@ export default {
         toggleCategories05() {
             this.showCategories05 = !this.showCategories05; // 클릭 시 카테고리 리스트를 보이거나 숨김
         },
-        
-        getList() {
-            console.log("aa");
+        getList(){
+            console.log("데이터 가져오기");
+
             axios({
-                method: 'get',
-                url: `${this.$store.state.apiBaseUrl}/home/manager/insert`,
-                headers: { "Content-Type": "multipart/form-data" },
-                //data: formData,
-                responseType: 'json'
+                method: 'get',  //put,post,delete
+                url: `${this.$store.state.apiBaseUrl}/home/manager/list`,
+                headers: { "Content-Type": "application/json; charset=utf-8" }, //전송타입
+
+                responseType: 'json' //수신타입
             }).then(response => {
-                console.log(response);
-                console.log(response.data.apiData);
+                console.log(response.data); //수신데이타
+                this.productList = response.data.apiData;
+
             }).catch(error => {
                 console.log(error);
             });

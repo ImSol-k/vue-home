@@ -149,3 +149,17 @@
     text-align: left;
 
 }
+
+.pay-payment-methods label {
+    cursor: pointer; /* 마우스 커서를 포인터로 변경하여 사용자에게 클릭 가능한 요소임을 알림 */
+}
+
+.pay-payment-methods label:hover {
+    background-color: #f0f0f0; /* 마우스를 호버할 때 배경색 변경 */
+}
+
+.pay-payment-methods label.active {
+    background-color: #55b8dc; /* 선택된 결제 수단의 배경색 변경 */
+    color: #fff; /* 선택된 결제 수단의 텍스트 색상 변경 */
+    border: 2px solid #55b8dc; /* 선택된 결제 수단의 테두리 변경 */
+}

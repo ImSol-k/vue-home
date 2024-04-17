@@ -151,10 +151,7 @@ export default {
             this.show = false;
         },
         catchKeyword(keyword){    
-            console.log('어디서 에러가날까');
-
             this.page ++;   
-            console.log('ㅅㅣ작')
             axios({
                 method: 'get', // put, post, delete 
                 url: `${this.$store.state.apiBaseUrl}/home/main`,
@@ -165,18 +162,13 @@ export default {
             }).then(response => {
                 if(response.data.result == 'success' && response.data.apiData != null){
                     this.goodsList.push(...(response.data.apiData));
-                    console.log("데이터추가")
                 } else {
                     console.log(response.data.message);
-                    console.log("데이터끝")
                 }
-                console.log("끝")
 
             }).catch(error => {
-                console.log("에러")
                 console.log(error);
             });
-            console.log("끝ㄲ,ㅌ")
         }
       
     },
