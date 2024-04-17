@@ -4,7 +4,7 @@
 
         <div class="content">
             <div class="main-insert">
-                <form v-on:submit.prevent="insertProduct" enctype="multipart/form-data">
+                <form class="form-insert" v-on:submit.prevent="insertProduct" enctype="multipart/form-data">
                     <div id="additional-files-wrapper" class="flex-container">
 
                         <div class="left">
@@ -83,7 +83,7 @@
                     </div>
 
                 </form>
-                <form v-on:submit.prevent="insertProduct" method="post" enctype="multipart/form-data">
+                <form class="form-insert" v-on:submit.prevent="insertProduct" method="post" enctype="multipart/form-data">
                     <button type="submit" class="insert01">등록</button>
                 </form>
             </div>
