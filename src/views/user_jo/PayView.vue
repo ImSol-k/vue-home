@@ -1,7 +1,7 @@
 <template>
     <div>
         <!-- 헤더 -->
-        <AppHeader />
+        <AppHeaderManager />
 
         <!-- 결제 정보 입력 폼 -->
         <div class="pay-container">
@@ -89,13 +89,13 @@
 <script>
 import axios from 'axios';
 import "@/assets/css/user/pay.css";
-import AppHeader from '@/components/AppHeader.vue';
+import AppHeaderManager from '@/components/AppHeaderManager.vue';
 import AppFooter from '@/components/AppFooter.vue';
 
 export default {
     name: "PayView",
     components: {
-        AppHeader,
+        AppHeaderManager,
         AppFooter
     },
     data() {
