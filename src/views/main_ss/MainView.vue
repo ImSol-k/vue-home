@@ -2,7 +2,7 @@
 
 <div id="ss-wrap">
 
-    <AppHeader/>
+    <AppHeader @update="catchKeyword" />
     <!-- //header 부분 -->
 
     <nav class="clearfix">
@@ -88,7 +88,7 @@
             <div  class="goods" v-for="(list, i) in goodsList" v-bind:key="i">
                 <img v-bind:src="`${ list.main_img }`"><br>
                 <span>{{ list.category }}</span><br>
-                <span>{{ list.name }}</span><br>
+                <span>{{ list.productName }}</span><br>
                 <span>별점 : {{ list.star }}</span>&nbsp;
                 <span>가격 : {{ list.price }}</span>
             </div>
@@ -97,7 +97,7 @@
         <Observer @show="loadItems"></Observer>
 
     </div>
-    <!-- //content-slide 부분 -->
+    <!-- //ss-content 부분 -->
 
     <AppFooter />
     <!-- //footer 부분 -->
@@ -115,6 +115,7 @@ import '@/assets/css/main/ss-main.css';
 import AppHeader from '@/components/AppHeader.vue';
 import AppFooter from '@/components/AppFooter.vue';
 import SlideView from '@/components/SlideView.vue';
+import axios from 'axios';
 
 export default {
     name: "MainView",
@@ -138,7 +139,8 @@ export default {
                 '쇼파' ,
                 '침대' 
             ],
-            goodsList :[]
+            goodsList :[],
+            page : 0
         }
     },
     methods: {
@@ -148,53 +150,45 @@ export default {
         mouseleave(){ // 마우스 떼면 서브메뉴 사라짐
             this.show = false;
         },
-        hits(){ // 별점순 눌렀을때
-            console.log('hits');
-        },
-        review(){ // 리뷰순 눌렀을때 
-            console.log('review');
+        catchKeyword(keyword){            
+            axios({
+                method: 'get', // put, post, delete 
+                url: `${this.$store.state.apiBaseUrl}/home/main`,
+                headers: { "Content-Type": "application/json; charset=utf-8" }, //전송타입
+                params: { page : this.page, keyword : keyword}, //get방식 파라미터로 값이 전달
+                // data: , //put, post, delete 방식 자동으로 JSON으로 변환 전달
+                responseType: 'json' //수신타입
+            }).then(response => {
+                console.log(response.data); //수신데이타
+                if(response.data.result == 'success'){
+                    console.log(this.goodsList)
+                    if(response.data.apiData != null){
+                        this.goodsList.push(...(response.data.apiData));
+                    } else {
+                        console.log(response.data.message);
+                    }
+                } else {
+                    console.log(response.data.message);
+                }
+            }).catch(error => {
+                console.log(error);
+            });
         },
         
         loadItems() {
-            let list = [
-                    {
-                        main_img : require('../../assets/images/main/mainlist/img1.jpg'), 
-                        category :'쇼파',
-                        name : 'ㅁㄴㅇ쇼파',
-                        star : '4',
-                        price :'20000'
-                    },
-                    {
-                        main_img : require('../../assets/images/main/mainlist/img1.jpg'), 
-                        category :'침대',
-                        name : 'ㅁㄴㅇ침대',
-                        star : '4',
-                        price :'20000'
-                    },
-                    {
-                        main_img : require('../../assets/images/main/mainlist/img1.jpg'), 
-                        category :'카테고리',
-                        name : '이름',
-                        star : '4',
-                        price :'20000'
-                    },
-                    {
-                        main_img : require('../../assets/images/main/mainlist/img1.jpg'),
-                        category :'카테고리',
-                        name : '이름',
-                        star : '4',
-                        price :'20000'
-                    },
-                    
-            ]
-            this.goodsList.push(...list);
+            console.log('되나')
+            console.log(this.page);
+            this.page ++;
+            console.log(this.page);
+            this.catchKeyword();
+            console.log(this.goodsList);
         }, 
     },
     mounted() {
-        this.loadItems();
+        // this.loadItems();
     },
     created (){
-
+        this.catchKeyword();
     }
 };
 </script>
