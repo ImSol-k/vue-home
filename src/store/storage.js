@@ -24,8 +24,8 @@ export default createStore({
         setNowPayment(state, nowOrderList) {
             state.nowOrderList = nowOrderList;
         },
-        setColor(state, color) {
-            state.color = color;
+        setColor(state, productColor) {
+            state.productColor = productColor;
         }
     },
     plugins: [
