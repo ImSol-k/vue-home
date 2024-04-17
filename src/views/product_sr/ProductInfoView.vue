@@ -366,6 +366,12 @@ export default {
                 responseType: 'json',
             }).then(response => {
                 console.log(response); //수신데이터
+                if(response.data.result){
+                    this.reviewList.push(response.data.apiData);
+                    alert("리뷰작성 완료");
+                } else {
+                    alert("리뷰작성 실패");
+                }
                 this.closeModal();
             }).catch(error => {
                 console.log(error);
