@@ -203,7 +203,7 @@ export default {
             }).then(response => {
                 console.log(response);
                 console.log(response.data.apiData);
-                this.$router.push({ name: 'ProductListView' });
+                this.$router.push('/manager/productlist')
             }).catch(error => {
                 console.log(error);
             });

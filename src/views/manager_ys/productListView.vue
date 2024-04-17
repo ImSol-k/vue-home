@@ -81,7 +81,9 @@
             </div>
             <div class="main">
                 <div class="insert">
-                    <button class="insert-button">상품 등록</button>
+                    <router-link to="/manager/productinsert">
+                        <button class="insert-button">상품 등록</button>
+                    </router-link>
                     <div class="dropdown">
                         <button class="dropbtn" id="sortButton">최신순</button>
                         <div class="dropdown-content">
@@ -95,7 +97,8 @@
                 <div class="bed">
                     <h3><br>전체 상품</h3>
                     <div class="product" v-bind:key="i" v-for="(productVo, i) in productList">
-                        <img class="main-img" v-bind:src="`${this.$store.state.apiBaseUrl}/upload/${productVo.main_img}`" alt="">
+                        <img class="main-img"
+                            v-bind:src="`${this.$store.state.apiBaseUrl}/upload/${productVo.main_img}`" alt="">
                         <div class="product-info">
                             <span class="product-name">{{ productVo.product_name }}</span>
                             <div class="review-manager">
@@ -213,7 +216,7 @@ export default {
         remove(product_no) {
             axios({
                 method: 'delete',  //put,post,delete
-                url:  `${this.$store.state.apiBaseUrl}/home/manager/delete/` + product_no,
+                url: `${this.$store.state.apiBaseUrl}/home/manager/delete/` + product_no,
                 headers: { "Content-Type": "application/json; charset=utf-8" }, //전송타입
                 responseType: 'json' //수신타입
             }).then(response => {
