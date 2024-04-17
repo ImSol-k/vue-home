@@ -237,13 +237,13 @@ export default {
                 console.log(error);
             });
         },
-        showProductList(categoty) {
-            console.log("리스트: " + categoty);
+        showProductList(category) {
+            console.log("리스트: " + category);
             axios({
                 method: 'post',  //put,post,delete
                 url: `${this.$store.state.apiBaseUrl}/home/manager/categorylist`,
                 headers: { "Content-Type": "application/json; charset=utf-8" }, //전송타입
-                params: { category: categoty },
+                params: { category: category },
                 responseType: 'json' //수신타입
             }).then(response => {
                 console.log(response.data.apiData); //수신데이타
