@@ -11,7 +11,7 @@
                         <span v-else> ▽</span> <!-- 화살표 아이콘 -->
                     </li>
                     <ul v-show="showCategories"> <!-- 카테고리 리스트 -->
-                        <li class="cate-li"><strong v-on:click.prevent="getList">전체 상품 보기</strong></li>
+                        <li class="cate-li"><strong @click="getList('recent')">전체 상품 보기</strong></li>
                         <li class="cate-li">
                             <ul>
                                 <li @click="toggleCategories00">
@@ -173,15 +173,9 @@ export default {
         var dropdownItems = document.querySelectorAll('.dropdown-content a');
         dropdownItems.forEach(function (item) {
             item.addEventListener('click', function () {
-                var sortType = this.getAttribute('data-sort');
+                //var sortType = this.getAttribute('data-sort');
                 document.getElementById('sortButton').innerText = this.innerText;
-                if (sortType === 'recent') {
-                    // 최신순 처리
-                } else if (sortType === 'review') {
-                    // 리뷰순 처리
-                } else if (sortType === 'rating') {
-                    // 별점순 처리
-                }
+                
             });
         });
     },
@@ -251,8 +245,7 @@ export default {
             }).catch(error => {
                 console.log(error);
             });
-        }
-
+        },
     },
     created() {
         this.getList('recent'); // 기본값으로 최신순을 설정
