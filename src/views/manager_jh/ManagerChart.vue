@@ -225,13 +225,14 @@ export default {
             this.allhanger = 2;
             axios({
                 method: 'get', // put, post, delete 
-                url: 'http://localhost:8888/home/manager/datas',
+                url: 'http://localhost:9090/home/manager/datas',
                 headers: { "Content-Type": "application/json; charset=utf-8" }, //전송타입
                 //params: guestbookVo, //get방식 파라미터로 값이 전달
                 //data: guestbookVo, //put, post, delete 방식 자동으로 JSON으로 변환 전달
                 responseType: 'json' //수신타입
             }).then(response => {
                 console.log(response); //수신데이타
+
             }).catch(error => {
                 console.log(error);
             });
