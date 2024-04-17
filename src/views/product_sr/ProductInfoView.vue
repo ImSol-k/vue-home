@@ -16,7 +16,7 @@
                                 <img v-if="starTotal > i" src="@/assets/images/homedeco/star.png" alt="">
                                 <img v-else src="@/assets/images/homedeco/star2.png" alt="">
                             </span>
-                            <span>2개 리뷰</span>
+                            <span>{{ reviewList.length }}개 리뷰</span>
                         </a>
                     </div>
                     <div class="productPrice">
@@ -69,7 +69,7 @@
                 </div>
                 <div class="reviewContent">
                     <div class="InfoReview">
-                        <p>리뷰 <span>2</span></p>
+                        <p>리뷰 <span>{{ reviewList.length }}</span></p>
                         <button v-on:click.prevent="openModal">리뷰작성</button>
                     </div>
                     <div class="starAverage">
@@ -90,7 +90,7 @@
                     </div>
                     <div class="userReviewList" id="userReviewList"><!-- 리뷰 리스트시작 -->
                         <div class="userReview" v-for="(review, i) in reviewList.length" :key="i">
-                            <p>userId</p>
+                            <p>{{ reviewList[i].id }}</p>
                             <div class="userStar">
                                 <span v-for="(star, s) in 5" :key="s">
                                     <img v-if="reviewList[i].star > s" src="@/assets/images/homedeco/star.png" alt="">
@@ -103,7 +103,7 @@
                                 </span>
                             </div>
                             <div class="reviewIncontent">
-                                <img v-if="reviewList[i].imgName != null" src="@/assets/images/product/test.png" alt="">
+                                <img v-if="reviewList[i].imgName != null" v-bind:src="`${this.$store.state.apiBaseUrl}/upload/${reviewList[i].imgName}`" alt="">
                                 <p>{{ reviewList[i].content }}</p>
                             </div>
                         </div><!-- userReview -->
@@ -158,8 +158,8 @@
                 <h1>리뷰작성</h1>
                 <p>상품</p>
                 <div class="reviewProduct">
-                    <img src="@/assets/images/product/test.png" alt="">
-                    <p>상품명(상세제품명~~)</p>
+                    <img v-bind:src="`${this.$store.state.apiBaseUrl}/upload/${productVo.mainImg}`" alt="">
+                    <p>{{ productVo.productName }}</p>
                 </div>
                 <p>별점평가</p>
                 <div class="starInsert">
@@ -199,7 +199,8 @@ export default {
     data() {
         return {
             showModal: false, //리뷰 작성창
-            starTotal: "",
+            
+            //상품정보 관련
             productVo: {
                 productName: "",
                 price: "",
@@ -214,6 +215,9 @@ export default {
             showPrice: "",
             priceTotal: 0,
             showPriceTotal: 0,
+
+            //리뷰관련
+            starTotal: "",
             reviewImg: "",
             reviewVo: {
                 star: "",
@@ -226,11 +230,11 @@ export default {
     methods: {
         //상품선택 *****************************************
         showProduct() {
-            console.log("상품정보: " + this.productVo.name + ">" + this.$store.state.productNo);
+            console.log("상품정보: " + this.productVo.name + ">" + this.$route.params.no);
             //상품정보 불러오기
             axios({
                 method: 'post',
-                url: `${this.$store.state.apiBaseUrl}/home/info/product/${this.$store.state.productNo}`,
+                url: `${this.$store.state.apiBaseUrl}/home/info/product/${this.$route.params.no}`,
                 headers: { "Content-Type": "application/json; charset=utf-8" },
                 responseType: 'json'
             }).then(response => {
@@ -245,19 +249,21 @@ export default {
             console.log("리뷰리스트");
             axios({
                 method: 'post',
-                url: `${this.$store.state.apiBaseUrl}/home/info/review/${this.$store.state.productNo}`,
+                url: `${this.$store.state.apiBaseUrl}/home/info/review/${this.$route.params.no}`,
                 headers: { "Content-Type": "application/json; charset=utf-8" },
                 responseType: 'json'
             }).then(response => {
                 console.log(response); //수신데이터
-                this.reviewList = response.data.apiData;
-                let sum = 0;
-                for (let i = 0; i < this.reviewList.length; i++) {
-                    sum += this.reviewList[i].star;
+                if(response.data.result == "success"){
+                    this.reviewList = response.data.apiData;
+                    let sum = 0;
+                    for (let i = 0; i < this.reviewList.length; i++) {
+                        sum += this.reviewList[i].star;
+                    }
+                    this.starTotal = sum / this.reviewList.length;
+                    this.starTotal = this.starTotal.toFixed(1);
+                    console.log(this.reviewList);
                 }
-                this.starTotal = sum / this.reviewList.length;
-                this.starTotal = this.starTotal.toFixed(1);
-                console.log(this.reviewList);
             }).catch(error => {
                 console.log(error);
             });
@@ -350,7 +356,7 @@ export default {
             formData.append('star', this.reviewVo.star);
             formData.append('content', this.reviewVo.content);
             formData.append('userNo', this.reviewVo.userNo);
-            formData.append('productNo', this.$store.state.productNo);
+            formData.append('productNo', this.$route.params.no);
 
             axios({
                 method: 'post',
@@ -360,9 +366,11 @@ export default {
                 responseType: 'json',
             }).then(response => {
                 console.log(response); //수신데이터
+                this.closeModal();
             }).catch(error => {
                 console.log(error);
             });
+            
         }
     },
     created() {
