@@ -124,19 +124,19 @@ export default {
                 this.cartList[select].count--;
                 this.totalPrice -= this.cartList[select].price;
             }
-            axios({
-                method: 'post',
-                url: `${this.$store.state.apiBaseUrl}/home/info/cartupdate`,
-                headers: { //전송타입 + 토큰
-                    "Content-Type": "application/json; charset=utf-8"
-                },
-                data: ,
-                responseType: 'json'
-            }).then(response => {
-                console.log(response.data);
-            }).catch(error => {
-                console.log(error);
-            });
+            // axios({
+            //     method: 'post',
+            //     url: `${this.$store.state.apiBaseUrl}/home/info/cartupdate`,
+            //     headers: { //전송타입 + 토큰
+            //         "Content-Type": "application/json; charset=utf-8"
+            //     },
+            //     data: ,
+            //     responseType: 'json'
+            // }).then(response => {
+            //     console.log(response.data);
+            // }).catch(error => {
+            //     console.log(error);
+            // });
         }
 
     },
