@@ -64,3 +64,7 @@
 .login-btn:hover {
     background-color: #40b4df;
 }
+.login-failed-message {
+    color: red;
+    margin-top: 10px;
+}

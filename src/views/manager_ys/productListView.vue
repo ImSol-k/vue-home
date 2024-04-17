@@ -175,6 +175,7 @@
 import "@/assets/css/managerY/productLIst.css"
 import AppHeader from '@/components/AppHeader.vue';
 import AppFooter from '@/components/AppFooter.vue';
+import axios from 'axios';
 
 export default {
     name: "ProductListView",
@@ -232,8 +233,27 @@ export default {
         },
         toggleCategories05() {
             this.showCategories05 = !this.showCategories05; // 클릭 시 카테고리 리스트를 보이거나 숨김
+        },
+        
+        getList() {
+            console.log("aa");
+            axios({
+                method: 'get',
+                url: `${this.$store.state.apiBaseUrl}/home/manager/insert`,
+                headers: { "Content-Type": "multipart/form-data" },
+                //data: formData,
+                responseType: 'json'
+            }).then(response => {
+                console.log(response);
+                console.log(response.data.apiData);
+            }).catch(error => {
+                console.log(error);
+            });
         }
 
     },
+    created(){
+        this.getList();
+    }
 };
 </script>
