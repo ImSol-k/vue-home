@@ -11,7 +11,7 @@
                 <!-- https://bomango.tistory.com/52 -->
                 <ul class="nav1-main" v-on:mouseleave="mouseleave" >
                     <li>
-                        <router-link to="/" v-on:mouseover="mouseover">침대</router-link>
+                        <router-link to="/category" v-on:mouseover="mouseover">침대</router-link>
                         <ul class="nav1-sub" v-show="show">
                             <li><a>침대</a></li>
                             <li><a>매트리스</a></li>
@@ -19,7 +19,7 @@
                         </ul>
                     </li>
                     <li>
-                        <router-link to="/" v-on:mouseover="mouseover" >쇼파</router-link>
+                        <router-link to="/category" v-on:mouseover="mouseover" >쇼파</router-link>
                         <ul class="nav1-sub" v-show="show">
                             <li><a>일반쇼파</a></li>
                             <li><a>좌식쇼파</a></li>
@@ -27,14 +27,14 @@
                         </ul>
                     </li>
                     <li>
-                        <router-link to="/" v-on:mouseover="mouseover" >테이블</router-link>
+                        <router-link to="/category" v-on:mouseover="mouseover" >테이블</router-link>
                         <ul class="nav1-sub" v-show="show">
                             <li><a>식탁</a></li>
                             <li><a>사이드 테이블</a></li>
                         </ul>
                     </li>
                     <li>
-                        <router-link to="/" v-on:mouseover="mouseover" >옷장</router-link>
+                        <router-link to="/category" v-on:mouseover="mouseover" >옷장</router-link>
                         <ul class="nav1-sub" v-show="show">
                             <li><a>옷장</a></li>
                             <li><a>행거</a></li>
@@ -94,7 +94,7 @@
             </div>
              
         </div>    
-        <Observer @show="catchKeyword"></Observer>
+        <Observer @show="loadItem"></Observer>
 
     </div>
     <!-- //ss-content 부분 -->
@@ -150,8 +150,7 @@ export default {
         mouseleave(){ // 마우스 떼면 서브메뉴 사라짐
             this.show = false;
         },
-        catchKeyword(keyword){    
-            this.page ++;   
+        catchKeyword(keyword){
             axios({
                 method: 'get', // put, post, delete 
                 url: `${this.$store.state.apiBaseUrl}/home/main`,
@@ -165,10 +164,14 @@ export default {
                 } else {
                     console.log(response.data.message);
                 }
-
             }).catch(error => {
                 console.log(error);
             });
+            
+        },
+        loadItem(){
+            this.page ++;
+            this.catchKeyword();
         }
       
     },
@@ -176,7 +179,7 @@ export default {
        
     },
     created (){
-
+        
     }
 };
 </script>

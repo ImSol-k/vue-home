@@ -17,28 +17,23 @@
         <!-- //header2 -->
 
         <div class="ss-header3">
-            <!-- 누르면 장바구니 페이지로 -->
-            <!-- vuex에 카트가 생기면 빨간불 -->
-            
             <img src="../assets/images/homedeco/cart.png">
             <img v-if="this.$store.state.nowOrderList === null" id="ss-red" src="../assets/images/homedeco/red.png">
             <!-- 로그인하기전 -->
             <ul v-if="this.$store.state.token === null">
-                <li><a>로그인</a></li>
+                <li><router-link to="/login">로그인</router-link></li>
                 <li><a>회원가입</a></li>
                 <li><a>고객센터</a></li>
             </ul>
-
-            
             <ul v-if="this.$store.state.token !== null && this.$store.state.authUser !== null">   
-                <li><a>ㅁㅁㅁ님</a></li>
-                <li><a>로그아웃</a></li>
-                <li><a>마이페이지</a></li>
+                <li><router-link to="/mypage">ㅁㅁㅁ님</router-link></li>
+                <li><a v-on:click="logOut">로그아웃</a></li>
+                <li><router-link to="/pay">결제페이지</router-link></li>
             </ul>
             <ul v-if="this.$store.state.userNo === 0">   
-                <li><a>관리자</a></li>
-                <li><a>로그아웃</a></li>
-                <li><a>관리페이지</a></li>
+                <li><router-link to="/manager/productlist">관리자</router-link></li>
+                <li><a v-on:click="logOut">로그아웃</a></li>
+                <li><router-link to="/manager/productlist">관리페이지</router-link></li>
             </ul>
         </div>
         <!-- //header3 -->
@@ -51,7 +46,6 @@
 
 <script>
 import '@/assets/css/main/ss-home.css';
-import axios from 'axios';
 
 export default {
     name : 'AppHeader',
@@ -60,42 +54,22 @@ export default {
     },
     data (){
         return {
-            keyword : ""
+            keyword : ''
         }
     },
     methods : {
         search(){
             this.$emit('update',this.keyword);
-
+            this.$router.push('/category');
         },
-        setColor(){
-            console.log('setColor');
-            if( this.$store.state.productColor !== null){
-                axios({
-                    method: 'get', // put, post, delete 
-                    url: `${this.$store.state.apiBaseUrl}/home/getColor`,
-                    headers: { "Content-Type": "application/json; charset=utf-8" }, //전송타입
-                    // params: { page : this.page, keyword : keyword}, //get방식 파라미터로 값이 전달
-                    // data: , //put, post, delete 방식 자동으로 JSON으로 변환 전달
-                    responseType: 'json' //수신타입
-                }).then(response => {
-                    console.log(response.data);
-                    if(response.data.result == 'success'){
-                        console.log(response.data.apiData);
-                        
-                    } else {
-                        console.log(response.data.message);
-                    }
-                }).catch(error => {
-                    console.log(error);
-                });
-            } else {
-                console.log('컬러있음');
-            }
+        logOut(){
+            this.$store.commit('setAuthUser',null);
+            this.$store.commit('setToken', null);
+            this.$store.commit('setNowPayment', null);
         }
     },
     created (){
-        this.setColor();
+        this.keyword = '';
     }
 }
 
