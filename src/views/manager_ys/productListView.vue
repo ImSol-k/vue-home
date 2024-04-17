@@ -95,22 +95,19 @@
                 <div class="bed">
                     <h3><br>전체 상품</h3>
                     <div class="product" v-bind:key="i" v-for="(productVo, i) in productList">
-                        <img v-bind:src="`${this.$store.state.apiBaseUrl}/upload/${productVo.main_img}`" alt="">
+                        <img class="main-img" v-bind:src="`${this.$store.state.apiBaseUrl}/upload/${productVo.main_img}`" alt="">
                         <div class="product-info">
-                            <span class="product-name">{{productVo.product_name}}</span>
-                            <div class="review">
-                                <span v-for="(star, i) in 5" :key="i">
-                                <img v-if="starTotal > i" src="@/assets/images/homedeco/star.png" alt="">
-                                <img v-else src="@/assets/images/homedeco/star2.png" alt="">
-                            </span>
-                                <img src="../../assets/images/homedeco/star.png">
-                                <img src="../../assets/images/homedeco/star.png">
-                                <img src="../../assets/images/homedeco/star.png">
-                                <img src="../../assets/images/homedeco/star.png">
-                                <img src="../../assets/images/homedeco/star2.png">
+                            <span class="product-name">{{ productVo.product_name }}</span>
+                            <div class="review-manager">
+                                <span v-for="(star, i) in 5" :key="i" class="star">
+                                    <img v-if="3 > i" src="@/assets/images/homedeco/star.png" alt="">
+                                    <img v-else src="@/assets/images/homedeco/star2.png" alt="">
+                                </span>
                             </div>
-                            <span class="product-rating">{{productVo.avg_star}}</span>
-                            <button class="delete-button">삭제</button>
+                            <span class="product-rating">{{ productVo.avg_star }}</span>
+                            <form v-on:submit.prevent="remove(productVo.product_no)" action="" method="">
+                                <button class="delete-button">삭제</button>
+                            </form>
                         </div>
                         <br>
                     </div>
@@ -196,7 +193,7 @@ export default {
         toggleCategories05() {
             this.showCategories05 = !this.showCategories05; // 클릭 시 카테고리 리스트를 보이거나 숨김
         },
-        getList(){
+        getList() {
             console.log("데이터 가져오기");
 
             axios({
@@ -212,10 +209,23 @@ export default {
             }).catch(error => {
                 console.log(error);
             });
+        },
+        remove(product_no) {
+            axios({
+                method: 'delete',  //put,post,delete
+                url:  `${this.$store.state.apiBaseUrl}/home/manager/delete/` + product_no,
+                headers: { "Content-Type": "application/json; charset=utf-8" }, //전송타입
+                responseType: 'json' //수신타입
+            }).then(response => {
+                console.log(response.data); //수신데이타
+                this.productList = this.productList.filter(item => item.product_no !== product_no);
+            }).catch(error => {
+                console.log(error);
+            });
         }
 
     },
-    created(){
+    created() {
         this.getList();
     }
 };

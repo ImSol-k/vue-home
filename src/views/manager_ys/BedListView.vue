@@ -49,7 +49,7 @@
                     <h3><br>침대</h3>
 
                     <div class="product">
-                        <img src="../../assets/images/managerY/bed.jpg" alt="상품1">
+                        <img class="main-img" src="../../assets/images/managerY/bed.jpg" alt="상품1">
                         <div class="product-info">
                             <span class="product-name">어쩌구 침대</span>
                             <div class="review">
