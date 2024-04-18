@@ -57,7 +57,7 @@ const routes = [
     component: PayView
   },
   {
-    path: '/payend',
+    path: '/payend/:no',
     name: 'payend',
     component: PaymentEnd
   },

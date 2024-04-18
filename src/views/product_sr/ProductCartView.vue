@@ -153,7 +153,7 @@ export default {
             if(this.cartList[select]){
                 if(symbol == 1){
                     this.cartList[select].count++;
-                    this.totalPrice += this.cartList[select].price;
+                    this.totalPrice = this.cartList[select] ? this.totalPrice + this.cartList[select].price : this.totalPrice;
                     this.itemCount = this.cartList[select] ? this.itemCount++ : this.itemCount;
                     this.payPrice = this.cartList[select] ? this.payPrice+this.cartList[select].price* this.cartList[select].count : this.payPrice;
                 }
