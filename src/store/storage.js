@@ -10,12 +10,13 @@ export default createStore({
 
             token: "",//토큰
             userNo: 1,  //로그인한 유저번호
-            nowOrderList: [],//바로결제 장바구니리스트
+            nowOrderList: [],//장바구니리스트
             productColor: [],    //상품옵션 색상
             authUser: {},
             category: "",
             cartProductTotalcount: "",
-            cartCount: ""
+            cartCount: "",
+            hitList: ""
         };
     },
     mutations: {
@@ -26,7 +27,7 @@ export default createStore({
             state.userNo = userNo;
         },
         setNowPayment(state, nowOrderList) {
-            state.nowOrderList = nowOrderList;
+            state.nowOrderList += nowOrderList;
         },
         setColor(state, productColor) {
             state.productColor = productColor;
@@ -39,6 +40,9 @@ export default createStore({
         },
         setCartCount(state, cartCount){
             state.cartCount = cartCount;
+        },
+        setHitList(state,hitList){
+            state.hitList = hitList
         }
     },
     plugins: [

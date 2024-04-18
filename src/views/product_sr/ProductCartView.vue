@@ -82,6 +82,8 @@ export default {
     },
     methods: {
         showCartList() {
+            //결제정보 초기화
+            this.$store.state.nowOrderList = null;
             console.log(this.$store.state.userNo + ": 카트 리스트");
             axios({
                 method: 'post',
@@ -121,7 +123,6 @@ export default {
             } else {
                 console.log(select + "선택");
                 this.checkList[select] = !this.checkList[select];
-                console.log(this.checkList[select])
                 if (this.checkList[select]) {
                     this.itemCount += this.cartList[select].count;
                     this.payPrice += this.cartList[select].count * this.cartList[select].price;
@@ -157,7 +158,6 @@ export default {
             });
         },
         cartResult(symbol, select) {
-            console.log(symbol, select)
             if (symbol == 1) {
                 this.cartList[select].count++;
                 this.itemCount = this.checkList[select] ? this.itemCount+1 : this.itemCount;
@@ -189,6 +189,19 @@ export default {
             }).catch(error => {
                 console.log(error);
             });
+        },
+        cartPament(){
+            console.log("상품 구매하기");
+            if(this.itemCount < 1){
+                alert("구매할 상품을 선택해주세요");
+            } else {
+                for(let i = 0; i < this.cartList.length; i++){
+                    if(this.checkList[i]){
+                        console.log(this.cartList[i]);
+                        this.$store.commit("setNowPayment", this.cartList[i])
+                    }
+                }
+            }
         }
     },
     created() {
