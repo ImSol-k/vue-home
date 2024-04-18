@@ -382,6 +382,7 @@ export default {
         reviewAdd() {
             console.log("리뷰추가");
             console.log(this.reviewVo);
+            
             if (this.$store.state.token != null) {
                 const formData = new FormData();
                 formData.append('file', this.reviewImg);
@@ -429,11 +430,25 @@ export default {
             }).catch(error => {
                 console.log(error);
             });
+        },
+        isPurchase(){
+            axios({
+                method: 'get',
+                url: `${this.$store.state.apiBaseUrl}/home/info/isPurchase/`, //SpringBoot주소
+                headers: { "Content-Type": "application/json; charset=utf-8" },
+                responseType: 'json'
+            }).then(response => {
+                console.log(response.data);
+            }).catch(error => {
+                console.log(error);
+            });
         }
+
     },
     created() {
         this.showProduct();
         this.showReview(0);
+        this.isPurchase();
     }
 };
 </script>

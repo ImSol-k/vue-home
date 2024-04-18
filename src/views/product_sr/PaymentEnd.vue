@@ -99,10 +99,26 @@ export default {
                 console.log(error);
             });
         
+        },
+        deleteCart(){
+            console.log("결제완료 장바구니 비우기");
+            axios({
+                method: 'delete',
+                url: 'http://localhost:9090/home/payend',
+                headers: { "Content-Type": "application/json; charset=utf-8" }, 
+                data: this.$store.state.nowOrderList, 
+                responseType: 'json' 
+            }).then(response => {
+                console.log(response.data); 
+
+            }).catch(error => {
+                console.log(error);
+            });
         }
     },
     created() { 
         this.orderInfo();
+        this.deleteCart();
     }
 };
 </script>
