@@ -97,12 +97,12 @@
 							상품 구매 No{{ v.orderNo }} <br>
 							구매일자 {{ v.orderDate }}
 							<div>
-								<button v-on:click.prevent="showList(v.orderNo)">구매리스트보기</button>
+								<button v-on:click.prevent="showList(i)">구매리스트보기</button>
 								<button>완료</button>
 							</div>
-							<table class="ppp" v-bind:key="i" v-for="(v, i) in ing" v-show="isShow">
+							<table class="ppp" >
 
-								<tbody>
+								<tbody v-bind:key="i" v-for="(v, i) in ing" v-show="isShow">
 									<tr>
 										<td class="img" rowspan="3"><img class="img"
 												v-bind:src="`${this.$store.state.apiBaseUrl}/upload/${v.mainImage}`"
