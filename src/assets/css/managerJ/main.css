@@ -31,6 +31,7 @@ a{
 #graph{
     margin-bottom: 20px;
     width: 920px;
+    height: 500px;
 }
 
 
@@ -61,11 +62,32 @@ a{
     margin-bottom: 5px;
     border: none;
     border-collapse: collapse;
+    border-radius: 10px;
+    border-style: hidden;
+    box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.1);
+}
+
+.ppp tr{
+    border: none;
 }
 
 .ppp tr>td{
     border: none;
 }
+
+.bbb{
+    border: none;
+    border-radius: 10px;
+    border-style: hidden;
+    box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.1);
+  
+  
+}
+
+.bbb tr{
+    border: none;
+}
+
 .bbb tr>td{
     border: none;
 }
@@ -92,6 +114,8 @@ a{
 .img{
     width: 100px;
     height: 100px;
+    padding-left: 5px;
+    padding-top: 2px;
 }
 
 .nick{
@@ -102,6 +126,14 @@ a{
 .nick2{
     vertical-align: bottom;
     text-align: center;
+}
+
+.nick2>button{
+    background-color: #6bcbff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    height: 30px;
 }
 
 .state{
@@ -130,7 +162,7 @@ a{
 #eee{
     font-size: 35px;
     font-weight: bold;
-    padding-top: 40px;
+    padding-top: 30px;
     margin-bottom: 20px;
     padding-left: 30px;
 }
@@ -153,10 +185,19 @@ a{
     float: left;
 }
 
+.shvdl{
+    margin-top: 25px;
+}
+
 #aside {width: 250px; height: 60px; line-height: 60px; font-size: 20px; font-weight: bold; text-align: center; margin-left: 25px; font-size: 25px;}
 
 #size{
     width: 960px;
+}
+
+.ran{
+    width: 920px;
+    height: 120px;
 }
 
 #ppgg{
@@ -169,6 +210,10 @@ a{
     margin-left: 5px;
 }
 
+.outline{
+    margin-top: 30px;
+}
+
 .vy{
     margin-left: 20px;
     width: 900px;
@@ -176,8 +221,35 @@ a{
     text-align: center;
 }
 
+.vy tr>td{
+    height: 50px;
+}
+
 .whwjd{
     width: 120px;
     background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"><line x1="0" y1="0" x2="100%" y2="100%" stroke="gray" /></svg>');
+    background-color: rgba(75, 192, 192, 0.2);
 }
 
+.bol{
+    font-weight: bold;
+}
+
+.akwlakr{
+    font-weight: bold;
+    background-color: rgba(75, 192, 192, 0.2);
+}
+
+#eee2{
+    font-size: 35px;
+    padding-left: 5px
+}
+
+.f-size{
+    font-size: 30px;
+    padding-left: 35px;
+}
+.f-size>span{
+    font-weight: bold;
+    font-size: 38px;
+}

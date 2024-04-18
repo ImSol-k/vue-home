@@ -85,7 +85,7 @@
 		<!-- //contentNav -->
 
 		<div id="contentMain" class="">
-			<div id="graph">
+			<div id="graph2">
 				<h3 id="eee">주문현황</h3>
 			</div>
 			<div class="clearfix" id="size">
