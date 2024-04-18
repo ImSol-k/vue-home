@@ -197,16 +197,6 @@ header .ss-header3 img {
     cursor: pointer;
 }
 
-header .ss-header3 #ss-red {
-    /* background-color: white; */
-    width: 18px;
-    padding: 0;
-    margin-left: -32px;
-    display: inline;
-    position: relative;
-    z-index: 9999;
-}
-
 /* 로그인쪽 a태그  */
 header .ss-header3 ul {
     height: 30px;
@@ -234,8 +224,25 @@ header .ss-header3 ul>li:last-child a {
     border: none;
 }
 
-/****************************************************************************/
+header #headerCartCount {
+    background-color: red;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    overflow: hidden;
+    top: 4px;
+    right: 0;
+    margin-left: -212px;
+    color: white;
+}
 
+/****************************************************************************/
 
 
 /* nav */
