@@ -30,6 +30,7 @@ a{
 
 #graph{
     margin-bottom: 20px;
+    width: 920px;
 }
 
 
@@ -123,6 +124,7 @@ a{
 
 #chart{
     width: 300px;
+    height: 300px;
 }
 
 #eee{
@@ -156,3 +158,26 @@ a{
 #size{
     width: 960px;
 }
+
+#ppgg{
+    float: left;
+}
+
+#chart2{
+    width: 600px;
+    height: 300px;
+    margin-left: 5px;
+}
+
+.vy{
+    margin-left: 20px;
+    width: 900px;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+.whwjd{
+    width: 120px;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"><line x1="0" y1="0" x2="100%" y2="100%" stroke="gray" /></svg>');
+}
+

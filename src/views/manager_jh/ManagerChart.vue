@@ -82,23 +82,95 @@
 
         <div id="contentMain">
             <div id="graph">
-                <h3 id="eee">통계</h3>
-                <div id="line">
-                    
 
-                    <canvas id="chart" ref="MyChart" />
+                <div class="clearfix" id="line">
+                    <h3>통계</h3>
+                    <div id="ppgg">
+
+                        <canvas id="chart" ref="MyChart" />
+                    </div>
                     <div id="pp">
-                    <h3>월별 판매표</h3>
 
-                    <canvas id="chart" ref="MyChart2" />
 
+                        <canvas id="chart2" ref="MyChart2" />
+
+                    </div>
                 </div>
-                </div>
-                
+
+            </div>
+            <div>
+                <table class="vy">
+                    <thead>
+                        <tr>
+                            <th class="whwjd" rowspan="2"></th>
+                            <th colspan="2">침대</th>
+                            <th colspan="2">쇼파</th>
+                            <th colspan="2">테이블</th>
+                            <th colspan="2">옷장</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>판매량|판매금액</td>
+                            <td>판매량</td>
+                            <td>판매금액</td>
+                            <td>판매량</td>
+                            <td>판매금액</td>
+                            <td>판매량</td>
+                            <td>판매금액</td>
+                            <td>판매량</td>
+                            <td>판매금액</td>
+                        </tr>
+                        <tr>
+                            <td>당월</td>
+                            <td>{{ Number(this.bedMonthC).toLocaleString('ko-KR') }}</td>
+                            <td>{{ Number(this.bedMonthM).toLocaleString('ko-KR') }}</td>
+                            <td>{{ Number(this.shopaMonthC).toLocaleString('ko-KR') }}</td>
+                            <td>{{ Number(this.shopaMonthM).toLocaleString('ko-KR') }}</td>
+                            <td>{{ Number(this.tableMonthC).toLocaleString('ko-KR') }}</td>
+                            <td>{{ Number(this.tableMonthM).toLocaleString('ko-KR') }}</td>
+                            <td>{{ Number(this.hangerMonthC).toLocaleString('ko-KR') }}</td>
+                            <td>{{ Number(this.hangerMonthM).toLocaleString('ko-KR') }}</td>
+                        </tr>
+                        <tr>
+                            <td>전월</td>
+                            <td>{{ Number(this.bedMonthC2).toLocaleString('ko-KR') }}</td>
+                            <td>{{ Number(this.bedMonthM2).toLocaleString('ko-KR') }}</td>
+                            <td>{{ Number(this.shopaMonthC2).toLocaleString('ko-KR') }}</td>
+                            <td>{{ Number(this.shopaMonthM2).toLocaleString('ko-KR') }}</td>
+                            <td>{{ Number(this.tableMonthC2).toLocaleString('ko-KR') }}</td>
+                            <td>{{ Number(this.tableMonthM2).toLocaleString('ko-KR') }}</td>
+                            <td>{{ Number(this.hangerMonthC2).toLocaleString('ko-KR') }}</td>
+                            <td>{{ Number(this.hangerMonthM2).toLocaleString('ko-KR') }}</td>
+                        </tr>
+                        <tr>
+                            <td>전전월</td>
+                            <td>{{ Number(this.bedMonthC3).toLocaleString('ko-KR') }}</td>
+                            <td>{{ Number(this.bedMonthM3).toLocaleString('ko-KR') }}</td>
+                            <td>{{ Number(this.shopaMonthC3).toLocaleString('ko-KR') }}</td>
+                            <td>{{ Number(this.shopaMonthM3).toLocaleString('ko-KR') }}</td>
+                            <td>{{ Number(this.tableMonthC3).toLocaleString('ko-KR') }}</td>
+                            <td>{{ Number(this.tableMonthM3).toLocaleString('ko-KR') }}</td>
+                            <td>{{ Number(this.hangerMonthC3).toLocaleString('ko-KR') }}</td>
+                            <td>{{ Number(this.hangerMonthM3).toLocaleString('ko-KR') }}</td>
+                        </tr>
+                        <tr>
+                            <td>합계</td>
+                            <td>{{ Number(this.bedMonthC + this.bedMonthC2 + this.bedMonthC3).toLocaleString('ko-KR') }}</td>
+                            <td>{{ Number(this.bedMonthM + this.bedMonthM2 + this.bedMonthM3).toLocaleString('ko-KR') }}</td>
+                            <td>{{ Number(this.shopaMonthC + this.shopaMonthC2 + this.shopaMonthC3).toLocaleString('ko-KR') }}</td>
+                            <td>{{ Number(this.shopaMonthM + this.shopaMonthM2 + this.shopaMonthM3).toLocaleString('ko-KR') }}</td>
+                            <td>{{ Number(this.tableMonthC + this.tableMonthC2 + this.tableMonthC3).toLocaleString('ko-KR') }}</td>
+                            <td>{{ Number(this.tableMonthM + this.tableMonthM2 + this.tableMonthM3).toLocaleString('ko-KR') }}</td>
+                            <td>{{ Number(this.hangerMonthC + this.hangerMonthC2 + this.hangerMonthC3).toLocaleString('ko-KR') }}</td>
+                            <td>{{ Number(this.hangerMonthM + this.hangerMonthM2 + this.hangerMonthM3).toLocaleString('ko-KR') }}</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
             <div class="clearfix">
 
-                
+
 
             </div>
         </div>
@@ -141,7 +213,35 @@ export default {
             cprice: "",
             tprice: "",
             ccount: "",
-            tcount: ""
+            tcount: "",
+            todaybed: "",
+            todayshopa: "",
+            todaytable: "",
+            todayhanger: "",
+            bedMonthC: "",
+            bedMonthM: "",
+            bedMonthC2: "",
+            bedMonthM2: "",
+            bedMonthC3: "",
+            bedMonthM3: "",
+            shopaMonthC: "",
+            shopaMonthM: "",
+            shopaMonthC2: "",
+            shopaMonthM2: "",
+            shopaMonthC3: "",
+            shopaMonthM3: "",
+            tableMonthC: "",
+            tableMonthM: "",
+            tableMonthC2: "",
+            tableMonthM2: "",
+            tableMonthC3: "",
+            tableMonthM3: "",
+            hangerMonthC: "",
+            hangerMonthM: "",
+            hangerMonthC2: "",
+            hangerMonthM2: "",
+            hangerMonthC3: "",
+            hangerMonthM3: "",
         }
     },
 
@@ -192,11 +292,35 @@ export default {
                 this.tprice = response.data.tprice;
                 this.ccount = response.data.ccount;
                 this.tcount = response.data.tcount;
-                console.log(this.cprice)
-                console.log(this.tprice)
-                console.log(this.ccount)
-                console.log(this.tcount)
-                console.log(this.allbed)
+                this.todaybed = response.data.todaybed;
+                this.todayshopa = response.data.todayshopa;
+                this.todaytable = response.data.todaytable;
+                this.todayhanger = response.data.todayhanger;
+                this.bedMonthC = response.data.bedMonthC;
+                this.bedMonthM = response.data.bedMonthM;
+                this.bedMonthC2 = response.data.bedMonthC2;
+                this.bedMonthM2 = response.data.bedMonthM2;
+                this.bedMonthC3 = response.data.bedMonthC3;
+                this.bedMonthM3 = response.data.bedMonthM3;
+                this.shopaMonthC = response.data.shopaMonthC;
+                this.shopaMonthM = response.data.shopaMonthM;
+                this.shopaMonthC2 = response.data.shopaMonthC2;
+                this.shopaMonthM2 = response.data.shopaMonthM2;
+                this.shopaMonthC3 = response.data.shopaMonthC3;
+                this.shopaMonthM3 = response.data.shopaMonthM3;
+                this.tableMonthC = response.data.tableMonthC;
+                this.tableMonthM = response.data.tableMonthM;
+                this.tableMonthC2 = response.data.tableMonthC2;
+                this.tableMonthM2 = response.data.tableMonthM2;
+                this.tableMonthC3 = response.data.tableMonthC3;
+                this.tableMonthM3 = response.data.tableMonthM3;
+                this.hangerMonthC = response.data.hangerMonthC;
+                this.hangerMonthM = response.data.hangerMonthM;
+                this.hangerMonthC2 = response.data.hangerMonthC2;
+                this.hangerMonthM2 = response.data.hangerMonthM2;
+                this.hangerMonthC3 = response.data.hangerMonthC3;
+                this.hangerMonthM3 = response.data.hangerMonthM3;
+
                 //window.location.reload() -> 새로고침 지금은 소용이 없다...
 
                 //이건 원형
@@ -204,7 +328,7 @@ export default {
 
                     type: 'doughnut',
                     data: {
-                        labels: ['총침대', '총쇼파', '총테이블', '옷장'],
+                        labels: ['총침대', '총쇼파', '총테이블', '총옷장'],
                         datasets: [{
                             dataIndex: true,
                             display: true,
@@ -248,13 +372,13 @@ export default {
                 //이건 가로
                 new Chart(this.$refs.MyChart2, {
 
-                    type: 'line',
+                    type: 'bar',
                     data: {
-                        labels: ['총침대', '총쇼파', '총테이블', '옷장'],
+                        labels: ['침대', '쇼파', '테이블', '옷장'],
                         datasets: [{
                             dataIndex: true,
                             display: true,
-                            data: [this.allbed, this.allshopa, this.alltable, this.allhanger],
+                            data: [this.todaybed, this.todayshopa, this.todaytable, this.todayhanger],
                             datalabels: {
                                 color: '#000000'
                             },
@@ -278,15 +402,15 @@ export default {
                     },
 
                     options: {
-                        indexAxis: 'y',
-                        responsive: true,
+
+                        responsive: false,
                         plugins: {
                             datalabels: {
                                 color: '#000000'
                             },
                             title: {
                                 display: true,
-                                text: '총 판매비율'
+                                text: '금일 판매비율'
                             },
                         }
                     }
