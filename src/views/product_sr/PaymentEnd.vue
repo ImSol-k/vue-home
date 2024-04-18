@@ -71,11 +71,11 @@ export default {
     methods: {
         orderInfo(){
             console.log("주문완료페이지");
-            const urlParams = new URL(location.href).searchParams;
+            // const urlParams = new URL(location.href).searchParams;
 
-            const no = urlParams.get('no');
-            this.no = no
-            console.log(no);
+            // const no = urlParams.get('');
+            this.no = this.$route.params.no;
+            console.log(this.no);
             axios({
                 
                 method: 'post', // put, post, delete 
