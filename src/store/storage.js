@@ -51,7 +51,7 @@ export default createStore({
     },
     plugins: [
         createPersistedState({
-            paths: ['token','authUser', 'nowOrderList']
+            paths: ['token','authUser', 'nowOrderList', 'totalPrice']
         })
     ]
 });
