@@ -14,6 +14,7 @@ export default createStore({
             productColor: [],    //상품옵션 색상
             authUser: "",
             category: "",
+            cartProductTotalcount: "",
             cartCount: ""
         };
     },
