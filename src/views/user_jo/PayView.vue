@@ -142,35 +142,29 @@ export default {
         },
         completePayment() {
             if (this.agreed) {
+                let tmp ={
+                    userNo: this.userNo,
+                    orderList:  this.$store.state.nowOrderList
+                }
+                console.log(tmp);
                 axios({
                     method: 'post',
                     url: `${this.$store.state.apiBaseUrl}/home/pay/createOrder`,
                     headers: { "Content-Type": "application/json; charset=utf-8" },
-                    data: {
-                        
-                        userNo: this.userNo,
-                        shippingInfo: this.shippingInfo,
-                        customerInfo: this.customerInfo,
-                        orderList: this.products.map(product => {
-                            return {
-                                product_no: product.product_no,
-                                count: product.count,
-                                color_no: product.color_no
-                            };
-                        }),
-                        totalPayment: this.totalPayment
-                    },
+                    data: tmp,
                     responseType: 'json'
 
                 }).then(response => {
                     if(response)
                     console.log("결제 정보 전송 성공:", response.data);
+                    this.createOrder = response.data.apiData;
 
                     alert("주문이 완료되었습니다.");
-                    this.$router.push({ name: 'payend' });
+
+                    this.$router.push("/payend/"+this.createOrder);
 
                 }).catch(error => {
-                    console.log("결제 정보 전송 실패:", error);
+                    console.log(error);
                 });
             } else {
                 alert("결제에 동의해주세요!");
