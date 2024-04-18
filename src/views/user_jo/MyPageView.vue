@@ -65,8 +65,21 @@ export default {
                 responseType: 'json'
             }).then(response => {
                 this.userData = response.data; // 수정된 부분
-               
-                
+
+
+            }).catch(error => {
+                console.log(error);
+            });
+        },
+        fetchData2() {
+            axios({
+                method: 'get',
+                url: `${this.$store.state.apiBaseUrl}/home/mypage/orders?userNo=${this.$store.state.userNo}`, // 수정된 부분
+                headers: { "Content-Type": "application/json; charset=utf-8" },
+                responseType: 'json'
+            }).then(response => {
+                this.orderHistory = response.data;
+
             }).catch(error => {
                 console.log(error);
             });
@@ -74,6 +87,7 @@ export default {
     },
     created() {
         this.fetchData();
+        this.fetchData2();
     }
 };
 </script>
