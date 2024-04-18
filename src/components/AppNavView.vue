@@ -70,39 +70,6 @@ import '@/assets/css/main/ss-home.css';
 import '@/assets/css/main/ss-main.css';
 import axios from 'axios';
 
-document.addEventListener('DOMContentLoaded', ()=>{
-    let interval = window.setInterval(rollingCallback, 3000);
-    document.querySelector('.rollingbanner').addEventListener('mouseover',function(){
-        window.clearInterval(interval);
-    })
-    document.querySelector('.rollingbanner').addEventListener('mouseout',function(){
-        interval = window.setInterval(rollingCallback, 3000);
-    })
-})
-
-function rollingCallback(){
-    //.prev 클래스 삭제
-    document.querySelector('.rollingbanner .prev').classList.remove('prev');
-
-    //.current -> .prev
-    let current = document.querySelector('.rollingbanner .current');
-    current.classList.remove('current');
-    current.classList.add('prev');
-
-    //.next -> .current
-    let next = document.querySelector('.rollingbanner .next');
-    //다음 목록 요소가 널인지 체크
-    if(next.nextElementSibling == null){
-        document.querySelector('.rollingbanner ul li:first-child').classList.add('next');
-    }else{
-        //목록 처음 요소를 다음 요소로 선택
-        next.nextElementSibling.classList.add('next');
-    }
-    next.classList.remove('next');
-    next.classList.add('current');
-}
-
-
 export default {
     name : 'AppNavView',
     components : {},
@@ -135,8 +102,7 @@ export default {
                 this.$router.push('/category');
             } else {
                 this.$emit('list',category);
-            }
-            
+            }   
         },
         getHitList(){
             if(this.$store.state.hitList == ""){
@@ -167,14 +133,40 @@ export default {
             } else {
                 // console.log(this.hitList);
             }
+        },
+        rollingCallback(){
+            //.prev 클래스 삭제
+            document.querySelector('.rollingbanner .prev').classList.remove('prev');
+
+            //.current -> .prev
+            let current = document.querySelector('.rollingbanner .current');
+            current.classList.remove('current');
+            current.classList.add('prev');
+
+            //.next -> .current
+            let next = document.querySelector('.rollingbanner .next');
+            //다음 목록 요소가 널인지 체크
+            if(next.nextElementSibling == null){
+                document.querySelector('.rollingbanner ul li:first-child').classList.add('next');
+            }else{
+                //목록 처음 요소를 다음 요소로 선택
+                next.nextElementSibling.classList.add('next');
+            }
+            next.classList.remove('next');
+            next.classList.add('current');
         }
-        
-
-
     },
     created(){
         this.getHitList();
-        
+        document.addEventListener('DOMContentLoaded', ()=>{
+            let interval = window.setInterval(this.rollingCallback, 3000);
+            document.querySelector('.rollingbanner').addEventListener('mouseover',function(){
+                window.clearInterval(interval);
+            })
+            document.querySelector('.rollingbanner').addEventListener('mouseout',function(){
+                interval = window.setInterval(this.rollingCallback, 3000);
+            })
+        })
     }
 }
 </script>
