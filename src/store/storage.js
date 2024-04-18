@@ -10,7 +10,7 @@ export default createStore({
 
             token: "",//토큰
             userNo: 1,  //로그인한 유저번호
-            nowOrderList: [],//장바구니리스트
+            nowOrderList: "",//장바구니리스트
             productColor: [],    //상품옵션 색상
             authUser: {},
             category: "",
@@ -27,7 +27,7 @@ export default createStore({
             state.userNo = userNo;
         },
         setNowPayment(state, nowOrderList) {
-            state.nowOrderList += nowOrderList;
+            state.nowOrderList = nowOrderList;
         },
         setColor(state, productColor) {
             state.productColor = productColor;
@@ -47,7 +47,7 @@ export default createStore({
     },
     plugins: [
         createPersistedState({
-            paths: ['token','authUser']
+            paths: ['token','authUser', 'nowOrderList']
         })
     ]
 });

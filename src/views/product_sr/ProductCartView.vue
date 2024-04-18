@@ -195,12 +195,15 @@ export default {
             if(this.itemCount < 1){
                 alert("구매할 상품을 선택해주세요");
             } else {
+                let temp = [];
                 for(let i = 0; i < this.cartList.length; i++){
                     if(this.checkList[i]){
                         console.log(this.cartList[i]);
-                        this.$store.commit("setNowPayment", this.cartList[i])
+                        temp.push(this.cartList[i]);
                     }
                 }
+                // console.log(temp);
+                this.$store.commit("setNowPayment", temp);
             }
         }
     },
