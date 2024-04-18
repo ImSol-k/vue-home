@@ -43,7 +43,9 @@ export default {
                 id: "",
                 password: ""
             },
-            loginFailed: false // 로그인 실패 여부를 나타내는 변수
+            loginFailed: false, // 로그인 실패 여부를 나타내는 변수,
+            user_no: '',
+            cartCount: ''
         };
     },
     methods: {
@@ -83,13 +85,13 @@ export default {
                     console.log("토큰 값:", this.$store.state.token);
 
                     // 로그인 성공 시 메인 화면으로 이동
+                    this.cart(authUser.userNo);
                     this.$router.push("/");
                 } else {
                     // 로그인 실패 처리
                     this.loginFailed = true;
                 }
             }).catch(error => {
-
                 // 로그인 실패 시 처리
                 console.error('로그인 실패:', error);
                 this.loginFailed = true;
@@ -104,6 +106,21 @@ export default {
             });
 
             console.log("로그인 시도:", this.loginVo.id, this.loginVo.password);
+        },
+        cart(userNo) {
+            axios({
+                method: 'get',  //put,post,delete
+                url: `${this.$store.state.apiBaseUrl}/home/cartcount`,
+                headers: { "Content-Type": "application/json; charset=utf-8", "Authorization": "Bearer " + this.$store.state.token }, //전송타입
+                params: { user_no: userNo },
+                responseType: 'json' //수신타입
+            }).then(response => {
+                console.log(response.data.apiData); //수신데이타
+                this.cartCount = response.data.apiData;
+                this.$store.commit("setCartCount", this.cartCount);
+            }).catch(error => {
+                console.log(error);
+            });
         }
     },
 };

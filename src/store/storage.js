@@ -13,7 +13,8 @@ export default createStore({
             nowOrderList: [],//바로결제 장바구니리스트
             productColor: [],    //상품옵션 색상
             authUser: "",
-            category: ""
+            category: "",
+            cartCount: ""
         };
     },
     mutations: {
@@ -34,6 +35,9 @@ export default createStore({
         },
         setCategory(state, category){
             state.category = category;
+        },
+        setCartCount(state, cartCount){
+            state.cartCount = cartCount;
         }
     },
     plugins: [
