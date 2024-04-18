@@ -18,7 +18,7 @@
                         v-on:click="select(i)">
                     <img src="@/assets/images/product/test.png" alt="">
                     <div class="cartObjHeader">
-                        <span class="deleteCart">×</span>
+                        <span class="deleteCart" v-on:click.prevent="cartDelete(cartList[i].cart, i)">×</span>
                         <p>{{ cartList[i].product }}({{ cartList[i].color }})</p>
                         <span class="listPreice">{{ Number(cartList[i].price).toLocaleString('ko-KR') }}원</span>
                         
@@ -85,7 +85,8 @@ export default {
             axios({
                 method: 'post',
                 url: `${this.$store.state.apiBaseUrl}/home/info/usercart`, //SpringBoot주소
-                headers: { "Content-Type": "application/json; charset=utf-8","Authorization": "Bearer " + this.$store.state.token  },
+                headers: { "Content-Type": "application/json; charset=utf-8",
+                           "Authorization": "Bearer " + this.$store.state.token  },
                 params: { userNo: this.$store.state.userNo },
                 responseType: 'json'
             }).then(response => {
@@ -158,8 +159,25 @@ export default {
             }).catch(error => {
                 console.log(error);
             });
+        },
+        cartDelete(no, i){
+            console.log("장바구니 제품 삭제"+ no);
+            axios({
+                method: 'delete',
+                url: `${this.$store.state.apiBaseUrl}/home/info/cartdelete`,
+                headers: { "Content-Type": "application/json; charset=utf-8",
+                           "Authorization": "Bearer " + this.$store.state.token},
+                params: {no: no},
+                responseType: 'json'
+            }).then(response => {
+                console.log(response.data);
+                if(response.data.result == "success"){
+                    this.cartList.splice(i, 1);
+                }
+            }).catch(error => {
+                console.log(error);
+            });
         }
-
     },
     created() {
         this.showCartList();

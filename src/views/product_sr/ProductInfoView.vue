@@ -91,8 +91,8 @@
                                     <img v-else src="@/assets/images/homedeco/star2.png" alt="">
                                 </span>
                                 <span class="reviewDate">{{ showList[i].regDate }}</span>
-                                <span class="userReviewManager">
-                                    <button>삭제</button>
+                                <span class="userReviewManager" v-if="showList[i].userNo == this.$store.state.userNo">
+                                    <button type="" v-on:click.prevent="reviewDelete(showList[i].reviewNo, i)">삭제</button>
                                     <button>수정</button>
                                 </span>
                             </div>
@@ -210,7 +210,7 @@ export default {
                 imgList: []
             },
             productCarts: [],
-            productColor: this.$store.state.productColor,
+            productColor: [],
             showPrice: "",
             priceTotal: 0,
             showPriceTotal: 0,
@@ -242,6 +242,19 @@ export default {
                 console.log(response); //수신데이터
                 this.productVo = response.data.apiData;
                 this.showPrice = Number(this.productVo.price).toLocaleString('ko-KR');
+            }).catch(error => {
+                console.log(error);
+            });
+
+            //옵션색
+            axios({
+                method: 'post',
+                url: `${this.$store.state.apiBaseUrl}/home/info/color`,
+                headers: { "Content-Type": "application/json; charset=utf-8" },
+                responseType: 'json'
+            }).then(response => {
+                console.log(response); //수신데이터
+                this.productColor = response.data.apiData;
             }).catch(error => {
                 console.log(error);
             });
@@ -337,6 +350,12 @@ export default {
             console.log("바로구매");
             this.$store.commit("setNowPayment", this.productCarts);
             console.log(this.$store.state.nowOrderList);
+            if (this.$store.state.nowOrderList != 0) {
+                this.$router.push("/pay");
+            } else {
+                alert("상품을 선택해 주세요");
+            }
+
         },
         //리뷰관련 메소드 ********************************************
         reviewStar(star) {
@@ -387,6 +406,24 @@ export default {
             } else {
                 alert("로그인후 작성 가능");
             }
+        },
+        reviewDelete(no, i) {
+            console.log("리뷰삭제"+ no);
+            axios({
+                method: 'delete',
+                url: `${this.$store.state.apiBaseUrl}/home/info/delete`, //SpringBoot주소
+                headers: { "Content-Type": "application/json; charset=utf-8" },
+                params: {no: no},
+                responseType: 'json'
+            }).then(response => {
+                console.log(response);
+                if(response.data.result == "success"){
+                    alert("삭제되었습니다");
+                    this.reviewList.slice(i, 1);
+                }
+            }).catch(error => {
+                console.log(error);
+            });
         }
     },
     created() {
