@@ -5,7 +5,7 @@
 	<AppHeader @update="catchKeyword"/>
 	<!-- //header 부분 -->
 
-	<AppNavView/>
+	<AppNavView />
     <!-- //nav 부분 -->
 
 	<div class="ss-category clearfix">
@@ -141,6 +141,8 @@ export default {
         mouseleave(){ 
 			this.show = false;
 		},
+
+        // 사이드 보여주기
 		toggleCategories() {
             this.showCategories = !this.showCategories; // 클릭 시 카테고리 리스트를 보이거나 숨김
         },
@@ -153,36 +155,17 @@ export default {
         toggleCategories04() {
             this.showCategories04 = !this.showCategories04; // 클릭 시 카테고리 리스트를 보이거나 숨김
         },
-        
+        ///////////////////////////////////////
 
         catchKeyword(keyword){
-            this.keyword = keyword
-            if(typeof keyword !== 'undefined'){
-                axios({
-                    method: 'get', // put, post, delete 
-                    url: `${this.$store.state.apiBaseUrl}/home/main/category`,
-                    headers: { "Content-Type": "application/json; charset=utf-8" }, //전송타입
-                    params: {keyword : keyword}, //get방식 파라미터로 값이 전달
-                    // data: , //put, post, delete 방식 자동으로 JSON으로 변환 전달
-                    responseType: 'json' //수신타입
-                }).then(response => {
-                    if(response.data.result == 'success'){
-                        this.list = null;
-                        this.list = response.data.apiData;
-                    } else {
-                        alert("상품 준비중입니다.")
-                        this.$router.push('/category');
-                    }
-                }).catch(error => {
-                    console.log(error);
-                });
-            } else {
-                this.showProductList();
+            keyword = this.keyword  
+            if(typeof keyword !== 'undefined' ){
+                this.list = this.$store.state.category;
                 // axios({
                 //     method: 'get', // put, post, delete 
-                //     url: `${this.$store.state.apiBaseUrl}/home/main/nocategory`,
+                //     url: `${this.$store.state.apiBaseUrl}/home/main/category`,
                 //     headers: { "Content-Type": "application/json; charset=utf-8" }, //전송타입
-                //     // params: , //get방식 파라미터로 값이 전달
+                //     params: {keyword : keyword}, //get방식 파라미터로 값이 전달
                 //     // data: , //put, post, delete 방식 자동으로 JSON으로 변환 전달
                 //     responseType: 'json' //수신타입
                 // }).then(response => {
@@ -196,6 +179,25 @@ export default {
                 // }).catch(error => {
                 //     console.log(error);
                 // });
+            } else {
+                axios({
+                    method: 'get', // put, post, delete 
+                    url: `${this.$store.state.apiBaseUrl}/home/main/nocategory`,
+                    headers: { "Content-Type": "application/json; charset=utf-8" }, //전송타입
+                    // params: , //get방식 파라미터로 값이 전달
+                    // data: , //put, post, delete 방식 자동으로 JSON으로 변환 전달
+                    responseType: 'json' //수신타입
+                }).then(response => {
+                    if(response.data.result == 'success'){
+                        this.list = null;
+                        this.list = response.data.apiData;
+                    } else {
+                        alert("상품 준비중입니다.")
+                        this.$router.push('/category');
+                    }
+                }).catch(error => {
+                    console.log(error);
+                });
             }
         },
         showProductList(category){
@@ -213,33 +215,21 @@ export default {
                         this.list = response.data.apiData;
                     } else {
                         alert("상품 준비중입니다.")
-                        this.$router.push('/category');
+                        // this.$router.push('/category');
                     }
                 }).catch(error => {
                     console.log(error);
                 });
         },
 
+
+
+        //////////////////////////////////// 버튼 ///////////////////
         changeSort(sortType) {
             document.getElementById('sortButton').innerText = sortType;
             let word = this.list[0].category
             console.log(word);
-            this.getList(word,sortType);
-        },
-        getList(word,sortType){
-            axios({
-                    method: 'get', // put, post, delete 
-                    url: `${this.$store.state.apiBaseUrl}/home/main/sorttype`,
-                    headers: { "Content-Type": "application/json; charset=utf-8" }, //전송타입
-                    params: {word:word , sort : sortType}, //get방식 파라미터로 값이 전달
-                    // data: , //put, post, delete 방식 자동으로 JSON으로 변환 전달
-                    responseType: 'json' //수신타입
-                }).then(response => {
-                    console.log(response.data);
-                }).catch(error => {
-                    console.log(error);
-                });
-        }  
+        }
 	},
     mounted(){
         document.getElementById('sortButton').innerText = '최신순';
@@ -253,8 +243,9 @@ export default {
     },
 	
 	created(){
+        console.log(this.$store.state.category);
+        this.toggleCategories();
         this.catchKeyword();
-        
     }
 };
 </script>
