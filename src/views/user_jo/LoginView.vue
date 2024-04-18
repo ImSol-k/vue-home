@@ -75,7 +75,7 @@ export default {
                     const token = response.headers.authorization.split(" ")[1]
 
                     //vuex저장
-                    //this.$store.commit("setAuthUser", authUser);
+                    this.$store.commit("setAuthUser", authUser);
                     this.$store.commit("setToken", token);
 
                     console.log(authUser);

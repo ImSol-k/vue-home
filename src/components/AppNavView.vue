@@ -99,6 +99,7 @@ export default {
             this.show = false;
         },
         showProductList(category){
+            console.log(category);
             axios({
                     method: 'get', // put, post, delete 
                     url: `${this.$store.state.apiBaseUrl}/home/main/category`,
@@ -108,16 +109,18 @@ export default {
                     responseType: 'json' //수신타입
                 }).then(response => {
                     if(response.data.result == 'success'){
-                        this.$router.push('/category')
-                        this.list = null;
+                        
+                        // this.list = null;
                         this.list = response.data.apiData;
+                        
                     } else {
-                        this.$router.push('/category');
+                        // this.$router.push('/category');
                         alert("상품 준비중입니다.")
                     }
                 }).catch(error => {
                     console.log(error);
                 });
+            
         },
 
 
