@@ -68,7 +68,6 @@
 <script>
 import '@/assets/css/main/ss-home.css';
 import '@/assets/css/main/ss-main.css';
-// import axios from 'axios';
 
 export default {
     name : 'AppNavView',
@@ -99,37 +98,13 @@ export default {
             this.show = false;
         },
         showProductList(category){ 
-            this.$emit('list',category);
-            this.$router.push('/category')
-            // axios({
-            //         method: 'get', // put, post, delete 
-            //         url: `${this.$store.state.apiBaseUrl}/home/main/category`,
-            //         headers: { "Content-Type": "application/json; charset=utf-8" }, //전송타입
-            //         params: {keyword : category}, //get방식 파라미터로 값이 전달
-            //         // data: , //put, post, delete 방식 자동으로 JSON으로 변환 전달
-            //         responseType: 'json' //수신타입
-            //     }).then(response => {
-            //         console.log(response.data.apiData);
-            //         // console.log(this.$route.path);
-            //         if(response.data.result == 'success'){
-            //             let list = response.data.apiData;
-            //             this.$store.commit('setCategory',null);
-            //             this.$store.commit('setCategory',list);
-            //             // if(this.$route.path !== '/category'){
-            //             //     this.$store.commit('setCategory',list);
-                            
-            //             //     this.$router.push('/category');
-            //             // } else {
-            //             //     this.$store.commit('setCategory',null);
-            //             //     this.$store.commit('setCategory',list);
-            //             // }
-            //         } else {
-            //             alert("상품 준비중입니다.");
-            //         }
-                    
-            //     }).catch(error => {
-            //         console.log(error);
-            //     });
+            console.log(category);
+            this.$store.commit('setCategory',category);
+            if(this.$route.path != '/category'){
+                this.$router.push('/category');
+            } else {
+                this.$emit('list',category);
+            }
             
         },
 
