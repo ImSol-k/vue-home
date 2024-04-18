@@ -12,7 +12,7 @@ export default createStore({
             userNo: 1,  //로그인한 유저번호
             nowOrderList: [],//바로결제 장바구니리스트
             productColor: [],    //상품옵션 색상
-            authUser: "",
+            authUser: {},
             category: "",
             cartProductTotalcount: "",
             cartCount: ""
@@ -43,7 +43,7 @@ export default createStore({
     },
     plugins: [
         createPersistedState({
-            paths: ['token']
+            paths: ['token','authUser']
         })
     ]
 });

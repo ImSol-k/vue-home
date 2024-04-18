@@ -21,7 +21,7 @@
                         <span class="deleteCart" v-on:click.prevent="cartDelete(cartList[i].cart, i)">×</span>
                         <p>{{ cartList[i].product }}({{ cartList[i].color }})</p>
                         <span class="listPreice">{{ Number(cartList[i].price).toLocaleString('ko-KR') }}원</span>
-                        
+
                         <div>
                             <div class="cartCountBtn">
                                 <button type="button" v-on:click.prevent="updateCart(0, i)">-</button>
@@ -30,8 +30,9 @@
                             </div>
 
                             <p class="cartOnePrice">
-                                
-                                <span>{{ Number(cartList[i].price * cartList[i].count).toLocaleString('ko-KR') }}</span>원
+
+                                <span>{{ Number(cartList[i].price * cartList[i].count).toLocaleString('ko-KR')
+                                    }}</span>원
                             </p>
                         </div>
                     </div>
@@ -44,7 +45,7 @@
                     <p>총 상품금액 <span>{{ Number(totalPrice).toLocaleString('ko-KR') }}</span></p>
                     <p>결제금액 <span>{{ Number(payPrice).toLocaleString('ko-KR') }}</span></p>
                 </div>
-                <button>{{ itemCount }}개 상품 구매하기</button>
+                <button type="button" v-on:click.prevent="cartPament">{{ itemCount }}개 상품 구매하기</button>
             </div><!-- cartPay -->
         </div>
 
@@ -85,13 +86,15 @@ export default {
             axios({
                 method: 'post',
                 url: `${this.$store.state.apiBaseUrl}/home/info/usercart`, //SpringBoot주소
-                headers: { "Content-Type": "application/json; charset=utf-8",
-                           "Authorization": "Bearer " + this.$store.state.token  },
+                headers: {
+                    "Content-Type": "application/json; charset=utf-8",
+                    "Authorization": "Bearer " + this.$store.state.token
+                },
                 params: { userNo: this.$store.state.userNo },
                 responseType: 'json'
             }).then(response => {
                 console.log(response);
-                if(response.data.result == "success"){
+                if (response.data.result == "success") {
                     this.showCart = true;
                     this.cartList = response.data.apiData;
                     for (let i = 0; i < this.cartList.length; i++) {
@@ -118,11 +121,16 @@ export default {
             } else {
                 console.log(select + "선택");
                 this.checkList[select] = !this.checkList[select];
-
+                console.log(this.checkList[select])
                 if (this.checkList[select]) {
                     this.itemCount += this.cartList[select].count;
+                    this.payPrice += this.cartList[select].count * this.cartList[select].price;
                 } else {
-                    this.itemCount -= this.cartList[select].count;
+                    if (this.cartList[select].count > 0) {
+                        this.itemCount -= this.cartList[select].count;
+                        this.payPrice -= this.cartList[select].count * this.cartList[select].price;
+                        this.totalPrice -= this.totalPrice - this.cartList[select].price;
+                    }
                 }
             }
 
@@ -148,29 +156,34 @@ export default {
                 console.log(error);
             });
         },
-        cartResult(symbol, select){
-            console.log(symbol,select)
-            if(this.cartList[select]){
-                if(symbol == 1){
-                    this.cartList[select].count++;
-                    this.totalPrice = this.cartList[select] ? this.totalPrice + this.cartList[select].price : this.totalPrice;
-                    this.itemCount = this.cartList[select] ? this.itemCount++ : this.itemCount;
-                    this.payPrice = this.cartList[select] ? this.payPrice+this.cartList[select].price* this.cartList[select].count : this.payPrice;
-                }
+        cartResult(symbol, select) {
+            console.log(symbol, select)
+            if (symbol == 1) {
+                this.cartList[select].count++;
+                this.itemCount = this.checkList[select] ? this.itemCount+1 : this.itemCount;
+                this.payPrice = this.checkList[select] ? this.payPrice + this.cartList[select].price: this.payPrice;
+                this.totalPrice += this.cartList[select].price;
+            } else {
+                this.cartList[select].count--;
+                this.itemCount = this.checkList[select] ? this.itemCount-1 : this.itemCount;
+                this.payPrice = this.checkList[select] ? this.payPrice - this.cartList[select].price: this.payPrice;
+                this.totalPrice -= this.cartList[select].price;
             }
         },
-        cartDelete(no, i){
-            console.log("장바구니 제품 삭제"+ no);
+        cartDelete(no, i) {
+            console.log("장바구니 제품 삭제" + no);
             axios({
                 method: 'delete',
                 url: `${this.$store.state.apiBaseUrl}/home/info/cartdelete`,
-                headers: { "Content-Type": "application/json; charset=utf-8",
-                           "Authorization": "Bearer " + this.$store.state.token},
-                params: {no: no},
+                headers: {
+                    "Content-Type": "application/json; charset=utf-8",
+                    "Authorization": "Bearer " + this.$store.state.token
+                },
+                params: { no: no },
                 responseType: 'json'
             }).then(response => {
                 console.log(response.data);
-                if(response.data.result == "success"){
+                if (response.data.result == "success") {
                     this.cartList.splice(i, 1);
                 }
             }).catch(error => {
