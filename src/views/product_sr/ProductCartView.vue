@@ -120,10 +120,8 @@ export default {
                 this.checkList[select] = !this.checkList[select];
 
                 if (this.checkList[select]) {
-                    this.payPrice += this.cartList[select].price * this.cartList[select].count;
                     this.itemCount += this.cartList[select].count;
                 } else {
-                    this.payPrice -= this.cartList[select].price * this.cartList[select].count;
                     this.itemCount -= this.cartList[select].count;
                 }
             }
@@ -131,20 +129,9 @@ export default {
         },
         updateCart(symbol, select) {
             console.log("장바구니 업데이트");
-            if (symbol == 1) {
-                console.log("장바구니 추가");
-                this.cartList[select].count++;
-                this.totalPrice += this.cartList[select].price;
-                this.payPrice += this.cartList[select].price * this.cartList[select].count;
-            } else {
-                console.log("장바구니 삭제");
-                this.cartList[select].count--;
-                this.totalPrice -= this.cartList[select].price;
-                this.payPrice -= this.cartList[select].price * this.cartList[select].count;
-            }
+            this.cartResult(symbol, select);
             let tempVo = {
                 product: this.cartList[select].product,
-                userNo: "",
                 count: this.cartList[select].count,
                 color: this.cartList[select].color
             };
@@ -160,6 +147,17 @@ export default {
             }).catch(error => {
                 console.log(error);
             });
+        },
+        cartResult(symbol, select){
+            console.log(symbol,select)
+            if(this.cartList[select]){
+                if(symbol == 1){
+                    this.cartList[select].count++;
+                    this.totalPrice += this.cartList[select].price;
+                    this.itemCount = this.cartList[select] ? this.itemCount++ : this.itemCount;
+                    this.payPrice = this.cartList[select] ? this.payPrice+this.cartList[select].price* this.cartList[select].count : this.payPrice;
+                }
+            }
         },
         cartDelete(no, i){
             console.log("장바구니 제품 삭제"+ no);

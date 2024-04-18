@@ -290,7 +290,7 @@ export default {
             console.log("색상선택: " + event.target.value);
 
             let cart = {
-                product: this.productVo.name,
+                product: this.productVo.productName,
                 count: 1,
                 color: event.target.value,
                 user: 'aa'
@@ -324,6 +324,7 @@ export default {
         //장바구니 ******************************************
         cartUpdate() {
             console.log("장바구니 추가");
+            console.log(this.productCarts);
             if (this.$store.state.token != null) {
                 axios({
                     method: 'post',

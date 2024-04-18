@@ -36,7 +36,8 @@ export default createStore({
         },
         setCategory(state, category){
             state.category = category;
-        },setCartCount(state, cartCount){
+        },
+        setCartCount(state, cartCount){
             state.cartCount = cartCount;
         }
     },
