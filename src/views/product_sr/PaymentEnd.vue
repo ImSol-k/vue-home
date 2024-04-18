@@ -48,6 +48,8 @@ import '@/assets/css/product/infomain.css'
 import AppHeader from '@/components/AppHeader.vue'
 import AppFooter from '@/components/AppFooter.vue'
 
+import axios from 'axios';
+
 export default {
     name: "PaymentEnd",
     components: {
@@ -61,12 +63,33 @@ export default {
                 hp: "",
                 address: ""
             },
-            orderInfoList: []
+            orderInfoList: [],
+            no:""
         };
     },
     methods: {
         orderInfo(){
             console.log("주문완료페이지");
+            const urlParams = new URL(location.href).searchParams;
+
+            const no = urlParams.get('no');
+            this.no = no
+            console.log(no);
+            axios({
+                
+                method: 'post', // put, post, delete 
+                url: 'http://localhost:9090/home/payend',
+                headers: { "Content-Type": "application/json; charset=utf-8" }, //전송타입
+                //params: guestbookVo, //get방식 파라미터로 값이 전달
+                data: this.no, //put, post, delete 방식 자동으로 JSON으로 변환 전달
+                responseType: 'json' //수신타입
+            }).then(response => {
+                console.log(response.data); //수신데이타
+                
+            }).catch(error => {
+                console.log(error);
+            });
+        
         }
     },
     created() { 
