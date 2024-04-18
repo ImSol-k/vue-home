@@ -29,7 +29,7 @@
                     </ul>
                 </li>
                 <li>
-                    <router-link to="/category" v-on:mouseover="mouseover" >옷장</router-link>
+                    <router-link to="/category" v-on:mouseover="mouseover">옷장</router-link>
                     <ul class="nav1-sub" v-show="show">
                         <li v-on:click.prevent="showProductList('closet')"><a>옷장</a></li>
                         <li v-on:click.prevent="showProductList('hanger')"><a>행거</a></li>
@@ -99,7 +99,6 @@ export default {
             this.show = false;
         },
         showProductList(category){
-            console.log(category);
             axios({
                     method: 'get', // put, post, delete 
                     url: `${this.$store.state.apiBaseUrl}/home/main/category`,
@@ -108,14 +107,17 @@ export default {
                     // data: , //put, post, delete 방식 자동으로 JSON으로 변환 전달
                     responseType: 'json' //수신타입
                 }).then(response => {
+                    console.log(response.data.apiData)
                     if(response.data.result == 'success'){
-                        
-                        // this.list = null;
-                        this.list = response.data.apiData;
-                        
+                        let list = response.data.apiData;
+                        if(this.$store.state.category != null){
+                            this.$store.commit('setCategory',null);
+                            this.$store.commit('setCategory',list);
+                            this.$router.push('/category')
+                        }
+ 
                     } else {
-                        // this.$router.push('/category');
-                        alert("상품 준비중입니다.")
+                        alert("상품 준비중입니다.");
                     }
                 }).catch(error => {
                     console.log(error);
