@@ -398,7 +398,7 @@ footer .ss-footer {
     display: flex;
     justify-content: space-between; /* 열 간의 간격 조정 */
     flex-wrap: wrap;
-    padding: 30px 20px 10px 20px ;
+    padding: 30px 20px 10px 10px ;
     box-sizing: border-box;
     justify-content: space-around;
 }
