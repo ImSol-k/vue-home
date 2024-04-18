@@ -115,6 +115,7 @@ export default {
                 params: { user_no: userNo },
                 responseType: 'json' //수신타입
             }).then(response => {
+                console.log("============================");
                 console.log(response.data.apiData); //수신데이타
                 this.cartCount = response.data.apiData;
                 this.$store.commit("setCartCount", this.cartCount);
