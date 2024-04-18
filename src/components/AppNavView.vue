@@ -68,6 +68,7 @@
 <script>
 import '@/assets/css/main/ss-home.css';
 import '@/assets/css/main/ss-main.css';
+import axios from 'axios';
 
 export default {
     name : 'AppNavView',
@@ -107,11 +108,27 @@ export default {
             }
             
         },
+        getHitList(){
+            console.log("get");
+            axios({
+                method: 'get', // put, post, delete 
+                url: `${this.$store.state.apiBaseUrl}/home/main/hits`,
+                headers: { "Content-Type": "application/json; charset=utf-8" }, //전송타입
+                // params: , //get방식 파라미터로 값이 전달
+                // data: , //put, post, delete 방식 자동으로 JSON으로 변환 전달
+                responseType: 'json' //수신타입
+            }).then(response => {
+                console.log(response.data);
+            }).catch(error => {
+                console.log(error);
+            });
+
+        }
 
 
     },
     created(){
-
+        this.getHitList();
     }
 }
 </script>
