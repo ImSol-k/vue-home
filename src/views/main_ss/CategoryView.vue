@@ -77,7 +77,7 @@
                 <span>{{ list.category }}</span><br>
                 <span>이름 : {{ list.productName }}</span><br>
                 <span>별점 : {{ list.star }}</span>&nbsp;
-                <span>가격 : {{ list.price }}</span>
+                <span>가격 : {{ Number(list.price).toLocaleString('ko-KR') }} 원</span>
             </div>
 		</div>
 		<!-- content-main -->
