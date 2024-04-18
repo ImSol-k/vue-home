@@ -291,9 +291,10 @@ export default {
 
             let cart = {
                 product: this.productVo.productName,
+                productNo: this.$route.params.no,
                 count: 1,
                 color: event.target.value,
-                user: 'aa'
+                userNo: this.$store.state.userNo
             }
             let colorChack = this.productCarts.some(cart => cart.color === event.target.value);
             if (!colorChack || this.productCarts.length == 0) {
