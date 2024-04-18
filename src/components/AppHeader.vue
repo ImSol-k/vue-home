@@ -18,14 +18,14 @@
 
         <div class="ss-header3">
             <img src="../assets/images/homedeco/cart.png">
-            <img v-if="this.$store.state.nowOrderList === null" id="ss-red" src="../assets/images/homedeco/red.png">
+            <img v-if="this.$store.state.nowOrderList !== null" id="ss-red" src="../assets/images/homedeco/red.png">
             <!-- 로그인하기전 -->
             <ul v-if="this.$store.state.token === null">
                 <li><router-link to="/login">로그인</router-link></li>
                 <li><a>회원가입</a></li>
                 <li><a>고객센터</a></li>
             </ul>
-            <ul v-if="this.$store.state.token !== null && this.$store.state.authUser !== null">   
+            <ul v-if="this.$store.state.token != null && this.$store.state.authUser != null">   
                 <li><router-link to="/mypage">ㅁㅁㅁ님</router-link></li>
                 <li><a v-on:click="logOut">로그아웃</a></li>
                 <li><router-link to="/pay">결제페이지</router-link></li>
@@ -61,15 +61,17 @@ export default {
         search(){
             this.$emit('update',this.keyword);
             this.$router.push('/category');
+            this.keyword = '';
         },
         logOut(){
             this.$store.commit('setAuthUser',null);
             this.$store.commit('setToken', null);
             this.$store.commit('setNowPayment', null);
+            this.$router.push('/');
         }
     },
     created (){
-        this.keyword = '';
+        
     }
 }
 
