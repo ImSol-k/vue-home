@@ -25,7 +25,7 @@
                 </ul>
                 <ul v-if="this.$store.state.token != null && this.$store.state.authUser != null">
                     <router-link to="/cart"><img src="../assets/images/homedeco/cart.png"></router-link>
-                    <p id="headerCartCount">{{cartCount}}</p>
+                    <p id="headerCartCount">{{ this.$store.state.cartCount }}</p>
                     <li><router-link to="/mypage">ㅁㅁㅁ님</router-link></li>
                     <li><a v-on:click="logOut">로그아웃</a></li>
                 </ul>
@@ -54,7 +54,6 @@ export default {
     data() {
         return {
             keyword: '',
-            cartCount: this.$store.state.cartCount
         }
     },
     methods: {

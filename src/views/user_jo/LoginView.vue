@@ -118,7 +118,7 @@ export default {
                 console.log("============================");
                 console.log(response.data.apiData); //수신데이타
                 this.cartCount = response.data.apiData;
-                this.$store.commit("setCartCount", this.cartCount);
+                this.$store.commit("setCartCount", response.data.apiData);
             }).catch(error => {
                 console.log(error);
             });
