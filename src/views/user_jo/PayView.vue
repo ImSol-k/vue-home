@@ -36,7 +36,8 @@
                             <li v-for="(product, index) in this.$store.state.nowOrderList" :key="index">
                                 <img :src="product.image" :alt="product.name">
                                 <div class="pay-name">상품명: {{ product.product }}</div>
-                                <div class="pay-price">가격: {{ product.price }}원</div>
+                                <div class="pay-price">가격: {{ Number(product.price).toLocaleString('ko-KR') }}원</div>
+                                
                                 <div class="pay-color">색상: {{ product.color }}</div>
                                 <div class="pay-count">수량: {{ product.count }}</div> <!-- 상품 수량 표시 -->
                             </li>
@@ -62,13 +63,15 @@
                 <div class="pay-sidebar-content">
                     <h3>총 결제 금액</h3>
                     <br>
-                    <p>상품 금액: {{ this.$store.state.totalPrice }}원</p>
+                    <p>상품 금액: {{ Number(this.$store.state.totalPrice).toLocaleString('ko-KR') }}원</p>
+                    
                     <br>
                     <p>배송비: {{ shippingFee }}</p>
                     <br>
                     <hr>
                     <br>
-                    <p>총 금액: {{ this.$store.state.totalPrice }}원</p>
+                    <p>총 금액: {{ Number(this.$store.state.totalPrice).toLocaleString('ko-KR') }}원</p>
+                    
                     <br><br>
                     <div class="pay-agreement">
                         <input type="checkbox" id="pay-agree" name="agree" v-model="agreed">

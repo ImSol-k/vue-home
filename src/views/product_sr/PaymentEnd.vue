@@ -70,7 +70,7 @@ export default {
     },
     methods: {
         orderInfo(){
-            console.log("주문완료페이지");
+            console.log("주문완료페이지" + this.$route.params.no);
             // const urlParams = new URL(location.href).searchParams;
 
             // const no = urlParams.get('');
