@@ -16,7 +16,8 @@ export default createStore({
             category: "",
             cartProductTotalcount: "",
             cartCount: "",
-            hitList: ""
+            hitList: "",
+            totalPrice: ""
         };
     },
     mutations: {
@@ -43,6 +44,9 @@ export default createStore({
         },
         setHitList(state,hitList){
             state.hitList = hitList
+        },
+        setTotalPrice(state,totalPrice){
+            state.totalPrice = totalPrice
         }
     },
     plugins: [

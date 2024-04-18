@@ -204,6 +204,8 @@ export default {
                 }
                 // console.log(temp);
                 this.$store.commit("setNowPayment", temp);
+                this.$store.commit("setTotalPrice", this.payPrice);
+                this.$router.push("/pay");
             }
         }
     },

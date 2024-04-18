@@ -201,7 +201,7 @@ export default {
 
             //상품정보 관련
             productVo: {
-                productName: "",
+                productNo: this.$route.params.no,
                 price: "",
                 count: 0,
                 category: "",
