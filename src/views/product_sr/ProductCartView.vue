@@ -1,4 +1,4 @@
-<template>
+``<template>
     <div class="wrap cartWrap">
         <AppHeader />
 
@@ -30,7 +30,6 @@
                             </div>
 
                             <p class="cartOnePrice">
-
                                 <span>{{ Number(cartList[i].price * cartList[i].count).toLocaleString('ko-KR')
                                     }}</span>원
                             </p>
