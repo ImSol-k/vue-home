@@ -9,12 +9,12 @@
 
                         <div class="left">
                             <div class="preview-image">
-                                <img :src="previewImage" alt="이미지 미리보기" style="max-width: 300px; max-height: 300px;">
+                                <img :src="previewImage" style="max-width: 300px; max-height: 300px;">
                             </div>
 
                             <div class="input">
                                 <input type="file" id="profile" name="profile" class="file-input" style="width: auto;"
-                                    @change="handleImagePreview">
+                                    @change="handleImageChange">
                             </div>
                         </div>
 
@@ -77,7 +77,7 @@
                             <div class="input-attach">
                                 <label for="add">추가 첨부 파일:&nbsp;</label>
                                 <input type="file" id="add" name="add" @change="addContentFile" class="file-input">
-                                
+
                                 <button type="button" class="add-file-button" @click="addFileInput">파일 추가</button>
                             </div>
                         </div>
@@ -107,11 +107,11 @@ export default {
     data() {
         return {
             selectedCategory: '',
-            previewImage: '',
+            previewImage: require('@/assets/images/managerY/img.jpg'),
             profile: '',
             title: '',
             price: '',
-            category: ["bed","mattress","frame","normal-sofa","lounge-sofa","single-sofa","dining-table","side-table","closet","hanger","built-in"],
+            category: ["bed", "mattress", "frame", "normal-sofa", "lounge-sofa", "single-sofa", "dining-table", "side-table", "closet", "hanger", "built-in"],
             add: [],
             selectCate: ""
         };
@@ -154,10 +154,9 @@ export default {
         },
 
         // 이미지 선택 시 미리보기 기능
-        handleImagePreview(event) {
+        handleImageChange(event) {
             // 선택한 파일
             this.profile = event.target.files[0];
-
 
             // FileReader 객체를 사용하여 이미지를 읽음
             const reader = new FileReader();
@@ -172,9 +171,8 @@ export default {
             if (this.profile) {
                 reader.readAsDataURL(this.profile);
             }
-
         },
-        selectCategory(event){
+        selectCategory(event) {
             console.log(event.target.value);
             this.selectCate = event.target.value;
         },
