@@ -42,18 +42,18 @@
         
         <!-- https://apost.dev/1121/#google_vignette -->
         <div class="rollingbanner">
-            <div class="title" >HOT  </div>
-            <ul class="nav2-hit" >
-                <li class="current"><router-link to="/" class="prev" >1.a</router-link></li>
-                <li class="next"><router-link to="/" class="current">2.s</router-link></li>
-                <li><router-link to="/" >3.f</router-link></li>
-                <li><router-link to="/" >4.e</router-link></li>
-                <li><router-link to="/" >5.g</router-link></li>
-                <li><router-link to="/" >6.h</router-link></li>
-                <li><router-link to="/" >7.k</router-link></li>
-                <li><router-link to="/" >8.g</router-link></li>
-                <li><router-link to="/" >9.getf</router-link></li>
-                <li class="next"><router-link to="/" >10.f</router-link></li>
+            <div class="title" >&nbsp;</div>
+            <ul class="nav2-hit">
+                <li  class="current"><router-link to="/">1.침대</router-link></li>
+                <li class="next"><router-link to="/">2.의자</router-link></li>
+                <li><router-link to="/">3.쇼파</router-link></li>
+                <li><router-link to="/">4.1인쇼파</router-link></li>
+                <li><router-link to="/">5.좌식쇼파</router-link></li>
+                <li><router-link to="/">6.붙박이장</router-link></li>
+                <li><router-link to="/">7.행거</router-link></li>
+                <li><router-link to="/">8.식탁</router-link></li>
+                <li><router-link to="/">9.침대프레임</router-link></li>
+                <li class="prev"><router-link to="/">10.매트리스</router-link></li>
             </ul>
         </div>
 
@@ -70,7 +70,37 @@ import '@/assets/css/main/ss-home.css';
 import '@/assets/css/main/ss-main.css';
 import axios from 'axios';
 
+document.addEventListener('DOMContentLoaded', ()=>{
+    let interval = window.setInterval(rollingCallback, 3000);
+    document.querySelector('.rollingbanner').addEventListener('mouseover',function(){
+        window.clearInterval(interval);
+    })
+    document.querySelector('.rollingbanner').addEventListener('mouseout',function(){
+        interval = window.setInterval(rollingCallback, 3000);
+    })
+})
 
+function rollingCallback(){
+    //.prev 클래스 삭제
+    document.querySelector('.rollingbanner .prev').classList.remove('prev');
+
+    //.current -> .prev
+    let current = document.querySelector('.rollingbanner .current');
+    current.classList.remove('current');
+    current.classList.add('prev');
+
+    //.next -> .current
+    let next = document.querySelector('.rollingbanner .next');
+    //다음 목록 요소가 널인지 체크
+    if(next.nextElementSibling == null){
+        document.querySelector('.rollingbanner ul li:first-child').classList.add('next');
+    }else{
+        //목록 처음 요소를 다음 요소로 선택
+        next.nextElementSibling.classList.add('next');
+    }
+    next.classList.remove('next');
+    next.classList.add('current');
+}
 
 
 export default {
@@ -79,8 +109,17 @@ export default {
     data (){
         return{
             show : false, // 서브메뉴용 체크
-            hitList : '',
-            category : ''
+            category : '',
+            hit1 : '',
+            hit2 : '',
+            hit3 : '',
+            hit4 : '',
+            hit5 : '',
+            hit6 : '',
+            hit7 : '',
+            hit8 : '',
+            hit9 : '',
+            hit10 : ''
         }
     },
     methods : {
@@ -100,7 +139,7 @@ export default {
             
         },
         getHitList(){
-            if(this.$store.state.hitList == null){
+            if(this.$store.state.hitList == ""){
                 axios({
                     method: 'get', // put, post, delete 
                     url: `${this.$store.state.apiBaseUrl}/home/main/hits`,
@@ -109,19 +148,33 @@ export default {
                     // data: , //put, post, delete 방식 자동으로 JSON으로 변환 전달
                     responseType: 'json' //수신타입
                 }).then(response => {
-                    console.log(response.data.apiData);
+                    let list = response.data.apiData;
                     this.$store.commit('setHitList',response.data.apiData);
-                    this.list = this.$store.state.hitList;
+                    this.hit1 = list[0];
+                    this.hit2 = list[1];
+                    this.hit3 = list[2];
+                    this.hit4 = list[3];
+                    this.hit5 = list[4];
+                    this.hit6 = list[5];
+                    this.hit7 = list[6];
+                    this.hit8 = list[7];
+                    this.hit9 = list[8];
+                    this.hit10 = list[9];
+
                 }).catch(error => {
                     console.log(error);
                 });
+            } else {
+                // console.log(this.hitList);
             }
         }
+        
 
 
     },
     created(){
         this.getHitList();
+        
     }
 }
 </script>

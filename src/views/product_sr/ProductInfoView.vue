@@ -225,7 +225,8 @@ export default {
             },
             reviewList: [],
             showList: [],
-            reviewPage: 0
+            reviewPage: 0,
+            tempCart: []
         };
     },
     methods: {
@@ -291,10 +292,13 @@ export default {
 
             let cart = {
                 product: this.productVo.productName,
+                productNo: this.$route.params.no,
                 count: 1,
                 color: event.target.value,
-                user: 'aa'
+                userNo: this.$store.state.userNo,
+                price: this.productVo.price
             }
+            this.tempCart.push(cart);
             let colorChack = this.productCarts.some(cart => cart.color === event.target.value);
             if (!colorChack || this.productCarts.length == 0) {
                 this.priceTotal += this.productVo.price;
@@ -349,9 +353,9 @@ export default {
         // 바로구매 **************************************************
         nowPayment() {
             console.log("바로구매");
-            this.$store.commit("setNowPayment", this.productCarts);
-            console.log(this.$store.state.nowOrderList);
             if (this.$store.state.nowOrderList != 0) {
+                this.$store.commit("setNowPayment", this.tempCart);
+                this.$store.commit("setTotalPrice", this.priceTotal);
                 this.$router.push("/pay");
             } else {
                 alert("상품을 선택해 주세요");

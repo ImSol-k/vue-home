@@ -71,6 +71,7 @@ export default {
                 console.log(error);
             });
         },
+        
         fetchData2() {
             axios({
                 method: 'get',
