@@ -25,8 +25,7 @@
                 </ul>
                 <ul v-if="this.$store.state.token != null && this.$store.state.authUser != null">
                     <router-link to="/cart"><img src="../assets/images/homedeco/cart.png"></router-link>
-                    <em v-if="this.$store.state.userNo !== null && cartCount !== null" id="headerCartCount">{{ cartCount
-                        }}</em>
+                    <p id="headerCartCount">{{ this.$store.state.cartCount }}</p>
                     <li><router-link to="/mypage">ㅁㅁㅁ님</router-link></li>
                     <li><a v-on:click="logOut">로그아웃</a></li>
                 </ul>
@@ -46,7 +45,6 @@
 
 <script>
 import '@/assets/css/main/ss-home.css';
-import axios from 'axios';
 
 export default {
     name: 'AppHeader',
@@ -55,9 +53,7 @@ export default {
     },
     data() {
         return {
-            userNo: this.$store.state.userNo,
             keyword: '',
-            cartCount: ''
         }
     },
     methods: {
@@ -72,23 +68,9 @@ export default {
             this.$store.commit('setNowPayment', null);
             this.$router.push('/');
         },
-        cart() {
-            axios({
-                method: 'get',  //put,post,delete
-                url: `${this.$store.state.apiBaseUrl}/home/cartcount`,
-                headers: { "Content-Type": "application/json; charset=utf-8" }, //전송타입
-                data: this.user_no,
-                responseType: 'json' //수신타입
-            }).then(response => {
-                console.log(response.data); //수신데이타
-                this.cartCount = response.data.apiData
-            }).catch(error => {
-                console.log(error);
-            });
-        }
+        
     },
     created() {
-        this.cart();
     }
 }
 

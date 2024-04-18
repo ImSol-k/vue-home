@@ -15,12 +15,8 @@
         <div class="ss-goods-text clearfix">
             <span>전체 상품</span>
             <div class="ss-dropdown">
-                <button class="ss-dropbtn" id="sortButton">최신순</button>
-                <div class="ss-dropdown-content">
-                    <a href="#" data-sort="recent">최신순</a>
-                    <a href="#" data-sort="review">리뷰순</a>
-                    <a href="#" data-sort="rating">별점순</a>
-                </div>
+                <button class="ss-dropbtn" id="sortButton" type="button" v-on:click="go">더보기</button>
+                
             </div>
         </div>
         
@@ -30,10 +26,9 @@
                 <span>{{ list.category }}</span><br>
                 <span>{{ list.productName }}</span><br>
                 <span>별점 : {{ list.star }}</span>&nbsp;
-                <span>가격 : {{ list.price }}</span>
+                <span>가격 : {{ list.price }} 원</span>
             </div>
-             
-        </div>    
+        </div>
         <Observer @show="loadItem"></Observer>
 
     </div>
@@ -101,6 +96,9 @@ export default {
             let no =event.target.dataset.no
             console.log(no);
             this.$router.push('/product/'+ no);
+        },
+        go(){
+            this.$router.push('/category');
         }
       
     },

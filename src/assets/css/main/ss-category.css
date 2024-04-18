@@ -17,7 +17,7 @@
     margin-top: 20px;
     /* 헤더와의 간격 조절 */
     border-radius: 10px;
-    height: 600px;
+    min-height: 600px;
     text-align: left;
 }
 
@@ -88,6 +88,7 @@
     display: flex;
     width: 150px;
     height: 130px;
+    cursor: pointer;
 }
 
 .ss-3btn {

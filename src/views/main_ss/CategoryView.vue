@@ -5,7 +5,7 @@
 	<AppHeader @update="catchKeyword"/>
 	<!-- //header 부분 -->
 
-	<AppNavView />
+	<AppNavView @list="category"/>
     <!-- //nav 부분 -->
 
 	<div class="ss-category clearfix">
@@ -73,9 +73,9 @@
                     </div>
             </div>
             <div class="ss-goods" v-for="(list,i) in list" v-bind:key="i">
-                <img v-bind:src="`${this.$store.state.apiBaseUrl}/upload/${list.mainImg}`"><br>
+                <img v-on:click="push" :data-no="`${list.productNo}`" v-bind:src="`${this.$store.state.apiBaseUrl}/upload/${list.mainImg}`"><br>
                 <span>{{ list.category }}</span><br>
-                <span>이름 : {{ list.name }}</span><br>
+                <span>이름 : {{ list.productName }}</span><br>
                 <span>별점 : {{ list.star }}</span>&nbsp;
                 <span>가격 : {{ list.price }}</span>
             </div>
@@ -126,10 +126,8 @@ export default {
                 '쇼파' ,
                 '침대' 
             ],
-			list :[],
-			keyword : 'bed'
-
-
+			list :this.$store.state.category,
+			keyword : ''
 		};
 	},
 	methods: {
@@ -156,52 +154,57 @@ export default {
             this.showCategories04 = !this.showCategories04; // 클릭 시 카테고리 리스트를 보이거나 숨김
         },
         ///////////////////////////////////////
-
-        catchKeyword(keyword){
-            keyword = this.keyword  
-            if(typeof keyword !== 'undefined' ){
-                this.list = this.$store.state.category;
-                // axios({
-                //     method: 'get', // put, post, delete 
-                //     url: `${this.$store.state.apiBaseUrl}/home/main/category`,
-                //     headers: { "Content-Type": "application/json; charset=utf-8" }, //전송타입
-                //     params: {keyword : keyword}, //get방식 파라미터로 값이 전달
-                //     // data: , //put, post, delete 방식 자동으로 JSON으로 변환 전달
-                //     responseType: 'json' //수신타입
-                // }).then(response => {
-                //     if(response.data.result == 'success'){
-                //         this.list = null;
-                //         this.list = response.data.apiData;
-                //     } else {
-                //         alert("상품 준비중입니다.")
-                //         this.$router.push('/category');
-                //     }
-                // }).catch(error => {
-                //     console.log(error);
-                // });
-            } else {
-                axios({
-                    method: 'get', // put, post, delete 
-                    url: `${this.$store.state.apiBaseUrl}/home/main/nocategory`,
-                    headers: { "Content-Type": "application/json; charset=utf-8" }, //전송타입
-                    // params: , //get방식 파라미터로 값이 전달
-                    // data: , //put, post, delete 방식 자동으로 JSON으로 변환 전달
-                    responseType: 'json' //수신타입
-                }).then(response => {
-                    if(response.data.result == 'success'){
-                        this.list = null;
-                        this.list = response.data.apiData;
-                    } else {
-                        alert("상품 준비중입니다.")
-                        this.$router.push('/category');
-                    }
-                }).catch(error => {
-                    console.log(error);
-                });
-            }
+        category(category){
+            this.$store.commit('setCategory',category);
+            axios({
+                method: 'get', // put, post, delete 
+                url: `${this.$store.state.apiBaseUrl}/home/main/category`,
+                headers: { "Content-Type": "application/json; charset=utf-8" }, //전송타입
+                params: {keyword : category}, //get방식 파라미터로 값이 전달
+                // data: , //put, post, delete 방식 자동으로 JSON으로 변환 전달
+                responseType: 'json' //수신타입
+            }).then(response => {
+                if(response.data.result == 'success'){
+                    this.list = response.data.apiData ;
+                } else {
+                    alert("상품 준비중입니다.")
+                }
+            }).catch(error => {
+                console.log(error);
+            });
         },
-        showProductList(category){
+        catchKeyword(keyword){
+            keyword = this.$store.state.category;
+            // console.log(keyword +'1' )
+            // if(typeof keyword === 'undefined'){
+            //     keyword = 'bed'
+            //     console.log(keyword +'2')
+            // } else {
+            //     keyword = this.$store.state.category;
+            // } 
+
+            axios({
+                method: 'get', // put, post, delete 
+                url: `${this.$store.state.apiBaseUrl}/home/main/category`,
+                headers: { "Content-Type": "application/json; charset=utf-8" }, //전송타입
+                params: {keyword : keyword}, //get방식 파라미터로 값이 전달
+                // data: , //put, post, delete 방식 자동으로 JSON으로 변환 전달
+                responseType: 'json' //수신타입
+            }).then(response => {
+                if(response.data.result == 'success'){
+                    this.list = response.data.apiData ;
+                } else {
+                    alert("상품 준비중입니다.")
+                }
+            }).catch(error => {
+                console.log(error);
+            });
             
+        },
+
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        showProductList(category){
+            // console.log(category);
             axios({
                     method: 'get', // put, post, delete 
                     url: `${this.$store.state.apiBaseUrl}/home/main/category`,
@@ -211,20 +214,23 @@ export default {
                     responseType: 'json' //수신타입
                 }).then(response => {
                     if(response.data.result == 'success'){
-                        this.list = null;
-                        this.list = response.data.apiData;
+                        this.$store.commit('setCategory',null);
+                        this.$store.commit('setCategory', response.data.apiData);
+                        this.list = this.$store.state.category;
+                        
                     } else {
-                        alert("상품 준비중입니다.")
-                        // this.$router.push('/category');
+                        alert("상품 준비중입니다.");
                     }
                 }).catch(error => {
                     console.log(error);
                 });
         },
+        push(event){
+            let no =event.target.dataset.no
+            this.$router.push('/product/'+ no);
+        },
 
-
-
-        //////////////////////////////////// 버튼 ///////////////////
+        //////////////////////////////////// 버튼 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         changeSort(sortType) {
             document.getElementById('sortButton').innerText = sortType;
             let word = this.list[0].category
@@ -243,7 +249,6 @@ export default {
     },
 	
 	created(){
-        console.log(this.$store.state.category);
         this.toggleCategories();
         this.catchKeyword();
     }

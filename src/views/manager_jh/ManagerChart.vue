@@ -83,8 +83,13 @@
         <div id="contentMain">
             <div id="graph">
 
+
                 <div class="clearfix" id="line">
-                    <h3>통계</h3>
+                    <h3 class="shvdl" id="eee2">통계</h3>
+                    <div class="ran">
+                        <p class="f-size">누적 판매량 <span>{{ Number(this.ccount).toLocaleString('ko-KR') }}</span>, 누적 판매금액 <span>{{Number(this.cprice).toLocaleString('ko-KR')}}</span></p>
+                        <p class="f-size">금일 판매량 <span>{{ Number(this.tcount).toLocaleString('ko-KR') }}</span>, 금일 판매금액 <span>{{Number(this.tprice).toLocaleString('ko-KR')}}</span></p>
+                    </div>
                     <div id="ppgg">
 
                         <canvas id="chart" ref="MyChart" />
@@ -98,15 +103,15 @@
                 </div>
 
             </div>
-            <div>
+            <div class="outline">
                 <table class="vy">
                     <thead>
                         <tr>
                             <th class="whwjd" rowspan="2"></th>
-                            <th colspan="2">침대</th>
-                            <th colspan="2">쇼파</th>
-                            <th colspan="2">테이블</th>
-                            <th colspan="2">옷장</th>
+                            <th class="akwlakr" colspan="2">침대</th>
+                            <th class="akwlakr" colspan="2">쇼파</th>
+                            <th class="akwlakr" colspan="2">테이블</th>
+                            <th class="akwlakr" colspan="2">옷장</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -124,46 +129,54 @@
                         <tr>
                             <td>당월</td>
                             <td>{{ Number(this.bedMonthC).toLocaleString('ko-KR') }}</td>
-                            <td>{{ Number(this.bedMonthM).toLocaleString('ko-KR') }}</td>
+                            <td class="bol">{{ Number(this.bedMonthM).toLocaleString('ko-KR') }}</td>
                             <td>{{ Number(this.shopaMonthC).toLocaleString('ko-KR') }}</td>
-                            <td>{{ Number(this.shopaMonthM).toLocaleString('ko-KR') }}</td>
+                            <td class="bol">{{ Number(this.shopaMonthM).toLocaleString('ko-KR') }}</td>
                             <td>{{ Number(this.tableMonthC).toLocaleString('ko-KR') }}</td>
-                            <td>{{ Number(this.tableMonthM).toLocaleString('ko-KR') }}</td>
+                            <td class="bol">{{ Number(this.tableMonthM).toLocaleString('ko-KR') }}</td>
                             <td>{{ Number(this.hangerMonthC).toLocaleString('ko-KR') }}</td>
-                            <td>{{ Number(this.hangerMonthM).toLocaleString('ko-KR') }}</td>
+                            <td class="bol">{{ Number(this.hangerMonthM).toLocaleString('ko-KR') }}</td>
                         </tr>
                         <tr>
                             <td>전월</td>
                             <td>{{ Number(this.bedMonthC2).toLocaleString('ko-KR') }}</td>
-                            <td>{{ Number(this.bedMonthM2).toLocaleString('ko-KR') }}</td>
+                            <td class="bol">{{ Number(this.bedMonthM2).toLocaleString('ko-KR') }}</td>
                             <td>{{ Number(this.shopaMonthC2).toLocaleString('ko-KR') }}</td>
-                            <td>{{ Number(this.shopaMonthM2).toLocaleString('ko-KR') }}</td>
+                            <td class="bol">{{ Number(this.shopaMonthM2).toLocaleString('ko-KR') }}</td>
                             <td>{{ Number(this.tableMonthC2).toLocaleString('ko-KR') }}</td>
-                            <td>{{ Number(this.tableMonthM2).toLocaleString('ko-KR') }}</td>
+                            <td class="bol">{{ Number(this.tableMonthM2).toLocaleString('ko-KR') }}</td>
                             <td>{{ Number(this.hangerMonthC2).toLocaleString('ko-KR') }}</td>
-                            <td>{{ Number(this.hangerMonthM2).toLocaleString('ko-KR') }}</td>
+                            <td class="bol">{{ Number(this.hangerMonthM2).toLocaleString('ko-KR') }}</td>
                         </tr>
                         <tr>
                             <td>전전월</td>
                             <td>{{ Number(this.bedMonthC3).toLocaleString('ko-KR') }}</td>
-                            <td>{{ Number(this.bedMonthM3).toLocaleString('ko-KR') }}</td>
+                            <td class="bol">{{ Number(this.bedMonthM3).toLocaleString('ko-KR') }}</td>
                             <td>{{ Number(this.shopaMonthC3).toLocaleString('ko-KR') }}</td>
-                            <td>{{ Number(this.shopaMonthM3).toLocaleString('ko-KR') }}</td>
+                            <td class="bol">{{ Number(this.shopaMonthM3).toLocaleString('ko-KR') }}</td>
                             <td>{{ Number(this.tableMonthC3).toLocaleString('ko-KR') }}</td>
-                            <td>{{ Number(this.tableMonthM3).toLocaleString('ko-KR') }}</td>
+                            <td class="bol">{{ Number(this.tableMonthM3).toLocaleString('ko-KR') }}</td>
                             <td>{{ Number(this.hangerMonthC3).toLocaleString('ko-KR') }}</td>
-                            <td>{{ Number(this.hangerMonthM3).toLocaleString('ko-KR') }}</td>
+                            <td class="bol">{{ Number(this.hangerMonthM3).toLocaleString('ko-KR') }}</td>
                         </tr>
                         <tr>
-                            <td>합계</td>
-                            <td>{{ Number(this.bedMonthC + this.bedMonthC2 + this.bedMonthC3).toLocaleString('ko-KR') }}</td>
-                            <td>{{ Number(this.bedMonthM + this.bedMonthM2 + this.bedMonthM3).toLocaleString('ko-KR') }}</td>
-                            <td>{{ Number(this.shopaMonthC + this.shopaMonthC2 + this.shopaMonthC3).toLocaleString('ko-KR') }}</td>
-                            <td>{{ Number(this.shopaMonthM + this.shopaMonthM2 + this.shopaMonthM3).toLocaleString('ko-KR') }}</td>
-                            <td>{{ Number(this.tableMonthC + this.tableMonthC2 + this.tableMonthC3).toLocaleString('ko-KR') }}</td>
-                            <td>{{ Number(this.tableMonthM + this.tableMonthM2 + this.tableMonthM3).toLocaleString('ko-KR') }}</td>
-                            <td>{{ Number(this.hangerMonthC + this.hangerMonthC2 + this.hangerMonthC3).toLocaleString('ko-KR') }}</td>
-                            <td>{{ Number(this.hangerMonthM + this.hangerMonthM2 + this.hangerMonthM3).toLocaleString('ko-KR') }}</td>
+                            <td class="akwlakr">합계</td>
+                            <td class="akwlakr">{{ Number(this.bedMonthC + this.bedMonthC2 +
+                        this.bedMonthC3).toLocaleString('ko-KR') }}</td>
+                            <td class="akwlakr">{{ Number(this.bedMonthM + this.bedMonthM2 +
+                        this.bedMonthM3).toLocaleString('ko-KR') }}</td>
+                            <td class="akwlakr">{{ Number(this.shopaMonthC + this.shopaMonthC2 +
+                        this.shopaMonthC3).toLocaleString('ko-KR') }}</td>
+                            <td class="akwlakr">{{ Number(this.shopaMonthM + this.shopaMonthM2 +
+                        this.shopaMonthM3).toLocaleString('ko-KR') }}</td>
+                            <td class="akwlakr">{{ Number(this.tableMonthC + this.tableMonthC2 +
+                        this.tableMonthC3).toLocaleString('ko-KR') }}</td>
+                            <td class="akwlakr">{{ Number(this.tableMonthM + this.tableMonthM2 +
+                        this.tableMonthM3).toLocaleString('ko-KR') }}</td>
+                            <td class="akwlakr">{{ Number(this.hangerMonthC + this.hangerMonthC2 +
+                                this.hangerMonthC3).toLocaleString('ko-KR') }}</td>
+                            <td class="akwlakr">{{ Number(this.hangerMonthM + this.hangerMonthM2 +
+                                this.hangerMonthM3).toLocaleString('ko-KR') }}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -410,7 +423,7 @@ export default {
                             },
                             title: {
                                 display: true,
-                                text: '금일 판매비율'
+                                text: '금일 판매비율',
                             },
                         }
                     }
