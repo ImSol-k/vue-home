@@ -12,28 +12,28 @@
                 <table>
                     <tr>
                         <td><b>주문자</b></td>
-                        <td>김소리</td>
+                        <td>{{this.orderUser.name}}</td>
                         <td><b>핸드폰번호</b></td>
-                        <td>010-2222-3333</td>
+                        <td>{{this.orderUser.hp}}</td>
                     </tr>
                     <tr>
                         <td><b>배송지</b></td>
-                        <td colspan="3">경기도 성남시 중원구</td>
+                        <td colspan="3">{{this.orderUser.address}}</td>
                     </tr>
                 </table>
                 <table>
                     <tr>
                         <th colspan="4">주문정보</th>
                     </tr>
-                    <tr>
+                    <tr v-bind:key="i" v-for="(v,i) in orderInfoList">
                         <td><b>상품명</b></td>
-                        <td>알리 커피머신</td>
+                        <td>{{v.productName}}</td>
                         <td><b>금액</b></td>
-                        <td>42,000</td>
+                        <td>{{ Number(v.productPrice).toLocaleString('ko-KR') }}</td>
                     </tr>
                     <tr>
                         <td><b>총 결제금액</b></td>
-                        <td colspan="3">42,000</td>
+                        <td colspan="3">{{ Number(this.orderUser.total).toLocaleString('ko-KR') }}</td>
                     </tr>
                 </table>
             </div>
@@ -61,7 +61,8 @@ export default {
             orderUser: {
                 name: "",
                 hp: "",
-                address: ""
+                address: "",
+                total: ""
             },
             orderInfoList: [],
             no:""
@@ -85,7 +86,15 @@ export default {
                 responseType: 'json' //수신타입
             }).then(response => {
                 console.log(response.data); //수신데이타
-                
+                this.orderUser.name = response.data.pay1.name;
+                this.orderUser.hp = response.data.pay1.hp;
+                this.orderUser.address = response.data.pay1.address;
+                this.orderUser.total = response.data.pay1.total;
+                console.log(this.orderUser)
+
+                this.orderInfoList = response.data.pay2;
+                console.log(this.orderInfoList)
+
             }).catch(error => {
                 console.log(error);
             });
