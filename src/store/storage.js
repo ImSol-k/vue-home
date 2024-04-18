@@ -31,9 +31,6 @@ export default createStore({
         },
         setAuthUser(state, authUser){
             state.authUser = authUser;
-        },
-        setAuthUser(state, category){
-            state.category = category;
         }
     },
     plugins: [
