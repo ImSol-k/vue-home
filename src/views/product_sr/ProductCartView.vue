@@ -144,6 +144,7 @@ export default {
             }
             let tempVo = {
                 product: this.cartList[select].product,
+                userNo: "",
                 count: this.cartList[select].count,
                 color: this.cartList[select].color
             };

@@ -14,7 +14,8 @@ export default createStore({
             productColor: [],    //상품옵션 색상
             authUser: "",
             category: "",
-            cartProductTotalcount: ""
+            cartProductTotalcount: "",
+            cartCount: ""
         };
     },
     mutations: {
@@ -35,6 +36,8 @@ export default createStore({
         },
         setCategory(state, category){
             state.category = category;
+        },setCartCount(state, cartCount){
+            state.cartCount = cartCount;
         }
     },
     plugins: [
