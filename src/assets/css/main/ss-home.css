@@ -384,34 +384,80 @@ nav .nav1 .nav1-main>li {
 footer {
     width: 100%;
     margin-top: 60px;
+    background-color: #d6d6d6;
 }
 
 /* footer 안에서 보여질 부분*/
 footer .ss-footer {
-    width: 1300px;
-    height: 50px;
+    width: 100%; /* 너비를 100%로 설정 */
+    max-width: 1300px; /* 최대 너비를 1300px로 설정 */
     background-color: #d6d6d6;
     margin-top: 50px;
-    font-size: 15px;
+    font-size: 13px;
     margin: 0px auto;
-
-}
-
-/* footer 리스트 */
-footer .ss-footer>ul {
-    width: 1300px;
-    line-height: 50px;
     display: flex;
-    justify-content: center;
-    /* 가로 가운데 정렬 */
-    align-items: center;
-    /* 세로 가운데 정렬 */
+    justify-content: space-between; /* 열 간의 간격 조정 */
+    flex-wrap: wrap;
+    padding: 30px 20px 10px 10px ;
+    box-sizing: border-box;
+    justify-content: space-around;
 }
 
-/* 리스트별 간격*/
-footer .ss-footer>ul>li {
-    margin: 0px 20px;
-    float: left;
+
+.ss-footer h3 {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+footer .ss-footer .row {
+    display: flex;
+    justify-content: space-around;
+    align-items: stretch;
+}
+
+/* 각 열의 내용 */
+footer .ss-footer .col-md-4 {
+    flex: 1;
+    padding: 0 15px;
+    margin-bottom: 15px;
+    align-items: center;
+}
+
+footer .ss-footer .col-md-2 {
+    flex-grow: 1; 
+}
+
+footer .ss-footer .col-md-4:first-child,
+footer .ss-footer .col-md-4:last-child {
+    flex: 0 0 30%; /* 큰 열 너비 설정 */
+}
+
+footer .ss-footer .col-md-4:nth-child(2),
+footer .ss-footer .col-md-4:nth-child(3) {
+    flex: 0 0 20%; /* 작은 열 너비 설정 */
+}
+
+footer .ss-footer .col-md-4:not(:last-child) {
+    margin-right: 20px; /* 우측 여백 추가 */
+}
+
+/* 링크 스타일 */
+footer .ss-footer a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* 저작권 정보 */
+.site-footer-bottom {
+    padding: 15px 0;
+    font-size: 12px;
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+/* 전체적으로 글자 사이의 간격 조정 */
+footer p {
+    margin-bottom: 8px;
 }
 
 /****************************************************************************/
