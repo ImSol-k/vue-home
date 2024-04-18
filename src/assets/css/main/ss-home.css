@@ -331,61 +331,57 @@ nav .nav1 .nav1-main>li {
 /* nav2 */
 /* 인기검색어 나오는 구간*/
 /* 롤링 배너 */
-.rollingbanner {
+.rollingbanner{
     position: relative;
-    width: 250px;
-    height: 32px;
-    font-size: 20px;
+    float: left;
+    width: 380px;
+    height: 50px;
+    font-size: 30px;
     letter-spacing: -1px;
-    margin-left: 900px;
-    padding: 25px 15px;
+    padding: 7px 15px;
     box-sizing: border-box;
     background-color: #f0f0f0;
     border-radius: 16px;
 }
 
-/* 타이틀 */
-.rollingbanner>.title {
-    font-weight: bold;
+.rollingbanner > .title{
+    font-size: 30px;
     float: left;
     padding-right: 10px;
 }
 
-/* 롤링 배너 */
-.rollingbanner>.nav2-hit {
+.rollingbanner > .nav2-hit{
     position: relative;
     width: auto;
     height: 100%;
     box-sizing: border-box;
     overflow: hidden;
-}
-
-.rollingbanner li {
+}        
+.rollingbanner li{
     position: absolute;
     top: -36px;
     left: 0;
 }
 
-.rollingbanner li.prev {
+.rollingbanner li.prev{
     top: 36px;
     transition: top 0.5s ease;
 }
-
-.rollingbanner li.current {
+.rollingbanner li.current{
     top: 0;
     transition: top 0.5s ease;
 }
 
-.rollingbanner li.next {
+.rollingbanner li.next{
     top: -36px;
 }
 
-.rollingbanner a {
+.rollingbanner a{
     display: block;
     display: -webkit-box;
     text-decoration: none;
     -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
+    -webkit-box-orient:vertical;
     overflow: hidden;
     color: #000;
 }

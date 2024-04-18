@@ -39,21 +39,21 @@
             </ul>
         </div>
         <!-- nav1 -->
+        
         <!-- https://apost.dev/1121/#google_vignette -->
         <div class="rollingbanner">
-            <div class="title">1</div>
-            <ul class="nav2-hit">
-                <li><router-link to="/" class="prev" >{{ hitList[0] }}</router-link></li>
-                <li><router-link to="/" class="current">{{ hitList[1] }}</router-link></li>
-                <li><router-link to="/" >{{ hitList[2] }}</router-link></li>
-                <li><router-link to="/" >{{ hitList[3] }}</router-link></li>
-                <li><router-link to="/" >{{ hitList[4] }}</router-link></li>
-                <li><router-link to="/" >{{ hitList[5] }}</router-link></li>
-                <li><router-link to="/" >{{ hitList[6] }}</router-link></li>
-                <li><router-link to="/" >{{ hitList[7] }}</router-link></li>
-                <li><router-link to="/" >{{ hitList[8] }}</router-link></li>
-                <li><router-link to="/" >{{ hitList[9] }}</router-link></li>
-                <li><router-link to="/" class="next">{{ hitList[10] }}</router-link></li>
+            <div class="title" >HOT  </div>
+            <ul class="nav2-hit" >
+                <li class="current"><router-link to="/" class="prev" >1.a</router-link></li>
+                <li class="next"><router-link to="/" class="current">2.s</router-link></li>
+                <li><router-link to="/" >3.f</router-link></li>
+                <li><router-link to="/" >4.e</router-link></li>
+                <li><router-link to="/" >5.g</router-link></li>
+                <li><router-link to="/" >6.h</router-link></li>
+                <li><router-link to="/" >7.k</router-link></li>
+                <li><router-link to="/" >8.g</router-link></li>
+                <li><router-link to="/" >9.getf</router-link></li>
+                <li class="next"><router-link to="/" >10.f</router-link></li>
             </ul>
         </div>
 
@@ -70,24 +70,16 @@ import '@/assets/css/main/ss-home.css';
 import '@/assets/css/main/ss-main.css';
 import axios from 'axios';
 
+
+
+
 export default {
     name : 'AppNavView',
     components : {},
     data (){
         return{
             show : false, // 서브메뉴용 체크
-            hitList : [
-                '쇼파' ,
-                '침대',
-                '쇼파' ,
-                '침대' ,
-                '쇼파' ,
-                '침대' ,
-                '쇼파',
-                '침대' ,
-                '쇼파' ,
-                '침대' 
-            ],
+            hitList : '',
             category : ''
         }
     },
@@ -99,7 +91,6 @@ export default {
             this.show = false;
         },
         showProductList(category){ 
-            console.log(category);
             this.$store.commit('setCategory',category);
             if(this.$route.path != '/category'){
                 this.$router.push('/category');
@@ -109,20 +100,22 @@ export default {
             
         },
         getHitList(){
-            console.log("get");
-            axios({
-                method: 'get', // put, post, delete 
-                url: `${this.$store.state.apiBaseUrl}/home/main/hits`,
-                headers: { "Content-Type": "application/json; charset=utf-8" }, //전송타입
-                // params: , //get방식 파라미터로 값이 전달
-                // data: , //put, post, delete 방식 자동으로 JSON으로 변환 전달
-                responseType: 'json' //수신타입
-            }).then(response => {
-                console.log(response.data);
-            }).catch(error => {
-                console.log(error);
-            });
-
+            if(this.$store.state.hitList == null){
+                axios({
+                    method: 'get', // put, post, delete 
+                    url: `${this.$store.state.apiBaseUrl}/home/main/hits`,
+                    headers: { "Content-Type": "application/json; charset=utf-8" }, //전송타입
+                    // params: , //get방식 파라미터로 값이 전달
+                    // data: , //put, post, delete 방식 자동으로 JSON으로 변환 전달
+                    responseType: 'json' //수신타입
+                }).then(response => {
+                    console.log(response.data.apiData);
+                    this.$store.commit('setHitList',response.data.apiData);
+                    this.list = this.$store.state.hitList;
+                }).catch(error => {
+                    console.log(error);
+                });
+            }
         }
 
 
