@@ -26,7 +26,8 @@
                 <span>{{ list.category }}</span><br>
                 <span>{{ list.productName }}</span><br>
                 <span>별점 : {{ list.star }}</span>&nbsp;
-                <span>가격 : {{ list.price }} 원</span>
+                <span>가격 : {{ Number(list.price).toLocaleString('ko-KR') }} 원</span>
+                
             </div>
         </div>
         <Observer @show="loadItem"></Observer>
