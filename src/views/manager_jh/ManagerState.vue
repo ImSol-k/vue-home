@@ -74,13 +74,13 @@
 						<span v-else> ▽</span>
 					</li>
 					<ul v-show="showCategories05">
-<<<<<<< HEAD
+
 						<li class="cate-li"><router-link to="/manager/chart">주문 통계</router-link></li>
 						<li class="cate-li"><router-link to="/manager/state">주문 현황</router-link></li>
-=======
+
 						<li class="cate-li"><router-link to="/manager/chart">주문통계</router-link></li>
 						<li class="cate-li"><router-link to="/manager/state">주문현황</router-link></li>
->>>>>>> b241577467aa946ef22e469402a969665bd6d7a1
+
 					</ul>
 				</ul>
 			</div>
