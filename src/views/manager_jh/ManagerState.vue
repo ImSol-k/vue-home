@@ -74,8 +74,8 @@
 						<span v-else> ▽</span>
 					</li>
 					<ul v-show="showCategories05">
-						<li class="cate-li"><a href="">주문 통계</a></li>
-						<li class="cate-li"><a href="">주문 현황</a></li>
+						<li class="cate-li"><router-link to="/manager/chart">주문 통계</router-link></li>
+						<li class="cate-li"><router-link to="/manager/state">주문 현황</router-link></li>
 					</ul>
 				</ul>
 			</div>
@@ -97,7 +97,7 @@
 						<tbody>
 							<tr>
 								<td class="img" rowspan="3"><img class="img"
-										v-bind:src="`${this.$store.state.apiBaseUrl}/upload/${v.mainImage}`"
+										v-bind:src="`${this.$store.state.apiBaseUrl}/upload/1713326911999e7c7a418-69b0-4097-94f5-89473802a605.jpg`"
 										alt=""></td>
 								<td class="word">상품명: {{ v.productName }}</td>
 								<td class="nick" rowspan="3">닉네임: {{ v.nickName }}</td>
@@ -215,7 +215,7 @@ export default {
 			}).catch(error => {
 				console.log(error);
 			});
-			
+
 		},
 		change(a) {
 			console.log("aaa")
