@@ -269,18 +269,14 @@ nav {
 /* nav0 */
 /* nav 담길부분 - 영역지정만 */
 nav .nav0 {
-    display: block;
     width: 1300px;
     margin: 5px auto;
     background-color: none;
+    /* text-align: center; */
 }
 
 /* nav1 */
 /* nav1 메뉴 공간 */
-.nav1 {
-    display: block;
-    width: 800px;
-}
 
 /* 메뉴 커서 */
 .nav1 a {
@@ -340,7 +336,7 @@ nav .nav1 .nav1-main>li {
     letter-spacing: -1px;
     padding: 7px 15px;
     box-sizing: border-box;
-    background-color: #f0f0f0;
+    /* background-color: #f0f0f0; */
     border-radius: 16px;
     margin-left: 300px;
 }

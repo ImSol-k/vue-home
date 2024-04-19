@@ -65,7 +65,7 @@
             <div class="contentLeft">
 
                 <div class="infoImgs" v-for="(img, i) in productVo.imgList" :key="i">
-                    <img v-bind:src="`${this.$store.state.apiBaseUrl}/upload/${this.productVo.imgList[i]}`" alt="">
+                    <img v-bind:src="`${this.$store.state.apiBaseUrl}/upload/${img}`" alt="">
                 </div>
                 <div class="reviewContent" id="userReviewList">
                     <div class="InfoReview">
@@ -241,9 +241,10 @@ export default {
                 headers: { "Content-Type": "application/json; charset=utf-8" },
                 responseType: 'json'
             }).then(response => {
-                console.log(response); //수신데이터
+                console.log(response); //수신데이터i
                 this.productVo = response.data.apiData;
                 this.showPrice = Number(this.productVo.price).toLocaleString('ko-KR');
+                console.log(this.productVo.imgList.length);
             }).catch(error => {
                 console.log(error);
             });

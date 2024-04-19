@@ -23,18 +23,19 @@
                     <li><a>회원가입</a></li>
                     <li><a>고객센터</a></li>
                 </ul>
-                <ul v-if="this.$store.state.token != null && this.$store.state.authUser != null">
+                <ul v-else-if="this.$store.state.userNo == 1">
+                    <li><router-link to="/manager/productlist">관리자</router-link></li>
+                    <li><a v-on:click="logOut">로그아웃</a></li>
+                    <li><router-link to="/manager/productlist">관리페이지</router-link></li>
+                </ul>
+                <ul v-else-if="this.$store.state.token != null && this.$store.state.authUser != null">
                     <router-link to="/cart"><img src="../assets/images/homedeco/cart.png"></router-link>
                     <p id="headerCartCount">{{ this.$store.state.cartCount }}</p>
                     <li><router-link to="/mypage">{{ this.$store.state.authUser.name }} 님</router-link></li>
                     <li><a v-on:click="logOut">로그아웃</a></li>
                 </ul>
-                <ul v-if="this.$store.state.userNo === 0">
-                    <li><router-link to="/manager/productlist">관리자</router-link></li>
-                    <li><a v-on:click="logOut">로그아웃</a></li>
-                    <li><router-link to="/manager/productlist">관리페이지</router-link></li>
-                </ul>
             </div>
+                
             <!-- //header3 -->
         </div>
         <!-- header0 -->
@@ -60,7 +61,7 @@ export default {
         search() {
             this.$emit('update', this.keyword);
             this.$router.push('/category');
-            this.keyword = '';
+            // this.keyword = '';
         },
         logOut() {
             this.$store.commit('setAuthUser', null);
