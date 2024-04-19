@@ -41,10 +41,10 @@
         <!-- nav1 -->
         
         <!-- https://apost.dev/1121/#google_vignette -->
-        <div class="rollingbanner">
+        <!-- <div class="rollingbanner">
             <div class="title" >&nbsp;</div>
             <ul class="nav2-hit">
-                <li  class="current"><router-link to="/">1.침대</router-link></li>
+                <li  class="current"><router-link to="/"></router-link></li>
                 <li class="next"><router-link to="/">2.의자</router-link></li>
                 <li><router-link to="/">3.쇼파</router-link></li>
                 <li><router-link to="/">4.1인쇼파</router-link></li>
@@ -55,7 +55,7 @@
                 <li><router-link to="/">9.침대프레임</router-link></li>
                 <li class="prev"><router-link to="/">10.매트리스</router-link></li>
             </ul>
-        </div>
+        </div> -->
 
         
     </div>
@@ -132,8 +132,7 @@ export default {
         //         });
         //     } else {
         //         // console.log(this.hitList);
-        //     }
-        // },
+
         // rollingCallback(){
         //     //.prev 클래스 삭제
         //     document.querySelector('.rollingbanner .prev').classList.remove('prev');
@@ -157,7 +156,7 @@ export default {
         // }
     },
     created(){
-        // this.getHitList();
+
         // document.addEventListener('DOMContentLoaded', ()=>{
         //     let interval = window.setInterval(this.rollingCallback, 3000);
         //     document.querySelector('.rollingbanner').addEventListener('mouseover',function(){

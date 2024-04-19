@@ -7,7 +7,7 @@
 			<div class="side">
 				<ul>
 					<li @click="toggleCategories">
-						<strong>상품 관리</strong>
+						<strong><router-link to="/manager/productlist">상품 관리</router-link></strong>
 						<span v-if="showCategories"> △ </span>
 						<span v-else> ▽</span> <!-- 화살표 아이콘 -->
 					</li>
@@ -74,8 +74,13 @@
 						<span v-else> ▽</span>
 					</li>
 					<ul v-show="showCategories05">
-						<li class="cate-li"><a href="">주문 통계</a></li>
-						<li class="cate-li"><a href="">주문 현황</a></li>
+
+						<li class="cate-li"><router-link to="/manager/chart">주문 통계</router-link></li>
+						<li class="cate-li"><router-link to="/manager/state">주문 현황</router-link></li>
+
+						<li class="cate-li"><router-link to="/manager/chart">주문통계</router-link></li>
+						<li class="cate-li"><router-link to="/manager/state">주문현황</router-link></li>
+
 					</ul>
 				</ul>
 			</div>
@@ -92,37 +97,26 @@
 				<div id="pp">
 
 					<h3>구매진행중</h3>
-					<ul v-bind:key="i" v-for="(v, i) in orders">
-						<li>
-							상품 구매 No{{ v.orderNo }} <br>
-							구매일자 {{ v.orderDate }}
-							<div>
-								<button v-on:click.prevent="showList(i)">구매리스트보기</button>
-								<button>완료</button>
-							</div>
-							<table class="ppp" >
+					<table class="ppp" v-bind:key="i" v-for="(v, i) in ing">
 
-								<tbody v-bind:key="i" v-for="(v, i) in ing" v-show="isShow">
-									<tr>
-										<td class="img" rowspan="3"><img class="img"
-												v-bind:src="`${this.$store.state.apiBaseUrl}/upload/${v.mainImage}`"
-												alt=""></td>
-										<td class="word">상품명: {{ v.productName }}</td>
-										<td class="nick" rowspan="3">닉네임: {{ v.nickName }}</td>
-										<td class="nick2" rowspan="3"><button v-on:click.prevent="change(v.no)"
-												class="state" type="button">완료</button></td>
-									</tr>
-									<tr>
-										<td>색상: {{ v.color }}</td>
-									</tr>
-									<tr>
-										<td>수량: {{ v.count }}</td>
-									</tr>
-								</tbody>
-							</table>
-						</li>
-					</ul>
-
+						<tbody>
+							<tr>
+								<td class="img" rowspan="3"><img class="img"
+										v-bind:src="`${this.$store.state.apiBaseUrl}/upload/1713326911999e7c7a418-69b0-4097-94f5-89473802a605.jpg`"
+										alt=""></td>
+								<td class="word">상품명: {{ v.productName }}</td>
+								<td class="nick" rowspan="3">닉네임: {{ v.nickName }}</td>
+								<td class="nick2" rowspan="3"><button v-on:click.prevent="change(v.no)" class="state"
+										type="button">완료</button></td>
+							</tr>
+							<tr>
+								<td>색상: {{ v.color }}</td>
+							</tr>
+							<tr>
+								<td>수량: {{ v.count }}</td>
+							</tr>
+						</tbody>
+					</table>
 				</div>
 				<div class="bb">
 					<h3 class="bx">구매진행완료</h3>
@@ -171,7 +165,6 @@ export default {
 	},
 	data() {
 		return {
-			
 			showCategories: false,
 			showCategories00: false,
 			showCategories02: false,
@@ -180,8 +173,7 @@ export default {
 			showCategories05: false,
 			end: [],
 			ing: [],
-			orders: [],
-			isShow: false
+			orders: []
 		}
 	},
 	methods: {
@@ -223,11 +215,12 @@ export default {
 				this.orders = response.data.orders;
 
 				console.log(this.orders);
-
+				
 
 			}).catch(error => {
 				console.log(error);
 			});
+
 		},
 		change(a) {
 			console.log("aaa")
@@ -247,26 +240,6 @@ export default {
 			}).catch(error => {
 				console.log(error);
 			});
-		},
-		showList(v) {
-			console.log(v);
-
-			axios({
-				method: 'post', // put, post, delete 
-				url: `${this.$store.state.apiBaseUrl}/home/manager/state2`,
-				headers: { "Content-Type": "application/json; charset=utf-8" }, //전송타입
-				//params: guestbookVo, //get방식 파라미터로 값이 전달
-				data: v, //put, post, delete 방식 자동으로 JSON으로 변환 전달
-				responseType: 'json' //수신타입
-			}).then(response => {
-				console.log(response); //수신데이타
-
-				//window.location.reload();
-
-			}).catch(error => {
-				console.log(error);
-			});
-			this.isShow = !this.isShow;
 		}
 	},
 	created() {
