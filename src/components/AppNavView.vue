@@ -68,7 +68,7 @@
 <script>
 import '@/assets/css/main/ss-home.css';
 import '@/assets/css/main/ss-main.css';
-import axios from 'axios';
+// import axios from 'axios';
 
 export default {
     name : 'AppNavView',
@@ -104,69 +104,69 @@ export default {
                 this.$emit('list',category);
             }   
         },
-        getHitList(){
-            if(this.$store.state.hitList == ""){
-                axios({
-                    method: 'get', // put, post, delete 
-                    url: `${this.$store.state.apiBaseUrl}/home/main/hits`,
-                    headers: { "Content-Type": "application/json; charset=utf-8" }, //전송타입
-                    // params: , //get방식 파라미터로 값이 전달
-                    // data: , //put, post, delete 방식 자동으로 JSON으로 변환 전달
-                    responseType: 'json' //수신타입
-                }).then(response => {
-                    let list = response.data.apiData;
-                    this.$store.commit('setHitList',response.data.apiData);
-                    this.hit1 = list[0];
-                    this.hit2 = list[1];
-                    this.hit3 = list[2];
-                    this.hit4 = list[3];
-                    this.hit5 = list[4];
-                    this.hit6 = list[5];
-                    this.hit7 = list[6];
-                    this.hit8 = list[7];
-                    this.hit9 = list[8];
-                    this.hit10 = list[9];
+        // getHitList(){
+        //     if(this.$store.state.hitList == ""){
+        //         axios({
+        //             method: 'get', // put, post, delete 
+        //             url: `${this.$store.state.apiBaseUrl}/home/main/hits`,
+        //             headers: { "Content-Type": "application/json; charset=utf-8" }, //전송타입
+        //             // params: , //get방식 파라미터로 값이 전달
+        //             // data: , //put, post, delete 방식 자동으로 JSON으로 변환 전달
+        //             responseType: 'json' //수신타입
+        //         }).then(response => {
+        //             let list = response.data.apiData;
+        //             this.$store.commit('setHitList',response.data.apiData);
+        //             this.hit1 = list[0];
+        //             this.hit2 = list[1];
+        //             this.hit3 = list[2];
+        //             this.hit4 = list[3];
+        //             this.hit5 = list[4];
+        //             this.hit6 = list[5];
+        //             this.hit7 = list[6];
+        //             this.hit8 = list[7];
+        //             this.hit9 = list[8];
+        //             this.hit10 = list[9];
 
-                }).catch(error => {
-                    console.log(error);
-                });
-            } else {
-                // console.log(this.hitList);
-            }
-        },
-        rollingCallback(){
-            //.prev 클래스 삭제
-            document.querySelector('.rollingbanner .prev').classList.remove('prev');
+        //         }).catch(error => {
+        //             console.log(error);
+        //         });
+        //     } else {
+        //         // console.log(this.hitList);
+        //     }
+        // },
+        // rollingCallback(){
+        //     //.prev 클래스 삭제
+        //     document.querySelector('.rollingbanner .prev').classList.remove('prev');
 
-            //.current -> .prev
-            let current = document.querySelector('.rollingbanner .current');
-            current.classList.remove('current');
-            current.classList.add('prev');
+        //     //.current -> .prev
+        //     let current = document.querySelector('.rollingbanner .current');
+        //     current.classList.remove('current');
+        //     current.classList.add('prev');
 
-            //.next -> .current
-            let next = document.querySelector('.rollingbanner .next');
-            //다음 목록 요소가 널인지 체크
-            if(next.nextElementSibling == null){
-                document.querySelector('.rollingbanner ul li:first-child').classList.add('next');
-            }else{
-                //목록 처음 요소를 다음 요소로 선택
-                next.nextElementSibling.classList.add('next');
-            }
-            next.classList.remove('next');
-            next.classList.add('current');
-        }
+        //     //.next -> .current
+        //     let next = document.querySelector('.rollingbanner .next');
+        //     //다음 목록 요소가 널인지 체크
+        //     if(next.nextElementSibling == null){
+        //         document.querySelector('.rollingbanner ul li:first-child').classList.add('next');
+        //     }else{
+        //         //목록 처음 요소를 다음 요소로 선택
+        //         next.nextElementSibling.classList.add('next');
+        //     }
+        //     next.classList.remove('next');
+        //     next.classList.add('current');
+        // }
     },
     created(){
-        this.getHitList();
-        document.addEventListener('DOMContentLoaded', ()=>{
-            let interval = window.setInterval(this.rollingCallback, 3000);
-            document.querySelector('.rollingbanner').addEventListener('mouseover',function(){
-                window.clearInterval(interval);
-            })
-            document.querySelector('.rollingbanner').addEventListener('mouseout',function(){
-                interval = window.setInterval(this.rollingCallback, 3000);
-            })
-        })
+        // this.getHitList();
+        // document.addEventListener('DOMContentLoaded', ()=>{
+        //     let interval = window.setInterval(this.rollingCallback, 3000);
+        //     document.querySelector('.rollingbanner').addEventListener('mouseover',function(){
+        //         window.clearInterval(interval);
+        //     })
+        //     document.querySelector('.rollingbanner').addEventListener('mouseout',function(){
+        //         interval = window.setInterval(this.rollingCallback, 3000);
+        //     })
+        // })
     }
 }
 </script>

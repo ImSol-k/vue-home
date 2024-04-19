@@ -9,7 +9,7 @@ export default createStore({
             //apiBaseUrl: "http://54.180.79.237:9000",
 
             token: "",//토큰
-            userNo: 1,  //로그인한 유저번호
+            userNo: "",  //로그인한 유저번호
             nowOrderList: "",//장바구니리스트
             productColor: [],    //상품옵션 색상
             authUser: {},
