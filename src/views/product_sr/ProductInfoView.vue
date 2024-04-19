@@ -65,7 +65,7 @@
             <div class="contentLeft">
 
                 <div class="infoImgs" v-for="(img, i) in productVo.imgList" :key="i">
-                    <img v-bind:src="`${this.$store.state.apiBaseUrl}/upload/${this.productVo.imgList[i]}`" alt="">
+                    <img v-bind:src="`${this.$store.state.apiBaseUrl}/upload/${img}`" alt="">
                 </div>
                 <div class="reviewContent" id="userReviewList">
                     <div class="InfoReview">
@@ -92,7 +92,8 @@
                                 </span>
                                 <span class="reviewDate">{{ showList[i].regDate }}</span>
                                 <span class="userReviewManager" v-if="showList[i].userNo == this.$store.state.userNo">
-                                    <button type="" v-on:click.prevent="reviewDelete(showList[i].reviewNo, i)">삭제</button>
+                                    <button type=""
+                                        v-on:click.prevent="reviewDelete(showList[i].reviewNo, i)">삭제</button>
                                     <button>수정</button>
                                 </span>
                             </div>
@@ -219,7 +220,7 @@ export default {
             starTotal: 0,
             reviewImg: "",
             reviewVo: {
-                star: "",
+                star: 0,
                 content: "",
                 userNo: this.$store.state.userNo
             },
@@ -240,9 +241,10 @@ export default {
                 headers: { "Content-Type": "application/json; charset=utf-8" },
                 responseType: 'json'
             }).then(response => {
-                console.log(response); //수신데이터
+                console.log(response); //수신데이터i
                 this.productVo = response.data.apiData;
                 this.showPrice = Number(this.productVo.price).toLocaleString('ko-KR');
+                console.log(this.productVo.imgList.length);
             }).catch(error => {
                 console.log(error);
             });
@@ -367,22 +369,40 @@ export default {
             console.log("별점클릭" + star)
             this.reviewVo.star = star;
         },
-        openModal() {
+        openModal() { //구매내역 확인
             console.log("리뷰작성");
-            this.showModal = true;
+
+            axios({
+                method: 'get',
+                url: `${this.$store.state.apiBaseUrl}/home/info/isPurchase/${this.$store.state.userNo}`, //SpringBoot주소
+                headers: { "Content-Type": "application/json; charset=utf-8" },
+                params: { productNo: this.$route.params.no },
+                responseType: 'json'
+            }).then(response => {
+                console.log(response.data);
+                if (response.data.result == "success") {
+                    this.showModal = true;
+                } else {
+                    alert("구매후 작성가능");
+                }
+            }).catch(error => {
+                console.log(error);
+            });
         },
         closeModal() {
             console.log("리뷰작성창 닫기");
             this.showModal = false;
+            this.reviewVo.content = "";
+            this.reviewVo.star = 0;
         },
         selectFile(event) {
             this.reviewImg = event.target.files[0];
             console.log(this.reviewImg);
         },
-        reviewAdd() {
+        reviewAdd() { //리뷰작성
             console.log("리뷰추가");
             console.log(this.reviewVo);
-            
+
             if (this.$store.state.token != null) {
                 const formData = new FormData();
                 formData.append('file', this.reviewImg);
@@ -405,6 +425,7 @@ export default {
                     } else {
                         alert("리뷰작성 실패");
                     }
+
                     this.closeModal();
                 }).catch(error => {
                     console.log(error);
@@ -413,32 +434,20 @@ export default {
                 alert("로그인후 작성 가능");
             }
         },
-        reviewDelete(no, i) {
-            console.log("리뷰삭제"+ no);
+        reviewDelete(no, i) {   //리뷰삭제
+            console.log("리뷰삭제" + no);
             axios({
                 method: 'delete',
                 url: `${this.$store.state.apiBaseUrl}/home/info/delete`, //SpringBoot주소
                 headers: { "Content-Type": "application/json; charset=utf-8" },
-                params: {no: no},
+                params: { no: no },
                 responseType: 'json'
             }).then(response => {
                 console.log(response);
-                if(response.data.result == "success"){
+                if (response.data.result == "success") {
                     alert("삭제되었습니다");
                     this.reviewList.slice(i, 1);
                 }
-            }).catch(error => {
-                console.log(error);
-            });
-        },
-        isPurchase(){
-            axios({
-                method: 'get',
-                url: `${this.$store.state.apiBaseUrl}/home/info/isPurchase/`, //SpringBoot주소
-                headers: { "Content-Type": "application/json; charset=utf-8" },
-                responseType: 'json'
-            }).then(response => {
-                console.log(response.data);
             }).catch(error => {
                 console.log(error);
             });
@@ -448,7 +457,6 @@ export default {
     created() {
         this.showProduct();
         this.showReview(0);
-        this.isPurchase();
     }
 };
 </script>

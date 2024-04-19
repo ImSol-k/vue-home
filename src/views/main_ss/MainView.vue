@@ -2,7 +2,7 @@
 
 <div id="ss-wrap">
 
-    <AppHeader @update="catchKeyword" />
+    <AppHeader />
     <!-- //header 부분 -->
 
     <AppNavView />
@@ -30,7 +30,7 @@
                 
             </div>
         </div>
-        <Observer @show="loadItem"></Observer>
+        <!-- <Observer @show="loadItem"></Observer> -->
 
     </div>
     <!-- //ss-content 부분 -->
@@ -41,9 +41,9 @@
 </div>
 <!-- //wrap -->
 </template>
-<script setup>
+<!-- <script setup>
 import Observer from '@/components/ObserverView.vue'
-</script>
+</script> -->
 
 <script>
 import '@/assets/css/main/ss-home.css';
@@ -65,16 +65,17 @@ export default {
     data() {
         return {
             goodsList :[],
-            page : 0
+            page : 0,
+            keyword : ''
         }
     },
     methods: {
-        catchKeyword(keyword){
+        catchKeyword(){
             axios({
                 method: 'get', // put, post, delete 
                 url: `${this.$store.state.apiBaseUrl}/home/main`,
                 headers: { "Content-Type": "application/json; charset=utf-8" }, //전송타입
-                params: { page : this.page, keyword : keyword}, //get방식 파라미터로 값이 전달
+                params: { page : this.page, keyword : this.keyword}, //get방식 파라미터로 값이 전달
                 // data: , //put, post, delete 방식 자동으로 JSON으로 변환 전달
                 responseType: 'json' //수신타입
             }).then(response => {
@@ -97,9 +98,6 @@ export default {
             let no =event.target.dataset.no
             console.log(no);
             this.$router.push('/product/'+ no);
-        },
-        go(){
-            this.$router.push('/category');
         }
       
     },
@@ -107,7 +105,7 @@ export default {
        
     },
     created (){
-        
+        this.catchKeyword();
     }
 };
 </script>

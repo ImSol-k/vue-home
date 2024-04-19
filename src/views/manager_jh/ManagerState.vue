@@ -7,7 +7,7 @@
 			<div class="side">
 				<ul>
 					<li @click="toggleCategories">
-						<strong>상품 관리</strong>
+						<strong><router-link to="/manager/productlist">상품 관리</router-link></strong>
 						<span v-if="showCategories"> △ </span>
 						<span v-else> ▽</span> <!-- 화살표 아이콘 -->
 					</li>
@@ -74,8 +74,13 @@
 						<span v-else> ▽</span>
 					</li>
 					<ul v-show="showCategories05">
+<<<<<<< HEAD
 						<li class="cate-li"><router-link to="/manager/chart">주문 통계</router-link></li>
 						<li class="cate-li"><router-link to="/manager/state">주문 현황</router-link></li>
+=======
+						<li class="cate-li"><router-link to="/manager/chart">주문통계</router-link></li>
+						<li class="cate-li"><router-link to="/manager/state">주문현황</router-link></li>
+>>>>>>> b241577467aa946ef22e469402a969665bd6d7a1
 					</ul>
 				</ul>
 			</div>
