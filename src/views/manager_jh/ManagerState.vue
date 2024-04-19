@@ -215,6 +215,7 @@ export default {
 			}).catch(error => {
 				console.log(error);
 			});
+			
 		},
 		change(a) {
 			console.log("aaa")
