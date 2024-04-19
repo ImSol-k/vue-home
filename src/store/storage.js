@@ -7,7 +7,6 @@ export default createStore({
             //url베이스
             //apiBaseUrl: "http://localhost:9090",
             apiBaseUrl: "http://54.180.79.237:9090",
-
             token: "",//토큰
             userNo: "",  //로그인한 유저번호
             nowOrderList: "",//장바구니리스트
