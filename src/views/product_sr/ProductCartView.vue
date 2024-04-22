@@ -16,7 +16,7 @@
                 <div class="cartObj" v-for="(cart, i) in cartList" :key="i">
                     <input type="checkbox" name="selectcart" id="cartSelect" v-model="checkList[i]"
                         v-on:click="select(i)">
-                    <img src="@/assets/images/product/test.png" alt="">
+                        <img v-bind:src="`${this.$store.state.apiBaseUrl}/upload/${cartList[i].mainImg}`" alt="">
                     <div class="cartObjHeader">
                         <span class="deleteCart" v-on:click.prevent="cartDelete(cartList[i].cart, i)">×</span>
                         <p>{{ cartList[i].product }}({{ cartList[i].color }})</p>
@@ -83,7 +83,7 @@ export default {
         showCartList() {
             //결제정보 초기화
             this.$store.state.nowOrderList = null;
-            console.log(this.$store.state.userNo + ": 카트 리스트");
+            console.log(this.$store.state.authUser.userNo + ": 카트 리스트");
             axios({
                 method: 'post',
                 url: `${this.$store.state.apiBaseUrl}/home/info/usercart`, //SpringBoot주소
@@ -91,7 +91,7 @@ export default {
                     "Content-Type": "application/json; charset=utf-8",
                     "Authorization": "Bearer " + this.$store.state.token
                 },
-                params: { userNo: this.$store.state.userNo },
+                params: { userNo: this.$store.state.authUser.userNo },
                 responseType: 'json'
             }).then(response => {
                 console.log(response);

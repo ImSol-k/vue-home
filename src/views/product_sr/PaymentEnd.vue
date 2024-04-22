@@ -58,12 +58,7 @@ export default {
     },
     data() {
         return {
-            orderUser: {
-                name: "",
-                hp: "",
-                address: "",
-                total: ""
-            },
+            orderUser: this.$store.state.authUser,
             orderInfoList: [],
             no:""
         };
@@ -75,22 +70,22 @@ export default {
 
             // const no = urlParams.get('');
             this.no = this.$route.params.no;
-            console.log(this.no);
+            
             axios({
                 
                 method: 'post', // put, post, delete 
-                url: 'http://localhost:9090/home/payend',
+                url: `${this.$store.state.apiBaseUrl}/home/payend`,
                 headers: { "Content-Type": "application/json; charset=utf-8" }, //전송타입
                 //params: guestbookVo, //get방식 파라미터로 값이 전달
                 data: this.no, //put, post, delete 방식 자동으로 JSON으로 변환 전달
                 responseType: 'json' //수신타입
             }).then(response => {
                 console.log(response.data); //수신데이타
-                this.orderUser.name = response.data.pay1.name;
-                this.orderUser.hp = response.data.pay1.hp;
-                this.orderUser.address = response.data.pay1.address;
-                this.orderUser.total = response.data.pay1.total;
-                console.log(this.orderUser)
+                // this.orderUser.name = response.data.pay1.name;
+                // this.orderUser.hp = response.data.pay1.hp;
+                // this.orderUser.address = response.data.pay1.address;
+                // this.orderUser.total = response.data.pay1.total;
+                // console.log(this.orderUser)
 
                 this.orderInfoList = response.data.pay2;
                 console.log(this.orderInfoList)
@@ -101,16 +96,17 @@ export default {
         
         },
         deleteCart(){
-            console.log("결제완료 장바구니 비우기");
+            console.log("결제완료 장바구니 비우기================");
+            console.log(this.$store.state.nowOrderList)
             axios({
                 method: 'delete',
-                url: 'http://localhost:9090/home/payend',
+                url: `${this.$store.state.apiBaseUrl}/home/payend`,
                 headers: { "Content-Type": "application/json; charset=utf-8" }, 
                 data: this.$store.state.nowOrderList, 
                 responseType: 'json' 
             }).then(response => {
                 console.log(response.data); 
-
+                console.log("---------------------");
             }).catch(error => {
                 console.log(error);
             });
