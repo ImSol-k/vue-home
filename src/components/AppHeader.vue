@@ -23,7 +23,7 @@
                     <li><a>회원가입</a></li>
                     <li><a>고객센터</a></li>
                 </ul>
-                <ul v-else-if="this.$store.state.userNo == 1">
+                <ul v-else-if="this.$store.state.authUser.userNo == 1">
                     <li><router-link to="/manager/productlist">관리자</router-link></li>
                     <li><a v-on:click="logOut">로그아웃</a></li>
                     <li><router-link to="/manager/productlist">관리페이지</router-link></li>

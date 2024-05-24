@@ -27,7 +27,7 @@
                     <li><router-link to="/mypage">{{ this.$store.state.authUser.name }}님</router-link></li>
                     <li><a v-on:click="logOut">로그아웃</a></li>
                 </ul>
-                <ul v-if="this.$store.state.userNo === 0">
+                <ul v-if="this.$store.state.authUser.userNo === 0">
                     <li><router-link to="/manager/productlist">관리자</router-link></li>
                     <li><a v-on:click="logOut">로그아웃</a></li>
                     <li><router-link to="/manager/productlist">관리페이지</router-link></li>

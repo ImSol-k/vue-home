@@ -91,7 +91,7 @@
                                     <img v-else src="@/assets/images/homedeco/star2.png" alt="">
                                 </span>
                                 <span class="reviewDate">{{ showList[i].regDate }}</span>
-                                <span class="userReviewManager" v-if="showList[i].userNo == this.$store.state.userNo">
+                                <span class="userReviewManager" v-if="showList[i].userNo == this.$store.state.authUser.userNo">
                                     <button type=""
                                         v-on:click.prevent="reviewDelete(showList[i].reviewNo, i)">삭제</button>
                                     <button>수정</button>
@@ -222,7 +222,7 @@ export default {
             reviewVo: {
                 star: 0,
                 content: "",
-                userNo: this.$store.state.userNo
+                userNo: this.$store.state.authUser.userNo
             },
             reviewList: [],
             showList: [],
@@ -297,7 +297,7 @@ export default {
                 productNo: this.$route.params.no,
                 count: 1,
                 color: event.target.value,
-                userNo: this.$store.state.userNo,
+                userNo: this.$store.state.authUser.userNo,
                 price: this.productVo.price
             }
             this.tempCart.push(cart);
@@ -374,7 +374,7 @@ export default {
 
             axios({
                 method: 'get',
-                url: `${this.$store.state.apiBaseUrl}/home/info/isPurchase/${this.$store.state.userNo}`, //SpringBoot주소
+                url: `${this.$store.state.apiBaseUrl}/home/info/isPurchase/${this.$store.state.authUser.userNo}`, //SpringBoot주소
                 headers: { "Content-Type": "application/json; charset=utf-8" },
                 params: { productNo: this.$route.params.no },
                 responseType: 'json'
@@ -406,7 +406,7 @@ export default {
             if (this.$store.state.token != null) {
                 const formData = new FormData();
                 formData.append('file', this.reviewImg);
-                formData.append('star', this.reviewVo.star);
+                formData.append('star', this.reviewVo.star+1);
                 formData.append('content', this.reviewVo.content);
                 formData.append('userNo', this.reviewVo.userNo);
                 formData.append('productNo', this.$route.params.no);

@@ -60,11 +60,13 @@ export default {
         fetchData() {
             axios({
                 method: 'get',
-                url: `${this.$store.state.apiBaseUrl}/home/mypage/userinfo?userNo=${this.$store.state.userNo}`, // 수정된 부분
+                url: `${this.$store.state.apiBaseUrl}/home/mypage/userinfo/${this.$store.state.authUser.userNo}`, // 수정된 부분
                 headers: { "Content-Type": "application/json; charset=utf-8" },
                 responseType: 'json'
             }).then(response => {
+                // console.log(response.data)
                 this.userData = response.data; // 수정된 부분
+                // console.log(this.userData)
 
 
             }).catch(error => {
@@ -75,12 +77,13 @@ export default {
         fetchData2() {
             axios({
                 method: 'get',
-                url: `${this.$store.state.apiBaseUrl}/home/mypage/orders?userNo=${this.$store.state.userNo}`, // 수정된 부분
+                url: `${this.$store.state.apiBaseUrl}/home/mypage/orders/${this.$store.state.authUser.userNo}`, // 수정된 부분
                 headers: { "Content-Type": "application/json; charset=utf-8" },
                 responseType: 'json'
             }).then(response => {
+                console.log(response.data)
                 this.orderHistory = response.data;
-
+                console.log(this.orderHistory)
             }).catch(error => {
                 console.log(error);
             });

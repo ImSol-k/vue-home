@@ -107,7 +107,7 @@ export default {
             shippingInfo: {}, // 초기값 설정
             shippingOption: "default",
             customerInfo: "", // 초기값 설정
-            userNo: 1,
+            userNo: this.$store.state.authUser.userNo,
             products: [ this.$store.state.nowOrderList ],
             paymentMethods: ["신용 카드", "무통장 입금", "핸드폰", "카카오페이", "페이코"],
             paymentMethodImages: {
